@@ -9,15 +9,23 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'detalhe-cliente/:idCliente',
+    loadChildren: () => import('./pages/cliente/detalhe-cliente/detalhe-cliente.module').then( m => m.DetalheClientePageModule)
+  },
+  {
+    path: 'recompensa-update',
+    loadChildren: () => import('./pages/recompensa/recompensa-update/recompensa-update.module').then( m => m.RecompensaUpdatePageModule)
+  },
+  {
+    path: 'historico',
+    loadChildren: () => import('./pages/historico/historico.module').then( m => m.HistoricoPageModule)
   }
 ];
 

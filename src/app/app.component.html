@@ -3,16 +3,42 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Menu</ion-title>
+          <ion-grid>
+            <ion-row>
+              <img id="imgPerfil" width="75" src="https://s3.amazonaws.com/TWFiles/536882/userAvatar/tf_81f2380f-ea13-48b8-9724-8f7a635471b6.20191117_152226.jpg">
+            </ion-row>
+            <ion-row margin-top>
+              <ion-title no-padding class="span__razaoSocial">{{ 'empresa.razaoSocial' }}</ion-title>
+            </ion-row>
+            <ion-row>
+              <ion-title no-padding class="span__email">{{ 'empresa.email' }}</ion-title>
+            </ion-row>
+          </ion-grid>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item *ngIf="p.isAuthenticated && isAuthenticated ? true : (!p.isAuthenticated ? true : false)" [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" *ngIf="!isAuthenticated">
+            <ion-item [routerDirection]="'root'" [routerLink]="'/login'">
+              <ion-icon slot="start" [name]="'list'"></ion-icon>
+              <ion-label>
+                Realizar Login
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle *ngIf="isAuthenticated" (click)="logout()">
+            <ion-item>
+              <ion-icon slot="start" [name]="'list'"></ion-icon>
+              <ion-label>
+                Sair
               </ion-label>
             </ion-item>
           </ion-menu-toggle>

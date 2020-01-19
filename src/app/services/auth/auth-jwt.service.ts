@@ -4,6 +4,7 @@ import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {API_URL} from '../../app.constants';
+import {Events} from "@ionic/angular";
 
 
 @Injectable({
@@ -12,7 +13,9 @@ import {API_URL} from '../../app.constants';
 export class AuthServerProvider {
   constructor(private http: HttpClient,
               private $localStorage: LocalStorageService,
-              private $sessionStorage: SessionStorageService) {}
+              private $sessionStorage: SessionStorageService,
+              public events: Events
+  ) {}
 
   login(credentials): Observable<any> {
     const data = {
@@ -44,6 +47,7 @@ export class AuthServerProvider {
     return new Observable(observer => {
       this.$localStorage.clear('authenticationToken');
       this.$sessionStorage.clear('authenticationToken');
+      this.events.publish('user:logout');
       observer.complete();
     });
   }

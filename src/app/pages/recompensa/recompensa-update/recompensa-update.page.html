@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nova Pontuação</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-banner [tituloBanner]="'Nova Recompensa'"></app-banner>
+  <form (submit)="create()" class="form" [formGroup]="editForm">
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label position="floating">Data do serviço</ion-label>
+            <ion-input type="text">{{ momento | date: 'dd/MM/yyyy hh:mm a' }}</ion-input>
+            <small style="color: red" *ngIf="editForm.controls['idRecompensa'].hasError('required')">*Obrigatório</small>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Valor da Compra</ion-label>
+            <ion-input type="number" formControlName="valorCompra"></ion-input>
+            <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button size="full" type="submit">Criar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </form>
+</ion-content>

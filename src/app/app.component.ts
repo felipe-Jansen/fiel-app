@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import {Events, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Empresa} from "./shared/model/empresa.model";
+import {AccountService} from "./services/auth/account.service";
+import {LoginService} from "./services/login/login.service";
 
 @Component({
   selector: 'app-root',
@@ -14,21 +17,50 @@ export class AppComponent {
     {
       title: 'Home',
       url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'Realizar Login',
-      url: '/login',
-      icon: 'list'
+      icon: 'home',
+      isAuthenticated: false
+    },{
+      title: 'Histórico',
+      url: '/historico',
+      icon: 'clock',
+      isAuthenticated: true
+    },{
+      title: 'Estatísticas',
+      url: '/pontos',
+      icon: 'analytics',
+      isAuthenticated: true
     }
   ];
+
+  empresa: Empresa;
+  isAuthenticated = false;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public events: Events,
+    private accountService: AccountService,
+    private loginService: LoginService
   ) {
     this.initializeApp();
+    events.subscribe('user:logged', () => {
+      this.getPerfil();
+    });
+    events.subscribe('user:logout', () => {
+      this.isAuthenticated = false;
+    });
+  }
+
+  getPerfil() {
+    this.isAuthenticated = true;
+  }
+
+  getUserAuthenticated() {
+    this.accountService.loggedUser()
+        .subscribe( user => {
+          this.isAuthenticated = true;
+        });
   }
 
   initializeApp() {
@@ -37,4 +69,9 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  logout() {
+    this.loginService.logout();
+  }
+
 }

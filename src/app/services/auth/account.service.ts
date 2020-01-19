@@ -19,12 +19,8 @@ export class AccountService {
     return this.http.get<any>(API_URL_V1 + '/usuarios/user_logado', { observe: 'response' });
   }
 
-  loggedUser() : Promise<any> {
-    return this.http.get<any>(API_URL_V1 + '/usuarios/user_logado')
-        .toPromise()
-        .then(res => {
-          return res;
-        });
+  loggedUser(): Observable<any> {
+    return this.http.get<any>(API_URL_V1 + '/usuarios/user_logado');
   }
 
   save(account: any): Observable<HttpResponse<any>> {

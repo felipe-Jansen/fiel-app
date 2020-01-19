@@ -1,0 +1,16 @@
+$corInicialDegrade: #00C917;
+$corFinalDegrade:#00C911;
+
+.banner {
+  background: linear-gradient(30deg, $corInicialDegrade, $corFinalDegrade) !important;
+  height: 5em;
+  box-shadow: 0px 10px 7px #e4dcb8;
+}
+.banner .texto {
+  justify-content: center;
+
+}
+.conteudo {
+  font-size: 1.5em;
+  font-weight: 200;
+}

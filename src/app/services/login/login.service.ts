@@ -3,6 +3,7 @@ import { AccountService } from '../auth/account.service';
 import { AuthServerProvider } from '../auth/auth-jwt.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {Events} from "@ionic/angular";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class LoginService {
       protected accountService: AccountService,
       protected authServerProvider: AuthServerProvider,
       protected router: Router,
-      protected http: HttpClient
+      protected http: HttpClient,
+      public events: Events
   ) {}
 
   login(credentials, callback?) {
@@ -27,6 +29,7 @@ export class LoginService {
                 // this.translate.use(account.langKey);
               }
               resolve(data);
+              this.events.publish('user:logged');
             });
             return cb();
           },

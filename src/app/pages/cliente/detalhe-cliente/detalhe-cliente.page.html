@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhe do Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-banner [tituloBanner]=" cliente?.nome + ' ' + cliente?.sobrenome"></app-banner>
+  <ion-grid>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Informações Gerais</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Nome: </strong>{{ cliente?.nome + ' ' + cliente?.sobrenome }}</p>
+        <p><strong>Email: </strong>{{ cliente?.email }}</p>
+        <p><strong>C.P.F.: </strong>{{ cliente?.cpf }}</p>
+        <p><strong>Whatsapp: </strong>{{ cliente?.whatsapp }}</p>
+        <p><strong>Cliente desde: </strong>{{ cliente?.dataCadastro }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dados do endereço</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Rua: </strong>{{ cliente?.rua }}</p>
+        <p><strong>Bairro: </strong>{{ cliente?.bairro }}</p>
+        <p><strong>Cidade: </strong>{{ cliente?.cidade }}</p>
+        <p><strong>Estado: </strong>{{ cliente?.estado }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="alterarDados()" size="full">Alterar Dados</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="openModalPonto()" size="full">Pontuar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
