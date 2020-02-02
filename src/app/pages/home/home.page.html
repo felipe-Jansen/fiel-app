@@ -12,17 +12,27 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-label>Meus Clientes</ion-label>
+        <ion-label>Meus Clientes</ion-label>
     </ion-row>
     <ion-row *ngFor="let cliente of clientes">
       <ion-card [routerLink]="['/detalhe-cliente/', cliente.codigo]" class="welcome-card">
         <img src="/assets/shapes.svg" alt=""/>
         <ion-card-header>
-          <ion-card-title>{{ cliente.nome + ' ' + cliente.sobreNome }}</ion-card-title>
+          <ion-card-title>{{ cliente.nome + ' ' + cliente.sobrenome }}</ion-card-title>
           <ion-card-subtitle>{{ cliente.whatsapp + ' | ' + cliente.email }}</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
     </ion-row>
   </ion-grid>
-
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button [routerLink]="['/update-cliente/']" size="full">Adicionar um novo cliente</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+

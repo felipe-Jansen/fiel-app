@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ModalController} from "@ionic/angular";
-import {RecompensaUpdatePage} from "../../recompensa/recompensa-update/recompensa-update.page";
+import {RecompensaUpdatePage} from "../../ponto/recompensa-update/recompensa-update.page";
 import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
+import {PontoService} from "../../../services/ponto.service";
 
 @Component({
   selector: 'app-detalhe-cliente',
@@ -13,21 +14,33 @@ import {Cliente} from "../../../shared/model/cliente.model";
 export class DetalheClientePage {
 
   idCliente = this.route.snapshot.params['idCliente'];
-
+  totalPontos: number = 0;
   cliente: Cliente;
 
   constructor(
       private route: ActivatedRoute,
       private modalController: ModalController,
-      private clienteService: ClienteService
+      private clienteService: ClienteService,
+      private pontoService: PontoService
   ) { }
 
   ionViewWillEnter() {
+    this.getCliente();
+  }
+
+  getCliente() {
     this.clienteService.find(this.idCliente)
         .subscribe(res => {
-          console.log(res);
           this.cliente = res;
+          this.getTotalPontos(res.codigo);
         });
+  }
+
+  getTotalPontos(idCliente: number) {
+    this.pontoService.getPontos(idCliente)
+        .subscribe(res => {
+          this.totalPontos = res;
+        })
   }
 
   async openModalPonto() {

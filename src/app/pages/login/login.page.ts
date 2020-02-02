@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../services/login/login.service";
-import {AlertController, LoadingController, NavController, Platform, ToastController} from "@ionic/angular";
+import {
+  AlertController, Events,
+  LoadingController,
+  MenuController,
+  NavController,
+  Platform,
+  ToastController
+} from "@ionic/angular";
 import {Router} from "@angular/router";
+import {AccountService} from "../../services/auth/account.service";
 
 @Component({
   selector: 'app-login',
@@ -17,20 +25,27 @@ export class LoginPage implements OnInit {
     rememberMe: true
   };
 
-  accountFacebook: { username: string, password: string, rememberMe: boolean } = {
-    username: '',
-    password: '',
-    rememberMe: true
-  };
-
   constructor(
       public loginService: LoginService,
       public toastController: ToastController,
       public navController: NavController,
-      public loadingController: LoadingController,
-      private router: Router,
-      private platform: Platform,
-  ) {}
+      public menuCtrl: MenuController,
+      public accountService: AccountService,
+      public router: Router,
+      public events: Events
+  ) {
+    this.menuCtrl.enable(false, 'myMenu');
+  }
+
+  ionViewWillEnter() {
+    this.accountService.loggedUser()
+        .subscribe(res => {
+          if (res){
+            this.navController.navigateRoot('/home');
+            this.events.publish('user:logged');
+          }
+        })
+  }
 
   ngOnInit() {}
 

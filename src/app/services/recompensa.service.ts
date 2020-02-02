@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {API_URL_V1} from '../app.constants';
 // @ts-ignore
 import moment from "moment";
+import {map} from "rxjs/operators";
+import {createRequestOption} from "../shared/util/request-util";
 
 @Injectable({ providedIn: 'root' })
 export class RecompensaService {
@@ -13,8 +15,12 @@ export class RecompensaService {
 
     constructor(protected http: HttpClient) {}
 
-    getByEmpresa(idEmpresa: number): Observable<Recompensa[]> {
-        return this.http.get<Recompensa[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}?idEmpresa=${idEmpresa}`);
+    getAll(query?: any): Observable<Recompensa[]> {
+        const option = createRequestOption(query);
+        return this.http.get<Recompensa[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}`,  { params: option, observe: 'response' })
+            .pipe(map(res => {
+                return res.body['content'];
+            }));
     }
 
 

@@ -15,7 +15,8 @@ export class HomePage {
 
   constructor(
       private accountService: AccountService,
-      private clienteService: ClienteService
+      private clienteService: ClienteService,
+      private empresaService: EmpresaService
   ) {}
 
   ionViewWillEnter(){
@@ -23,9 +24,13 @@ export class HomePage {
   }
 
   getClientes() {
-    this.clienteService.findAllByEmpresa()
-        .subscribe( (res) => {
-          this.clientes = res;
-        });
+    this.empresaService.getEmpresaLogada().then(res => {
+      this.clienteService.findAll({
+        'empresa': res.codigo
+      }).subscribe( (res) => {
+            this.clientes = res;
+          });
+    });
+
   }
 }

@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -21,11 +21,19 @@ const routes: Routes = [
   },
   {
     path: 'recompensa-update',
-    loadChildren: () => import('./pages/recompensa/recompensa-update/recompensa-update.module').then( m => m.RecompensaUpdatePageModule)
+    loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
   },
   {
     path: 'historico',
     loadChildren: () => import('./pages/historico/historico.module').then( m => m.HistoricoPageModule)
+  },
+  {
+    path: 'update-cliente',
+    loadChildren: () => import('./pages/cliente/update-cliente/update-cliente.module').then( m => m.UpdateClientePageModule)
+  },
+  {
+    path: 'grid-recompensa',
+    loadChildren: () => import('./pages/recompensa/grid-recompensa/grid-recompensa.module').then( m => m.GridRecompensaPageModule)
   }
 ];
 

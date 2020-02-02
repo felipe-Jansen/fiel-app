@@ -25,8 +25,8 @@ export class AppComponent {
       icon: 'clock',
       isAuthenticated: true
     },{
-      title: 'Estatísticas',
-      url: '/pontos',
+      title: 'Recompensas',
+      url: '/grid-recompensa',
       icon: 'analytics',
       isAuthenticated: true
     }

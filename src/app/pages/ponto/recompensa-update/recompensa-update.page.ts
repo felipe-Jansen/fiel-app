@@ -1,6 +1,6 @@
-import { RecompensaService } from './../../../services/recompensa.service';
-import { PontoService } from './../../../services/ponto.service';
-import { IPonto, Ponto } from './../../../shared/model/ponto.model';
+import { RecompensaService } from '../../../services/recompensa.service';
+import { PontoService } from '../../../services/ponto.service';
+import { IPonto, Ponto } from '../../../shared/model/ponto.model';
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from "@ionic/angular";
 import {FormBuilder} from "@angular/forms";
@@ -50,7 +50,7 @@ export class RecompensaUpdatePage {
   }
 
   getClientes() {
-    this.clienteService.findAllByEmpresa()
+    this.clienteService.findAll()
     .subscribe( (res) => {
       this.clientes = res;
     });
@@ -60,7 +60,6 @@ export class RecompensaUpdatePage {
     this.empresaService.getEmpresaLogada()
         .then( empresa => {
           this.empresa = empresa;
-          this.getRecompensas(empresa.codigo);
         });
   }
 
@@ -91,13 +90,4 @@ export class RecompensaUpdatePage {
       });
   }
 
-  private getRecompensas(codigo: number) {
-    this.recompensaService.getByEmpresa(codigo)
-        .subscribe(res => {
-          // @ts-ignore
-          console.log(res.content);
-          // @ts-ignore
-          this.recompensas = res.content;
-        })
-  }
 }

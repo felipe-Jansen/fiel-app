@@ -1,35 +1,28 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-
 <ion-content>
-  <img src="./assets/logo.png" alt="">
-
-  <form #form="ngForm" (submit)="doLogin()">
-    <ion-list>
-      <ion-item>
-        <ion-icon name="mail" slot="start" color="primary"></ion-icon>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input type="email" [(ngModel)]="account.username" name="username" placeholder="Digite seu e-mail" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="lock" slot="start" color="primary"></ion-icon>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="Digite sua senha" required></ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-button id="esqueceuSenha" fill="clear" color="dark" [routerLink]="['/reset-senha']">Esqueceu sua senha?</ion-button>
-
-      <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid">Entrar</ion-button>
-
-    <ion-button id="cadastrese" routerLink="/cadastro" expand="block" color="dark" fill="clear" size="small">Ainda não possui cadastro? cadastre-se</ion-button>
-  </form>
-
-
-
+  <ion-grid>
+    <ion-row>
+      <img src="https://res.cloudinary.com/dca4v2he5/image/upload/v1579654705/fiel-app/0c12d9f4-9967-4c6f-a294-ca6d7248b73c_200x200_m3kmho.png" alt="LOGO">
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form #form="ngForm" (submit)="doLogin()">
+          <ion-list>
+            <ion-item>
+              <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+              <ion-label position="floating">E-mail</ion-label>
+              <ion-input type="email" [(ngModel)]="account.username" name="username" placeholder="Digite seu e-mail" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="lock" slot="start" color="primary"></ion-icon>
+              <ion-label position="floating">Senha</ion-label>
+              <ion-input type="password" [(ngModel)]="account.password" name="password" placeholder="Digite sua senha" required></ion-input>
+            </ion-item>
+          </ion-list>
+          <ion-button id="esqueceuSenha" fill="clear" color="dark" [routerLink]="['/reset-senha']">Esqueceu sua senha?</ion-button>
+            <ion-button expand="block" color="primary" type="submit" [disabled]="form.invalid">Entrar</ion-button>
+          <ion-button id="cadastrese" routerLink="/cadastro" expand="block" color="dark" fill="clear" size="small">Ainda não possui cadastro? cadastre-se</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

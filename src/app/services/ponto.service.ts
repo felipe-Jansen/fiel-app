@@ -23,5 +23,8 @@ export class PontoService {
         return this.http.post<Ponto>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, ponto);
     }
 
+    public getPontos(idCliente: number): Observable<number> {
+        return this.http.get<number>(`${API_URL_V1}/${this.NOME_ENTIDADE}/pontos_cliente/${idCliente}`);
+    }
 
 }

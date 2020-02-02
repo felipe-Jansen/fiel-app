@@ -12,6 +12,7 @@ export interface ICLiente {
     dataNascimento?: any;
     email?: string;
     whatsapp?: string;
+    telefone?: string;
 }
 
 export class Cliente implements ICLiente {
@@ -29,6 +30,7 @@ export class Cliente implements ICLiente {
         public dataNascimento?: any,
         public email?: string,
         public whatsapp?: string,
+        public telefone?: string
     ) {
 
     }
