@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
       Recompensas
@@ -14,12 +14,14 @@
     <ion-row>
       <ion-label>Meus Clientes</ion-label>
     </ion-row>
-    <ion-row *ngFor="let recompensa of recompensas">
-      <ion-card class="welcome-card">
-        <ion-card-header>
-          <ion-card-title>{{ recompensa.descricao }}</ion-card-title>
-        </ion-card-header>
-      </ion-card>
+    <ion-row>
+      <ion-col size="6" *ngFor="let recompensa of recompensas">
+        <ion-card class="welcome-card">
+          <ion-card-header>
+            <ion-card-title>{{ recompensa.descricao }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
@@ -28,7 +30,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button [routerLink]="['/recompensa-update/']" size="full">Adicionar Recompensa</ion-button>
+        <ion-button [routerLink]="['/ponto-update/']" size="full">Adicionar Recompensa</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

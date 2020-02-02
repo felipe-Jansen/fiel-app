@@ -3,6 +3,10 @@ import {FormBuilder} from "@angular/forms";
 import {Cliente, ICLiente} from "../../../shared/model/cliente.model";
 import moment from "moment";
 import {IRecompensa, Recompensa} from "../../../shared/model/recompensa.model";
+import {RecompensaService} from "../../../services/recompensa.service";
+import {Router} from "@angular/router";
+import {TipoRecompensaService} from "../../../services/tipo-recompensa.service";
+import {ITipoRecompensa} from "../../../shared/model/tipo-recompensa.model";
 
 @Component({
   selector: 'app-update-recompensa',
@@ -21,8 +25,13 @@ export class UpdateRecompensaPage implements OnInit {
     descricao: []
   });
 
+  tipoRecompensas: ITipoRecompensa[] = [];
+
   constructor(
-      private fb: FormBuilder
+      private fb: FormBuilder,
+      private recompensaService: RecompensaService,
+      private router: Router,
+      private tipoRecompensaService: TipoRecompensaService
   ) { }
 
   private createFromForm(): IRecompensa {
@@ -38,12 +47,28 @@ export class UpdateRecompensaPage implements OnInit {
     }
   }
 
+  ionViewWillEnter() {
+    this.getTiposRecompensas();
+  }
+
+  getTiposRecompensas() {
+    this.tipoRecompensaService.findAll()
+        .subscribe(res => {
+          console.log(res);
+          this.tipoRecompensas = res;
+        });
+  }
+
   ngOnInit() {
   }
 
   save() {
     let recompensa = this.createFromForm();
     console.log(recompensa);
+    this.recompensaService.create(recompensa)
+        .subscribe(res => {
+          this.router.navigate(['grid-recompensa'])
+        })
   }
 
 }

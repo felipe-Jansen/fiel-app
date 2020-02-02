@@ -22,13 +22,15 @@
           <ion-col size="12">
             <ion-item>
               <ion-label position="floating">Tipo da Recompensa</ion-label>
-              <ion-input required type="string"  formControlName="idTipoRecompensa"></ion-input>
+              <ion-select required formControlName="idTipoRecompensa">
+                <ion-select-option *ngFor="let tipoRecompensa of tipoRecompensas" [value]="tipoRecompensa.codigo">{{ tipoRecompensa.descricao }}</ion-select-option>
+              </ion-select>
             </ion-item>
           </ion-col>
           <ion-col size="12">
             <ion-item>
               <ion-label position="floating">Quantidade em estoque</ion-label>
-              <ion-input type="string"  formControlName="qtdEstoque"></ion-input>
+              <ion-input type="number"  formControlName="qtdEstoque"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12">

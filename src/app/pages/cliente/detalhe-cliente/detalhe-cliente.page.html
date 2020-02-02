@@ -35,11 +35,20 @@
         <p><strong>Estado: </strong>{{ cliente?.estado }}</p>
       </ion-card-content>
     </ion-card>
+    <ion-card *ngIf="totalPontos > 0">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="trocarPontos()" size="full">Trocar Pontos</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
     <ion-card>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button (click)="alterarDados()" size="full">Alterar Dados</ion-button>
+            <ion-button size="full">Alterar Dados</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

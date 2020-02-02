@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cliente/detalhe-cliente/detalhe-cliente.module').then( m => m.DetalheClientePageModule)
   },
   {
-    path: 'recompensa-update',
+    path: 'ponto-update',
     loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
   },
   {

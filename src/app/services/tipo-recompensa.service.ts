@@ -7,11 +7,12 @@ import {API_URL_V1} from '../app.constants';
 import {map} from "rxjs/operators";
 import {createRequestOption} from "../shared/util/request-util";
 import {EmpresaService} from "./empresa.service";
+import {ITipoRecompensa} from "../shared/model/tipo-recompensa.model";
 
 @Injectable({ providedIn: 'root' })
-export class RecompensaService {
+export class TipoRecompensaService {
 
-    private NOME_ENTIDADE = 'recompensas';
+    private NOME_ENTIDADE = 'tipoRecompensa';
 
     constructor(
         protected http: HttpClient,
@@ -28,6 +29,10 @@ export class RecompensaService {
 
     create(recompensa: IRecompensa):Observable<IRecompensa> {
         return this.http.post<IRecompensa>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, recompensa);
+    }
+    
+    findAll(): Observable<ITipoRecompensa[]> {
+        return this.http.get<ITipoRecompensa[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}`);
     }
 
 

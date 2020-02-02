@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ModalController} from "@ionic/angular";
-import {RecompensaUpdatePage} from "../../ponto/recompensa-update/recompensa-update.page";
+import {RecompensaUpdatePage} from "../../ponto/ponto-update/recompensa-update.page";
 import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {PontoService} from "../../../services/ponto.service";
@@ -53,7 +53,8 @@ export class DetalheClientePage {
     return await modal.present();
   }
 
-    alterarDados() {
+  trocarPontos() {
 
-    }
+  }
+
 }
