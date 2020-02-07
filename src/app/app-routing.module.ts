@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'grid-recompensa',
     loadChildren: () => import('./pages/recompensa/grid-recompensa/grid-recompensa.module').then( m => m.GridRecompensaPageModule)
+  },
+  {
+    path: 'historico-cliente/:idCliente',
+    loadChildren: () => import('./pages/cliente/historico-cliente/historico-cliente.module').then( m => m.HistoricoClientePageModule)
+  },
+  {
+    path: 'detalhe-ponto/:idPonto',
+    loadChildren: () => import('./pages/ponto/detalhe-ponto/detalhe-ponto.module').then( m => m.DetalhePontoPageModule)
   }
 ];
 

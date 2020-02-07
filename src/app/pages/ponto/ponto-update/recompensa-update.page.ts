@@ -32,7 +32,8 @@ export class RecompensaUpdatePage {
     dataCompra: [],
     idCliente: [],
     idEmpresa: [],
-    idRecompensa: []
+    idRecompensa: [],
+    descricao: []
   });
 
   constructor(
@@ -64,7 +65,7 @@ export class RecompensaUpdatePage {
   }
 
   close() {
-    this.modalController.dismiss({});
+    this.modalController.dismiss();
   }
 
   private createFromForm(): IPonto {
@@ -77,6 +78,7 @@ export class RecompensaUpdatePage {
       idCliente: this.idCliente,
       idEmpresa: this.empresa.codigo,
       idRecompensa: this.editForm.get(['idRecompensa']).value,
+      descricao: this.editForm.get(['descricao']).value
     };
     return ponto;
   }
@@ -84,9 +86,8 @@ export class RecompensaUpdatePage {
   create() {
     const ponto = this.createFromForm();
     this.pontoService.create(ponto)
-      .subscribe( res => {
-        console.log(res);
-        this.modalController.dismiss();
+      .subscribe( () => {
+        this.close();
       });
   }
 

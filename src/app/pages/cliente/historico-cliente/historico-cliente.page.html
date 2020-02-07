@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Histórico do Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="6" *ngFor="let ponto of pontos">
+      <ion-card [routerLink]="'/detalhe-ponto/'+ponto?.codigo">
+        <ion-card-header>
+          <ion-card-subtitle>{{ ponto?.dataCompra | date:'mediumDate' }}</ion-card-subtitle>
+          <ion-card-title>{{ ponto?.valorCompra | currency:'BRL' }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Adicionar descrição..
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

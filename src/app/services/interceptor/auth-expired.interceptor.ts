@@ -9,7 +9,6 @@ export class AuthExpiredInterceptor implements HttpInterceptor {
     constructor(private loginService: LoginService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('intercetp');
         return next.handle(request).pipe(
             tap(
                 (event: HttpEvent<any>) => {},

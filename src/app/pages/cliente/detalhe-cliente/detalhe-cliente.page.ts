@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
 import {RecompensaUpdatePage} from "../../ponto/ponto-update/recompensa-update.page";
 import {ClienteService} from "../../../services/cliente.service";
@@ -21,14 +21,15 @@ export class DetalheClientePage {
       private route: ActivatedRoute,
       private modalController: ModalController,
       private clienteService: ClienteService,
-      private pontoService: PontoService
+      private pontoService: PontoService,
+      private router: Router
   ) { }
 
   ionViewWillEnter() {
     this.getCliente();
   }
 
-  getCliente() {
+    getCliente() {
     this.clienteService.find(this.idCliente)
         .subscribe(res => {
           this.cliente = res;
@@ -50,11 +51,16 @@ export class DetalheClientePage {
         'idCliente': this.idCliente
       }
     });
+    modal.onDidDismiss().then(data => {
+      this.getCliente();
+    });
     return await modal.present();
   }
 
-  trocarPontos() {
+  trocarPontos() {}
 
+  goto(link: string) {
+    this.router.navigate([link]);
   }
 
 }

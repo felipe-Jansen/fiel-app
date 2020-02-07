@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <app-banner [tituloBanner]=" cliente?.nome + ' ' + cliente?.sobrenome + ' | ' + totalPontos + ' pontos'"></app-banner>
+  <app-banner [tituloBanner]=" cliente?.nome + ' ' + cliente?.sobrenome + ' | ' + cliente?.totalPontos + ' pontos'"></app-banner>
   <ion-grid>
     <ion-card>
       <ion-card-header>
@@ -20,7 +20,7 @@
         <p><strong>Email: </strong>{{ cliente?.email }}</p>
         <p><strong>C.P.F.: </strong>{{ cliente?.cpf }}</p>
         <p><strong>Whatsapp: </strong>{{ cliente?.whatsapp }}</p>
-        <p><strong>Cliente desde: </strong>{{ cliente?.dataCadastro }}</p>
+        <p><strong>Cliente desde: </strong>{{ cliente?.dataCadastro | date:'mediumDate' }}</p>
       </ion-card-content>
     </ion-card>
     <ion-card>
@@ -35,25 +35,19 @@
         <p><strong>Estado: </strong>{{ cliente?.estado }}</p>
       </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="totalPontos > 0">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-button (click)="trocarPontos()" size="full">Trocar Pontos</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-button size="full">Alterar Dados</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
   </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button><ion-icon name="create"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="goto('/historico-cliente/'+cliente?.codigo)"><ion-icon name="analytics"></ion-icon></ion-fab-button>
+      </ion-fab-list>
+      <ion-fab-list *ngIf="cliente?.totalPontos > 0" side="start">
+        <ion-fab-button><ion-icon name="git-compare"></ion-icon></ion-fab-button>
+      </ion-fab-list>
+  </ion-fab>
 </ion-content>
 <ion-footer>
   <ion-grid>
