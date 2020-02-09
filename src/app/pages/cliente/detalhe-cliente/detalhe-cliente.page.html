@@ -3,12 +3,23 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalhe do Cliente</ion-title>
+    <ion-title color="light">Detalhe do Cliente</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-banner [tituloBanner]=" cliente?.nome + ' ' + cliente?.sobrenome + ' | ' + cliente?.totalPontos + ' pontos'"></app-banner>
+  <ion-grid class="banner">
+    <ion-row size="12">
+      <ion-col>
+        <h1 class="conteudo ion-no-margin ion-margin-top  ion-text-center">{{ cliente?.nome + ' ' + cliente?.sobrenome }}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row size="12">
+      <ion-col>
+        <h2 class="conteudo__h2 ion-no-margin ion-margin-bottom ion-text-center">{{ cliente?.totalPontos }} Pontos</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-card>
       <ion-card-header>
@@ -45,16 +56,10 @@
         <ion-fab-button (click)="goto('/historico-cliente/'+cliente?.codigo)"><ion-icon name="analytics"></ion-icon></ion-fab-button>
       </ion-fab-list>
       <ion-fab-list *ngIf="cliente?.totalPontos > 0" side="start">
-        <ion-fab-button><ion-icon name="git-compare"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="goto('/troca-ponto/'+cliente?.codigo)"><ion-icon name="git-compare"></ion-icon></ion-fab-button>
       </ion-fab-list>
   </ion-fab>
 </ion-content>
 <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="openModalPonto()" size="full">Pontuar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-button (click)="openModalPonto()" size="full">Pontuar</ion-button>
 </ion-footer>

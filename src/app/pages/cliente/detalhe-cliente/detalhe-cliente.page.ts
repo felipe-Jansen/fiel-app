@@ -29,7 +29,7 @@ export class DetalheClientePage {
     this.getCliente();
   }
 
-    getCliente() {
+  getCliente() {
     this.clienteService.find(this.idCliente)
         .subscribe(res => {
           this.cliente = res;

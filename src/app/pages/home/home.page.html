@@ -3,8 +3,8 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
+    <ion-title color="light">
+      Bem-vindo ao Fiel
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
         <ion-label>Meus Clientes</ion-label>
     </ion-row>
     <ion-row *ngFor="let cliente of clientes">
-      <ion-card [routerLink]="['/detalhe-cliente/', cliente.codigo]" class="welcome-card">
+      <ion-card [routerLink]="['/detalhe-cliente/', cliente.codigo]" class="w-100">
         <img src="/assets/shapes.svg" alt=""/>
         <ion-card-header>
           <ion-card-title>{{ cliente.nome + ' ' + cliente.sobrenome }}</ion-card-title>
@@ -27,12 +27,6 @@
 </ion-content>
 
 <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
         <ion-button [routerLink]="['/update-cliente/']" size="full">Adicionar um novo cliente</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-footer>
 

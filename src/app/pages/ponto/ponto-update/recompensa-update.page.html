@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Nova Pontuação</ion-title>
+    <ion-title color="light">Nova Pontuação</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">Fechar</ion-button>
     </ion-buttons>
@@ -9,35 +9,30 @@
 
 <ion-content>
   <app-banner [tituloBanner]="'Nova Recompensa'"></app-banner>
-  <form (submit)="create()" class="form" [formGroup]="editForm">
+  <form (submit)="create()" [formGroup]="editForm">
     <ion-card>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-label position="floating">Data do serviço</ion-label>
-            <ion-input type="text">{{ momento | date: 'dd/MM/yyyy hh:mm a' }}</ion-input>
-            <small style="color: red" *ngIf="editForm.controls['idRecompensa'].hasError('required')">*Obrigatório</small>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label>Valor da Compra</ion-label>
-            <ion-input type="number" formControlName="valorCompra"></ion-input>
-            <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label>Descrição da Compra</ion-label>
-            <ion-textarea formControlName="descricao"></ion-textarea>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-button size="full" type="submit">Criar</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+          <ion-label position="floating">Data do serviço</ion-label>
+          <ion-input placeholder="Data da compra" disabled type="text" [value]=" momento | date: 'dd/MM/yyyy HH:mm'"></ion-input>
+          <small style="color: red" *ngIf="editForm.controls['idRecompensa'].hasError('required')">*Obrigatório</small>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="lock" slot="start" color="primary"></ion-icon>
+          <ion-label position="floating">Valor da Compra</ion-label>
+          <ion-input required placeholder="Digite o valor da compra" type="number" formControlName="valorCompra"></ion-input>
+          <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="lock" slot="start" color="primary"></ion-icon>
+          <ion-label position="floating">Descrição da Compra</ion-label>
+          <ion-textarea placeholder="Digite a descrição da compra" formControlName="descricao"></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-button expand="block" color="primary" type="submit" [disabled]="editForm.invalid">Confirmar</ion-button>
     </ion-card>
   </form>
 </ion-content>

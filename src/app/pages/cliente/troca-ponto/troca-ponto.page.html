@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Trocar Ponto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="banner">
+    <ion-row size="12">
+      <ion-col>
+        <h2 class="conteudo ion-no-margin ion-margin-top ion-margin-bottom ion-text-center">{{ cliente?.totalPontos }} Pontos</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row *ngFor="let recompensaCliente of recompensasCliente">
+      <ion-col align-self-center size="6">
+        {{ recompensaCliente.idRecompensa }}
+      </ion-col>
+      <ion-col size="6">
+        <ion-row justify-content-center>
+          <ion-col (click)="incrementarRecompensa(recompensaCliente)"s size="3">
+            <ion-button>
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-input disabled [value]="recompensaCliente.quantidade"></ion-input>
+          </ion-col>
+          <ion-col (click)="decrementarRecompensa(recompensaCliente)" size="3">
+            <ion-button>
+              <ion-icon name="remove"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-button (click)="realizarTroca()" size="full">Trocar</ion-button>
+</ion-footer>
