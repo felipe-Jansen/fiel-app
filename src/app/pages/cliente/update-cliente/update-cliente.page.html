@@ -1,97 +1,82 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title color="light">
-      Novo Cliente
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title color="light">Seja Bem Vindo</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-banner tituloBanner="Preencha os campos abaixo"></app-banner>
-  <ion-card>
-      <form [formGroup]="editForm" (ngSubmit)="save()">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="6">
-              <ion-item>
-                <ion-label position="floating">Nome</ion-label>
-                <ion-input required type="string"  formControlName="nome"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
+    <ion-row class="row__header borda-arrendodada-100">
+        <ion-col>
+            <ion-title>Cadastro de Cliente</ion-title>
+        </ion-col>
+    </ion-row>
+    <form [formGroup]="editForm" (ngSubmit)="save()">
+        <ion-card>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Nome</ion-label>
+                    <ion-input required type="string" placeholder="Digite o nome" formControlName="nome"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Sobrenome</ion-label>
+                      <ion-input required type="string" placeholder="Digite o sobrenome" formControlName="sobrenome"></ion-input>
+                    </ion-item>
+                </ion-col>
+                  <ion-col size="12">
+                      <ion-item>
+                          <ion-label position="floating">Whatsapp</ion-label>
+                          <ion-input required type="string" placeholder="Digite o whatsapp" formControlName="whatsapp"></ion-input>
+                      </ion-item>
+                  </ion-col>
+                <ion-col size="6">
                 <ion-item>
-                  <ion-label position="floating">Sobrenome</ion-label>
-                  <ion-input required type="string"  formControlName="sobrenome"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item>
-                <ion-label position="floating">E-mail</ion-label>
-                <ion-input required type="string"  formControlName="email"></ion-input>
-              </ion-item>
-            </ion-col>
-              <ion-col size="12">
-                  <ion-item>
-                      <ion-label position="floating">Data de Nascimento</ion-label>
-                      <ion-datetime required type="string"  formControlName="dataNascimento"></ion-datetime>
+                    <ion-label position="floating">C.E.P.</ion-label>
+                    <ion-input type="string" placeholder="Digite o C.E.P." formControlName="cep"></ion-input>
                   </ion-item>
-              </ion-col>
-              <ion-col size="12">
-                  <ion-item>
-                      <ion-label position="floating">Telefone</ion-label>
-                      <ion-input required type="string"  formControlName="telefone"></ion-input>
+                </ion-col>
+                <ion-col size="6">
+                <ion-item>
+                    <ion-label position="floating">Rua</ion-label>
+                    <ion-input type="string" placeholder="Digite a rua" formControlName="rua"></ion-input>
                   </ion-item>
-              </ion-col>
-              <ion-col size="12">
-                  <ion-item>
-                      <ion-label position="floating">Whatsapp</ion-label>
-                      <ion-input required type="string"  formControlName="whatsapp"></ion-input>
+                </ion-col>
+                <ion-col size="6">
+                <ion-item>
+                    <ion-label position="floating">Bairro</ion-label>
+                    <ion-input type="string" placeholder="Digite o bairro" formControlName="bairro"></ion-input>
                   </ion-item>
-              </ion-col>
-            <ion-col size="12">
-              <ion-item>
-                  <ion-label position="floating">C.P.F.</ion-label>
-                  <ion-input required type="string"  formControlName="cpf"></ion-input>
-                </ion-item>
-            </ion-col>
-            <ion-col size="6">
-            <ion-item>
-                <ion-label position="floating">C.E.P.</ion-label>
-                <ion-input required type="string"  formControlName="cep"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-            <ion-item>
-                <ion-label position="floating">Rua</ion-label>
-                <ion-input required type="string"  formControlName="rua"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-            <ion-item>
-                <ion-label position="floating">Bairro</ion-label>
-                <ion-input required type="string"  formControlName="bairro"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-            <ion-item>
-                <ion-label position="floating">Cidade</ion-label>
-                <ion-input required type="string"  formControlName="cidade"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="6">
-            <ion-item>
-                <ion-label position="floating">Estado</ion-label>
-                <ion-input required type="string"  formControlName="estado"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col size="12">
-              <ion-button expand="block" type="submit">Salvar</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+                </ion-col>
+                <ion-col size="6">
+                <ion-item>
+                    <ion-label position="floating">Cidade</ion-label>
+                    <ion-input type="string" placeholder="Digite a cidade" formControlName="cidade"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="12">
+                <ion-item>
+                    <ion-label position="floating">Estado</ion-label>
+                    <ion-input type="string" placeholder="Digite o estado" formControlName="estado"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+        </ion-card>
+        <ion-card>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-button [disabled]="editForm.invalid" expand="block" type="submit">Salvar</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card>
     </form>
-  </ion-card>
+
 </ion-content>
