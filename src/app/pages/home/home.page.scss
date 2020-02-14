@@ -2,3 +2,22 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.card__cliente {
+  background-color: white;
+  border-radius: 0.8em;
+}
+
+.col__nome-cliente {
+  background-color: #88a278;
+
+  ion-card-title {
+    --color: white !important;
+  }
+}
+
+.col__pontos-cliente {
+  ion-title {
+    --color: black!important;
+  }
+}

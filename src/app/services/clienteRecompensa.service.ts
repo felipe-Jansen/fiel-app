@@ -11,9 +11,12 @@ export class ClienteRecompensaService {
 
     constructor(protected http: HttpClient) {}
 
+    public find(id: number): Observable<RecompensaCliente> {
+        return this.http.get<RecompensaCliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${id}`);
+    }
+
     public create(recompensaCliente: RecompensaCliente): Observable<RecompensaCliente> {
         return this.http.post<RecompensaCliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, recompensaCliente);
     }
-
 
 }

@@ -40,3 +40,35 @@ ion-item {
 .w-100 {
     width: 100%!important;
 }
+
+.row__header {
+    height: 5em;
+    text-align: left;
+    align-content: center;
+    background-color: #067302;
+    color: white;
+
+}
+
+.borda-arrendodada-100 {
+    border-bottom-right-radius: 100%;
+}
+
+.borda-arrendodada-55 {
+    border-bottom-right-radius: 55%;
+}
+
+.header-md:after {
+    background-color: #35740e!important;
+    background-image: inherit;
+    height: 0px;
+}
+
+.footer__button {
+    height: 3.3em;
+    color: white;
+}
+
+ion-card {
+    border-radius: 0.8em!important;
+}

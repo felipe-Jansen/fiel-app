@@ -1,32 +1,46 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title color="light">
-      Bem-vindo ao Fiel
-    </ion-title>
+    <ion-title color="light">Seja Bem Vindo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row class="row__header borda-arrendodada-100">
+    <ion-col>
+      <ion-title>Meus Clientes</ion-title>
+    </ion-col>
+  </ion-row>
   <ion-grid>
-    <ion-row>
-        <ion-label>Meus Clientes</ion-label>
+    <ion-row *ngIf="clientes.length === 0">
+      <ion-card style="background-color: white" class="w-100 ion-text-center">
+        <ion-card-content>
+          Você não possui clientes cadastrados :(
+        </ion-card-content>
+      </ion-card>
     </ion-row>
     <ion-row *ngFor="let cliente of clientes">
-      <ion-card [routerLink]="['/detalhe-cliente/', cliente.codigo]" class="w-100">
-        <img src="/assets/shapes.svg" alt=""/>
-        <ion-card-header>
-          <ion-card-title>{{ cliente.nome + ' ' + cliente.sobrenome }}</ion-card-title>
-          <ion-card-subtitle>{{ cliente.whatsapp + ' | ' + cliente.email }}</ion-card-subtitle>
-        </ion-card-header>
+      <ion-card [routerLink]="['/detalhe-cliente/', cliente.codigo]" class="w-100 card__cliente">
+        <ion-row>
+          <ion-col align-self-center size="6" class="col__nome-cliente">
+            <ion-card-header>
+              <ion-card-title>{{ cliente.nome + ' ' + cliente.sobrenome }}</ion-card-title>
+            </ion-card-header>
+          </ion-col>
+          <ion-col align-self-center size="6" class="col__pontos-cliente">
+            <ion-title>
+              {{ cliente.totalPontos }} Pontos
+            </ion-title>
+          </ion-col>
+        </ion-row>
       </ion-card>
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-        <ion-button [routerLink]="['/update-cliente/']" size="full">Adicionar um novo cliente</ion-button>
+        <ion-button no-margin class="footer__button" [routerLink]="['/update-cliente/']" size="full">Adicionar um novo cliente</ion-button>
 </ion-footer>
 

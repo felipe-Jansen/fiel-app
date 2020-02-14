@@ -8,18 +8,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="banner">
-    <ion-row size="12">
-      <ion-col>
-        <h1 class="conteudo ion-no-margin ion-margin-top  ion-text-center">{{ cliente?.nome + ' ' + cliente?.sobrenome }}</h1>
-      </ion-col>
-    </ion-row>
-    <ion-row size="12">
-      <ion-col>
-        <h2 class="conteudo__h2 ion-no-margin ion-margin-bottom ion-text-center">{{ cliente?.totalPontos }} Pontos</h2>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-row class="row__header borda-arrendodada-55" size="12">
+    <ion-col>
+      <h1 class="conteudo ion-no-margin ion-margin-top  ion-text-center">{{ cliente?.nome + ' ' + cliente?.sobrenome }}</h1>
+      <h2 class="conteudo__h2 ion-no-margin ion-margin-bottom ion-text-center">{{ cliente?.totalPontos }} Pontos</h2>
+    </ion-col>
+  </ion-row>
   <ion-grid>
     <ion-card>
       <ion-card-header>
@@ -61,5 +55,5 @@
   </ion-fab>
 </ion-content>
 <ion-footer>
-      <ion-button (click)="openModalPonto()" size="full">Pontuar</ion-button>
+      <ion-button no-margin class="footer__button" (click)="openModalPonto()" size="full">Pontuar</ion-button>
 </ion-footer>

@@ -57,13 +57,15 @@ export class LoginPage implements OnInit {
         },
         async (err) => {
           if (err.status === 401 ) {
-            // Unable to log in
             this.account.password = '';
             this.showToast(err.error.detail);
-          } else if (err.status === 400) {
-            // Unable to log in
+          } else if (err.status === 403) {
             this.account.password = '';
             this.showToast('Ops! Ocorreu um erro. Verifique suas credenciais e tente novamente');
+          } else if (err.status === 404) {
+            this.account.password = '';
+            this.account.username = '';
+            this.showToast('Ops! Não foi possível estabelecer uma conexão com o servidor!');
           }
 
         }

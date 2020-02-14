@@ -48,7 +48,15 @@ export class TrocaPontoPage implements OnInit {
           }).subscribe(recompensas => {
             this.recompensas = recompensas;
             this.recompensas.forEach(recompensa => {
-                this.recompensasCliente.push(new RecompensaCliente(null, recompensa.codigo, this.idCliente, 0))
+                this.recompensasCliente.push(new RecompensaCliente(
+                    null,
+                    recompensa.codigo,
+                    this.idCliente,
+                    0,
+                    recompensa.totalPontos,
+                    recompensa.descricao,
+                    false
+                ))
             });
           });
         });
@@ -59,16 +67,21 @@ export class TrocaPontoPage implements OnInit {
 
 
     incrementarRecompensa(recompensaCliente: RecompensaCliente) {
-        this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade += 1;
+        if (this.cliente.totalPontos > 0) {
+            this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade += 1;
+            this.cliente.totalPontos -= recompensaCliente.recompensaPontos;
+        }
     }
 
     decrementarRecompensa(recompensaCliente: RecompensaCliente) {
         this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade -= 1;
+        this.cliente.totalPontos += recompensaCliente.recompensaPontos;
     }
 
     realizarTroca() {
         this.recompensasCliente.forEach(recompensa => {
            if (recompensa.quantidade !== 0) {
+               console.log(recompensa);
                recompensa.idCliente = this.idCliente;
                this.clienteRecompensaService.create(recompensa)
                    .subscribe(res => {
@@ -78,4 +91,7 @@ export class TrocaPontoPage implements OnInit {
         });
     }
 
+    liberaIncrementoRecompensa(recompensaCliente: RecompensaCliente) {
+      return this.cliente.totalPontos >= recompensaCliente.recompensaPontos ? true : false;
+    }
 }

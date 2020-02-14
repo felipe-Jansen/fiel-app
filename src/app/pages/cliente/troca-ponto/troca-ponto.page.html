@@ -18,20 +18,20 @@
   <ion-grid>
     <ion-row *ngFor="let recompensaCliente of recompensasCliente">
       <ion-col align-self-center size="6">
-        {{ recompensaCliente.idRecompensa }}
+        {{ recompensaCliente.recompensaDescricao }}
       </ion-col>
       <ion-col size="6">
         <ion-row justify-content-center>
-          <ion-col (click)="incrementarRecompensa(recompensaCliente)"s size="3">
-            <ion-button>
+          <ion-col size="3">
+            <ion-button [disabled]="!liberaIncrementoRecompensa(recompensaCliente)" (click)="incrementarRecompensa(recompensaCliente)">
               <ion-icon name="add"></ion-icon>
             </ion-button>
           </ion-col>
           <ion-col size="3">
             <ion-input disabled [value]="recompensaCliente.quantidade"></ion-input>
           </ion-col>
-          <ion-col (click)="decrementarRecompensa(recompensaCliente)" size="3">
-            <ion-button>
+          <ion-col size="3">
+            <ion-button [disabled]="recompensaCliente.quantidade === 0" (click)="decrementarRecompensa(recompensaCliente)">
               <ion-icon name="remove"></ion-icon>
             </ion-button>
           </ion-col>

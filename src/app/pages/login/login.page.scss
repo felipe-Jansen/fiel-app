@@ -1,52 +1,39 @@
-img{
-  margin-top: 10px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-bottom: 20px;
+ion-row {
+  height: 50%;
 }
-form{
 
+.ion-row__top{
+  background: #7ead80;
 }
-#face {
-  --background: #4064ad;
+
+.card__login {
+  height: 17em;
+  top: -35%;
+  background: white;
+  width: 100%;
 }
-#google {
-  --background: #ea4335;;
+
+ion-list, ion-item {
+  background: inherit!important;
+  --background: white;
+}
+
+img {
+  height: 9em;
+  margin-top: 13%;
+}
+
+ion-input {
+  font-size: 0.8em;
 }
 
 ion-button {
-  height: 45px;
-}
-#linha {
-  width: 100%;
-  height: 1px;
-  background-color: #cac7c7;
-  margin-top: 25px;
-}
-#ou {
-  width: 30px;
-  height: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  font-size: 8pt;
-  margin-top: -6px;
-  background: #fff;
-  text-align: center;
-}
-#esqueceuSenha {
-  width: 200px;
-  margin-right: 15px;
-  margin-left: auto;
-  display: block;
+  height: 3em;
+  font-size: 0.8em;
 }
 
-#cadastrese {
-  font-size: 8pt;
-}
-
-ion-grid {
-  margin: 4em 0em 0em 0em;
+ion-footer {
+  text-align: center !important;
+  background-color: #f2fef1;
+  font-size: x-small;
 }
