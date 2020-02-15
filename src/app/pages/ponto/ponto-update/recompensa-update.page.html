@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title color="light">Nova Pontuação</ion-title>
+    <ion-title color="light">Pontuar</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">Fechar</ion-button>
     </ion-buttons>
@@ -8,7 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <app-banner [tituloBanner]="'Nova Recompensa'"></app-banner>
+  <ion-row class="row__header borda-arrendodada-55">
+    <ion-col>
+      <ion-title>Meus Clientes</ion-title>
+    </ion-col>
+  </ion-row>
   <form (submit)="create()" [formGroup]="editForm">
     <ion-card>
       <ion-list>
@@ -19,20 +23,26 @@
           <small style="color: red" *ngIf="editForm.controls['idRecompensa'].hasError('required')">*Obrigatório</small>
         </ion-item>
         <ion-item>
-          <ion-icon name="lock" slot="start" color="primary"></ion-icon>
+          <ion-icon name="logo-usd" slot="start" color="primary"></ion-icon>
           <ion-label position="floating">Valor da Compra</ion-label>
           <ion-input required placeholder="Digite o valor da compra" type="number" formControlName="valorCompra"></ion-input>
           <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
         </ion-item>
         <ion-item>
-          <ion-icon name="lock" slot="start" color="primary"></ion-icon>
+          <ion-icon name="text" slot="start" color="primary"></ion-icon>
           <ion-label position="floating">Descrição da Compra</ion-label>
           <ion-textarea placeholder="Digite a descrição da compra" formControlName="descricao"></ion-textarea>
         </ion-item>
       </ion-list>
     </ion-card>
     <ion-card>
-      <ion-button expand="block" color="primary" type="submit" [disabled]="editForm.invalid">Confirmar</ion-button>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button expand="block" color="primary" type="submit" [disabled]="editForm.invalid">Confirmar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card>
   </form>
 </ion-content>

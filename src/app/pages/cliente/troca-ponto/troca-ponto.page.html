@@ -8,36 +8,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="banner">
-    <ion-row size="12">
-      <ion-col>
-        <h2 class="conteudo ion-no-margin ion-margin-top ion-margin-bottom ion-text-center">{{ cliente?.totalPontos }} Pontos</h2>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-banner-radius-total [texto]="cliente?.totalPontos + ' Pontos disponíveis'"></app-banner-radius-total>
   <ion-grid>
-    <ion-row *ngFor="let recompensaCliente of recompensasCliente">
-      <ion-col align-self-center size="6">
-        {{ recompensaCliente.recompensaDescricao }}
-      </ion-col>
-      <ion-col size="6">
-        <ion-row justify-content-center>
-          <ion-col size="3">
-            <ion-button [disabled]="!liberaIncrementoRecompensa(recompensaCliente)" (click)="incrementarRecompensa(recompensaCliente)">
-              <ion-icon name="add"></ion-icon>
-            </ion-button>
-          </ion-col>
-          <ion-col size="3">
-            <ion-input disabled [value]="recompensaCliente.quantidade"></ion-input>
-          </ion-col>
-          <ion-col size="3">
-            <ion-button [disabled]="recompensaCliente.quantidade === 0" (click)="decrementarRecompensa(recompensaCliente)">
-              <ion-icon name="remove"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
+    <ion-card *ngFor="let recompensaCliente of recompensasCliente">
+      <ion-row>
+        <ion-col align-self-center size="4">
+          <h1 class="h1__recompensaDescricao">{{ recompensaCliente.recompensaDescricao }}</h1>
+          <label>{{ recompensaCliente.recompensaPontos }} pontos</label>
+        </ion-col>
+        <ion-col size="8">
+          <ion-row justify-content-center>
+            <ion-col size="3">
+              <ion-button [disabled]="!liberaIncrementoRecompensa(recompensaCliente)" (click)="incrementarRecompensa(recompensaCliente)">
+                <ion-icon name="add"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col text-center size="3">
+              <ion-input disabled [value]="recompensaCliente.quantidade"></ion-input>
+            </ion-col>
+            <ion-col size="3">
+              <ion-button [disabled]="recompensaCliente.quantidade === 0" (click)="decrementarRecompensa(recompensaCliente)">
+                <ion-icon name="remove"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card>
   </ion-grid>
 </ion-content>
 <ion-footer>

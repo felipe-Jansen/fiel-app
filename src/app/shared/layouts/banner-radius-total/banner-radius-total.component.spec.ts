@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { BannerComponent } from './banner.component';
+import { BannerRadiusTotalComponent } from './banner-radius-total.component';
 
-describe('BannerComponent', () => {
-  let component: BannerComponent;
-  let fixture: ComponentFixture<BannerComponent>;
+describe('BannerRadiusTotalComponent', () => {
+  let component: BannerRadiusTotalComponent;
+  let fixture: ComponentFixture<BannerRadiusTotalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BannerComponent ],
+      declarations: [ BannerRadiusTotalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BannerComponent);
+    fixture = TestBed.createComponent(BannerRadiusTotalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

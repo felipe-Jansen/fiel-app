@@ -8,11 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-row class="row__header borda-arrendodada-100">
-    <ion-col>
-      <ion-title>Meus Clientes</ion-title>
-    </ion-col>
-  </ion-row>
+  <app-banner-radius-total texto="Meus Clientes"></app-banner-radius-total>
   <ion-grid>
     <ion-row *ngIf="clientes.length === 0">
       <ion-card style="background-color: white" class="w-100 ion-text-center">

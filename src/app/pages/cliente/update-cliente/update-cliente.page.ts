@@ -52,7 +52,7 @@ export class UpdateClientePage implements OnInit {
       cidade: this.editForm.get(['cidade']).value,
       estado: this.editForm.get(['estado']).value,
       dataCadastro: moment().format('YYYY-MM-DD'),
-      dataNascimento: moment(this.editForm.get(['dataNascimento']).value).format('YYYY-MM-DD'),
+      dataNascimento: null,
       email: this.editForm.get(['email']).value,
       whatsapp: this.editForm.get(['whatsapp']).value,
       telefone: this.editForm.get(['telefone']).value,

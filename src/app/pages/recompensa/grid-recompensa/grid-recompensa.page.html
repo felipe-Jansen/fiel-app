@@ -1,22 +1,29 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title color="light">
-      Recompensas
-    </ion-title>
+    <ion-title color="light">Recompensas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-row class="row__header borda-arrendodada-100">
+    <ion-col>
+      <ion-title>Minhas Recompensas</ion-title>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="recompensas.length === 0">
+    <ion-card style="background-color: white" class="w-100 ion-text-center">
+      <ion-card-content>
+        Você não possui recompensas cadastradas :(
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
   <ion-grid>
     <ion-row>
-      <ion-label>Meus Clientes</ion-label>
-    </ion-row>
-    <ion-row>
       <ion-col size="6" *ngFor="let recompensa of recompensas">
-        <ion-card class="welcome-card">
+        <ion-card class="welcome-card card__recompensa">
           <ion-card-header>
             <ion-card-title>{{ recompensa.descricao }}</ion-card-title>
           </ion-card-header>
@@ -25,13 +32,6 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
 <ion-footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button [routerLink]="['/ponto-update/']" size="full">Adicionar Recompensa</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-button no-margin class="footer__button" [routerLink]="['/ponto-update/']" size="full">Adicionar um nova recompensa</ion-button>
 </ion-footer>

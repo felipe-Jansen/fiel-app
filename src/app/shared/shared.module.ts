@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {BannerComponent} from "./layouts/banner/banner.component";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {IonicModule} from "@ionic/angular";
+import {BannerRadiusTotalComponent} from "./layouts/banner-radius-total/banner-radius-total.component";
 
 @NgModule({
   declarations: [
-    BannerComponent
+    BannerRadiusTotalComponent
   ],
   exports: [
-    BannerComponent
+    BannerRadiusTotalComponent
   ],
   imports: [
     IonicModule.forRoot(),

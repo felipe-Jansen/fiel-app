@@ -1,13 +1,5 @@
-.banner {
-  background: #067302;
-  height: 20%;
-  box-shadow: 0px 10px 7px #e4dcb8;
-}
-.banner .texto {
-  justify-content: center;
-}
 .conteudo {
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 200;
   color:white
 }
@@ -16,4 +8,16 @@
   font-size: 1em;
   font-weight: 200;
   color:white
+}
+
+ion-card {
+  background-color: white;
+}
+
+.row__header {
+  height: 5em;
+  text-align: left;
+  align-content: center;
+  background-color: #067302;
+  color: white;
 }

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { TrocaPontoPageRoutingModule } from './troca-ponto-routing.module';
 
 import { TrocaPontoPage } from './troca-ponto.page';
+import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    TrocaPontoPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        TrocaPontoPageRoutingModule,
+        SharedModule
+    ],
   declarations: [TrocaPontoPage]
 })
 export class TrocaPontoPageModule {}

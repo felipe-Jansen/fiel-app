@@ -8,11 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-row class="row__header borda-arrendodada-100">
-        <ion-col>
-            <ion-title>Cadastro de Cliente</ion-title>
-        </ion-col>
-    </ion-row>
+    <app-banner-radius-total texto="Cadastro de Cliente"></app-banner-radius-total>
     <form [formGroup]="editForm" (ngSubmit)="save()">
         <ion-card>
             <ion-grid>

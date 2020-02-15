@@ -19,11 +19,8 @@
       <ion-card-header>
         <ion-card-title>Informações Gerais</ion-card-title>
       </ion-card-header>
-
       <ion-card-content>
         <p><strong>Nome: </strong>{{ cliente?.nome + ' ' + cliente?.sobrenome }}</p>
-        <p><strong>Email: </strong>{{ cliente?.email }}</p>
-        <p><strong>C.P.F.: </strong>{{ cliente?.cpf }}</p>
         <p><strong>Whatsapp: </strong>{{ cliente?.whatsapp }}</p>
         <p><strong>Cliente desde: </strong>{{ cliente?.dataCadastro | date:'mediumDate' }}</p>
       </ion-card-content>
@@ -34,10 +31,10 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p><strong>Rua: </strong>{{ cliente?.rua }}</p>
-        <p><strong>Bairro: </strong>{{ cliente?.bairro }}</p>
-        <p><strong>Cidade: </strong>{{ cliente?.cidade }}</p>
-        <p><strong>Estado: </strong>{{ cliente?.estado }}</p>
+        <p><strong>Rua: </strong>{{ cliente?.rua ? cliente?.rua : '---' }}</p>
+        <p><strong>Bairro: </strong>{{ cliente?.bairro ? cliente?.bairro : '---'  }}</p>
+        <p><strong>Cidade: </strong>{{ cliente?.cidade ? cliente?.cidade : '---'  }}</p>
+        <p><strong>Estado: </strong>{{ cliente?.estado ? cliente?.estado : '---'  }}</p>
       </ion-card-content>
     </ion-card>
   </ion-grid>

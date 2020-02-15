@@ -32,6 +32,7 @@ export class ClienteService {
     }
 
     create(cliente: ICLiente): Observable<Cliente> {
+        console.log(cliente);
         return this.http.post<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, cliente);
     }
 

@@ -3,12 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title color="light">Nova Recompensa</ion-title>
+    <ion-title color="light">Recompensas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-banner tituloBanner="Preencha os campos abaixo"></app-banner>
+  <ion-row class="row__header borda-arrendodada-100">
+    <ion-col>
+      <ion-title>Cadastro</ion-title>
+    </ion-col>
+  </ion-row>
   <form [formGroup]="editForm" (ngSubmit)="save()">
     <ion-card>
       <ion-grid>
@@ -36,7 +40,7 @@
           <ion-col size="12">
             <ion-item>
               <ion-label position="floating">Descrição</ion-label>
-              <ion-input required type="string"  formControlName="descricao"></ion-input>
+              <ion-textarea required type="string"  formControlName="descricao"></ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -46,7 +50,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" size="full">Salvar</ion-button>
+          <ion-button [disabled]="editForm.invalid" type="submit" size="full">Salvar</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

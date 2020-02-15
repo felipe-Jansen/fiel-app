@@ -21,3 +21,17 @@ $corFinalDegrade:#00C911;
   color:white
 }
 
+ion-card {
+  background-color: white;
+  padding: 0.6em;
+}
+
+ion-list, ion-item {
+  background: inherit!important;
+  --background: white;
+}
+.h1__recompensaDescricao {
+  margin: 0px;
+  font-size: 1.3em;
+  font-weight: 900;
+}

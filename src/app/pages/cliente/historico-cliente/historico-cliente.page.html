@@ -6,8 +6,8 @@
     <ion-title color="light">Histórico do Cliente</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <app-banner-radius-total texto="Pontos"></app-banner-radius-total>
   <ion-row>
     <ion-col size="6" *ngFor="let ponto of pontos">
       <ion-card [routerLink]="'/detalhe-ponto/'+ponto?.codigo">
@@ -16,7 +16,7 @@
           <ion-card-title>{{ ponto?.valorCompra | currency:'BRL' }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Adicionar descrição..
+          {{ ponto?.descricao }}
         </ion-card-content>
       </ion-card>
     </ion-col>

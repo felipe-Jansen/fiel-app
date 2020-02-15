@@ -8,6 +8,7 @@ export interface IPonto {
     idEmpresa?: any;
     idRecompensa?: any;
     descricao?: string;
+    clienteNome?: string;
 }
 
 export class Ponto implements IPonto {
@@ -20,6 +21,7 @@ export class Ponto implements IPonto {
         public idEmpresa?: number,
         public idCliente?: number,
         public idRecompensa?: number,
-        public descricao?: string
+        public descricao?: string,
+        public clienteNome?: string
     ) {}
 }
