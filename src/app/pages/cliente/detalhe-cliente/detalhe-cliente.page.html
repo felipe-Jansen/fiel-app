@@ -29,12 +29,44 @@
       <ion-card-header>
         <ion-card-title>Dados do endereço</ion-card-title>
       </ion-card-header>
-
       <ion-card-content>
         <p><strong>Rua: </strong>{{ cliente?.rua ? cliente?.rua : '---' }}</p>
         <p><strong>Bairro: </strong>{{ cliente?.bairro ? cliente?.bairro : '---'  }}</p>
         <p><strong>Cidade: </strong>{{ cliente?.cidade ? cliente?.cidade : '---'  }}</p>
         <p><strong>Estado: </strong>{{ cliente?.estado ? cliente?.estado : '---'  }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Recompensas Disponíveis</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-title text-left no-padding class="ion-title___grid_recompensas">Nome</ion-title>
+            </ion-col>
+            <ion-col text-left size="4">
+              <ion-title text-left no-padding class="ion-title___grid_recompensas">Quantidade</ion-title>
+            </ion-col>
+            <ion-col text-left size="4">
+              <ion-title text-left no-padding class="ion-title___grid_recompensas"></ion-title>
+            </ion-col>
+          </ion-row>
+          <ion-row margin-top *ngFor="let recompensaCliente of recompensasCliente">
+            <ion-col no-padding align-self-center size="4">
+              <ion-text class="ion-text___grid_recompensas">{{ recompensaCliente.recompensaDescricao }}</ion-text>
+            </ion-col>
+            <ion-col no-padding text-center align-self-center size="4">
+              <ion-text class="ion-text___grid_recompensas">{{ recompensaCliente.quantidade }}</ion-text>
+            </ion-col>
+            <ion-col no-padding text-right size="4">
+              <ion-text class="ion-text___grid_recompensas">
+                <ion-button (click)="alertTroca(recompensaCliente)" style="font-size: 0.7em;" color="primary"><ion-icon name="create"></ion-icon></ion-button>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </ion-grid>

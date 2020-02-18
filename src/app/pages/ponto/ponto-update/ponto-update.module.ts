@@ -4,9 +4,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecompensaUpdatePageRoutingModule } from './recompensa-update-routing.module';
+import { RecompensaUpdatePageRoutingModule } from './ponto-update-routing.module';
 
-import { RecompensaUpdatePage } from './recompensa-update.page';
+import { PontoUpdatePage } from './ponto-update.page';
 import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
@@ -19,8 +19,8 @@ import {SharedModule} from "../../../shared/shared.module";
         SharedModule
     ],
     exports: [
-        RecompensaUpdatePage
+        PontoUpdatePage
     ],
-    declarations: [RecompensaUpdatePage]
+    declarations: [PontoUpdatePage]
 })
 export class RecompensaUpdatePageModule {}

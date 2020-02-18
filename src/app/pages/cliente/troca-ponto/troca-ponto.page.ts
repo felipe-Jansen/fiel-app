@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RecompensaService} from "../../../services/recompensa.service";
 import {IRecompensa} from "../../../shared/model/recompensa.model";
 import {EmpresaService} from "../../../services/empresa.service";
@@ -7,6 +7,7 @@ import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
 import {ClienteRecompensaService} from "../../../services/clienteRecompensa.service";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-troca-ponto',
@@ -25,7 +26,9 @@ export class TrocaPontoPage implements OnInit {
       private recompensaService: RecompensaService,
       private empresaService: EmpresaService,
       private clienteService: ClienteService,
-      private clienteRecompensaService: ClienteRecompensaService
+      private clienteRecompensaService: ClienteRecompensaService,
+      public alertController: AlertController,
+      private router: Router
   ) { }
 
   ionViewWillEnter() {
@@ -79,16 +82,47 @@ export class TrocaPontoPage implements OnInit {
     }
 
     realizarTroca() {
-        this.recompensasCliente.forEach(recompensa => {
+        this.recompensasCliente.forEach(async recompensa => {
            if (recompensa.quantidade !== 0) {
-               console.log(recompensa);
                recompensa.idCliente = this.idCliente;
-               this.clienteRecompensaService.create(recompensa)
-                   .subscribe(res => {
-                      console.log(res);
-                   });
+               await this.clienteRecompensaService.create(recompensa).then(() => {
+               }).catch(() => {
+               });
            }
         });
+        this.mostraModal();
+    }
+
+    async mostraModal() {
+        const alert = await this.alertController.create({
+            header: 'Sucesso!',
+            message: 'As recompensas foram trocadas com sucesso :) !',
+            buttons: [
+                {
+                    text: 'Ok',
+                    handler: () => {
+                        this.router.navigate(['/detalhe-cliente', this.idCliente])
+                    }
+                }
+            ]
+        });
+        await alert.present();
+    }
+
+    async mostraModalErro() {
+        const alert = await this.alertController.create({
+            header: 'Confirm!',
+            message: 'Message <strong>text</strong>!!!',
+            buttons: [
+                {
+                    text: 'Fechar',
+                    handler: () => {
+                        console.log('Fechado');
+                    }
+                }
+            ]
+        });
+        await alert.present();
     }
 
     liberaIncrementoRecompensa(recompensaCliente: RecompensaCliente) {

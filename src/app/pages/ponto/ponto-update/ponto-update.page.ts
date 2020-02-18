@@ -2,7 +2,7 @@ import { RecompensaService } from '../../../services/recompensa.service';
 import { PontoService } from '../../../services/ponto.service';
 import { IPonto, Ponto } from '../../../shared/model/ponto.model';
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalController} from "@ionic/angular";
+import {AlertController, ModalController} from "@ionic/angular";
 import {FormBuilder} from "@angular/forms";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {ClienteService} from "../../../services/cliente.service";
@@ -13,10 +13,10 @@ import moment from "moment";
 
 @Component({
   selector: 'app-recompensa-update',
-  templateUrl: './recompensa-update.page.html',
-  styleUrls: ['./recompensa-update.page.scss'],
+  templateUrl: './ponto-update.page.html',
+  styleUrls: ['./ponto-update.page.scss'],
 })
-export class RecompensaUpdatePage {
+export class PontoUpdatePage {
 
   @Input() idCliente: number;
 
@@ -42,7 +42,8 @@ export class RecompensaUpdatePage {
       private clienteService: ClienteService,
       private pontoService: PontoService,
       private recompensaService: RecompensaService,
-      private empresaService: EmpresaService
+      private empresaService: EmpresaService,
+      public alertController: AlertController
   ) { }
 
   ionViewWillEnter(){
@@ -83,11 +84,26 @@ export class RecompensaUpdatePage {
     return ponto;
   }
 
+  async mostraModalCriacaoPonto(res: Ponto) {
+    const alert = await this.alertController.create({
+      header: 'Sucesso!',
+      message: 'Venda cadastrada com sucesso e '+ res.totalPontos +' pontos obtidos :) !',
+      buttons: [
+        {
+          text: 'Fechar'
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   create() {
     const ponto = this.createFromForm();
     this.pontoService.create(ponto)
-      .subscribe( () => {
+      .subscribe( (res) => {
+        console.log(res);
         this.close();
+        this.mostraModalCriacaoPonto(res);
       });
   }
 

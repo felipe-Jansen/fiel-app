@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RecompensaUpdatePage } from './recompensa-update.page';
+import { PontoUpdatePage } from './ponto-update.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: RecompensaUpdatePage
+    component: PontoUpdatePage
   }
 ];
 

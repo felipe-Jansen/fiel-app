@@ -8,11 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-row class="row__header borda-arrendodada-55">
-    <ion-col>
-      <ion-title>Meus Clientes</ion-title>
-    </ion-col>
-  </ion-row>
+  <app-banner-radius-total [texto]="'Novo Ponto'"></app-banner-radius-total>
   <form (submit)="create()" [formGroup]="editForm">
     <ion-card>
       <ion-list>

@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { DetalheClientePageRoutingModule } from './detalhe-cliente-routing.module';
 
 import { DetalheClientePage } from './detalhe-cliente.page';
-import {RecompensaUpdatePage} from "../../ponto/ponto-update/recompensa-update.page";
-import {RecompensaUpdatePageModule} from "../../ponto/ponto-update/recompensa-update.module";
+import {PontoUpdatePage} from "../../ponto/ponto-update/ponto-update.page";
+import {RecompensaUpdatePageModule} from "../../ponto/ponto-update/ponto-update.module";
 import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
@@ -23,7 +23,7 @@ import {SharedModule} from "../../../shared/shared.module";
     ],
   declarations: [DetalheClientePage],
   entryComponents: [
-      RecompensaUpdatePage
+      PontoUpdatePage
   ]
 
 })
