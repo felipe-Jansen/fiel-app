@@ -10,10 +10,12 @@ export interface IEmpresa {
     cidade?: string;
     estado?: string;
     dataCadastro?: any;
-    email?: string;
     telefone?: string;
     whatsapp?: string;
     idUser?: number;
+
+    email?: string;
+    senha?: string;
 }
 
 export class Empresa implements IEmpresa {
@@ -29,10 +31,12 @@ export class Empresa implements IEmpresa {
         public cidade?: string,
         public estado?: string,
         public dataCadastro?: any,
-        public email?: string,
         public telefone?: string,
         public whatsapp?: string,
-        public idUser?: number
+        public idUser?: number,
+
+        public email?: string,
+        public senha?: string,
     ) {
 
     }

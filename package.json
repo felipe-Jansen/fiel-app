@@ -29,7 +29,8 @@
     "ngx-webstorage": "^3.0.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "br-mask": "0.0.7"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.801.2",

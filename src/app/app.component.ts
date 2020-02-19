@@ -20,8 +20,8 @@ export class AppComponent {
       icon: 'home',
       isAuthenticated: false
     },{
-      title: 'Histórico',
-      url: '/historico',
+      title: 'Estatística',
+      url: '/estatistica',
       icon: 'clock',
       isAuthenticated: true
     },{

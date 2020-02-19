@@ -46,6 +46,14 @@ const routes: Routes = [
   {
     path: 'troca-ponto/:idCliente',
     loadChildren: () => import('./pages/cliente/troca-ponto/troca-ponto.module').then(m => m.TrocaPontoPageModule)
+  },
+  {
+    path: 'estatistica',
+    loadChildren: () => import('./pages/estatistica/estatistica.module').then( m => m.EstatisticaPageModule)
+  },
+  {
+    path: 'empresa',
+    loadChildren: () => import('./pages/empresa/update-empresa/empresa.module').then(m => m.EmpresaPageModule)
   }
 ];
 
