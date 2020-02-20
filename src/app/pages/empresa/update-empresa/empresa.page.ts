@@ -19,7 +19,7 @@ export class EmpresaPage implements OnInit {
     foto: [],
     cpf: [],
     cnpj: [],
-    razao_social: [],
+    razaoSocial: [],
     nome: [],
     sobrenome: [],
     telefone: ['', [Validators.minLength(16)]],
@@ -34,7 +34,9 @@ export class EmpresaPage implements OnInit {
     dataNascimento: [],
     email: ['', [Validators.email]],
     senha: [],
-    confirmaSenha: []
+    confirmaSenha: [],
+    latitude: [],
+    longitude: []
   });
 
 
@@ -53,7 +55,7 @@ export class EmpresaPage implements OnInit {
       ...new Empresa(),
       cpf: this.editForm.get(['cpf']).value,
       cnpj: this.editForm.get(['cnpj']).value,
-      razaoSocial: this.editForm.get(['razao_social']).value,
+      razaoSocial: this.editForm.get(['razaoSocial']).value,
       nome: this.editForm.get(['nome']).value,
       sobrenome: this.editForm.get(['sobrenome']).value,
       telefone: this.editForm.get(['telefone']).value,
@@ -76,6 +78,7 @@ export class EmpresaPage implements OnInit {
 
   cadastrar() {
     let empresaDTO = this.criarDoForm();
+    console.log(empresaDTO);
     this.empresaService.save(empresaDTO)
         .subscribe(async res => {
           const alert = await this.alertController.create({

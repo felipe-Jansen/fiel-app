@@ -26,7 +26,7 @@ export class HomePage {
   getClientes() {
     this.empresaService.getEmpresaLogada().then(res => {
       this.clienteService.findAll({
-        'empresa': res.codigo
+        'empresaId': res.codigo
       }).subscribe( (res) => {
             this.clientes = res;
           });

@@ -2,6 +2,9 @@ export interface IEmpresa {
     codigo?: number;
     razaoSocial?: string;
     cnpj?: string;
+    cpf?: string;
+    nome?: string;
+    sobrenome?: string;
     latitude?: string;
     longitude?: string;
     cep?: string;
@@ -10,7 +13,10 @@ export interface IEmpresa {
     cidade?: string;
     estado?: string;
     dataCadastro?: any;
+    dataNascimento?: any;
     telefone?: string;
+    complemento?: string;
+    pontoReferencia?: string;
     whatsapp?: string;
     idUser?: number;
 
@@ -23,20 +29,25 @@ export class Empresa implements IEmpresa {
         public codigo?: number,
         public razaoSocial?: string,
         public cnpj?: string,
-        public cep?: string,
-        public rua?: string,
+        public  cpf?: string,
+        public nome?: string,
+        public  sobrenome?: string,
         public latitude?: string,
         public longitude?: string,
-        public bairro?: string,
-        public cidade?: string,
+        public  cep?: string,
+        public  rua?: string,
+        public  bairro?: string,
+        public   cidade?: string,
         public estado?: string,
-        public dataCadastro?: any,
+        public  dataCadastro?: any,
+        public dataNascimento?: any,
         public telefone?: string,
-        public whatsapp?: string,
-        public idUser?: number,
-
+        public  complemento?: string,
+        public pontoReferencia?: string,
+        public  whatsapp?: string,
+        public  idUser?: number,
         public email?: string,
-        public senha?: string,
+        public senha?: string
     ) {
 
     }

@@ -28,13 +28,13 @@
                   <ion-col size="12">
                       <ion-item>
                           <ion-label position="floating">Whatsapp</ion-label>
-                          <ion-input required type="string" placeholder="Digite o whatsapp" formControlName="whatsapp"></ion-input>
+                          <ion-input [brmasker]="{form: editForm.get('telefone'), mask: '(99) 9 9999-9999', len:16, type:'num'}" required type="string" placeholder="Digite o whatsapp" formControlName="whatsapp"></ion-input>
                       </ion-item>
                   </ion-col>
                 <ion-col size="6">
                 <ion-item>
                     <ion-label position="floating">C.E.P.</ion-label>
-                    <ion-input type="string" placeholder="Digite o C.E.P." formControlName="cep"></ion-input>
+                    <ion-input [brmasker]="{form: editForm.get('cep'), mask: '99.999-999', len:10, type:'num'}" type="string" placeholder="Digite o C.E.P." formControlName="cep"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col size="6">

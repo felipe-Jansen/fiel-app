@@ -26,8 +26,8 @@
           </ion-item>
           <ion-item [hidden]="editForm.controls['cpf'].value" class="itemForm">
             <ion-label position="floating">Razão Social</ion-label>
-            <ion-input [required]="!editForm.controls['cpf'].value" type="string" formControlName="razao_social" placeholder="Digite a Razão Social"></ion-input>
-            <small style="color: red" *ngIf="editForm.controls['razao_social'].hasError('required')">*Obrigatório</small>
+            <ion-input [required]="!editForm.controls['cpf'].value" type="string" formControlName="razaoSocial" placeholder="Digite a Razão Social"></ion-input>
+            <small style="color: red" *ngIf="editForm.controls['razaoSocial'].hasError('required')">*Obrigatório</small>
           </ion-item>
           <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">
             <ion-label position="floating">Nome</ion-label>

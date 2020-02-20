@@ -59,6 +59,7 @@ export class EmpresaService {
 
     save(empresaDTO: Empresa): Observable<Empresa> {
         let user = new User(empresaDTO.email, empresaDTO.senha);
+        console.log(empresaDTO);
         return this.http.post<Empresa>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, {empresaDTO, user});
     }
 
