@@ -83,10 +83,21 @@ export class EmpresaPage implements OnInit {
             message: 'Conta criada com sucesso :) !',
             buttons: [
               {
-                text: 'Ok',
+                text: 'Fechar',
                 handler: () => {
                   this.router.navigate(['/'])
                 }
+              }
+            ]
+          });
+          await alert.present();
+        }, async err => {
+          const alert = await this.alertController.create({
+            header: 'Que Pena!',
+            message: err.error[0].mensagemUsuario + ' :( !',
+            buttons: [
+              {
+                text: 'Fechar'
               }
             ]
           });
