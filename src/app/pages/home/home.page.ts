@@ -36,7 +36,9 @@ export class HomePage {
       }).subscribe( (res) => {
             this.clientes = res;
             this.loadingController.dismiss();
-          });
+          }, (err) => {
+            this.loadingController.dismiss();
+      });
     });
 
   }

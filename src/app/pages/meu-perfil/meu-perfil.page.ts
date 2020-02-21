@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {EmpresaService} from "../../../services/empresa.service";
-import {Empresa, IEmpresa} from "../../../shared/model/empresa.model";
-import * as moment from 'moment';
-import {AlertController} from "@ionic/angular";
+import {EmpresaService} from "../../services/empresa.service";
+import {AlertController, Events} from "@ionic/angular";
 import {Router} from "@angular/router";
-
+import {Empresa, IEmpresa} from "../../shared/model/empresa.model";
+import * as moment from "moment";
+import {LoginService} from "../../services/login/login.service";
 
 @Component({
-  selector: 'app-empresa',
-  templateUrl: './empresa.page.html',
-  styleUrls: ['./empresa.page.scss'],
+  selector: 'app-meu-perfil',
+  templateUrl: './meu-perfil.page.html',
+  styleUrls: ['./meu-perfil.page.scss'],
 })
-export class EmpresaPage implements OnInit {
+export class MeuPerfilPage implements OnInit {
 
   editForm = this.fb.group({
+    codigo: [],
     isPessoa: [],
     foto: [],
     cpf: [],
@@ -36,7 +37,8 @@ export class EmpresaPage implements OnInit {
     senha: [],
     confirmaSenha: [],
     latitude: [],
-    longitude: []
+    longitude: [],
+    idUser: []
   });
 
 
@@ -44,10 +46,43 @@ export class EmpresaPage implements OnInit {
       protected fb: FormBuilder,
       protected empresaService: EmpresaService,
       protected alertController: AlertController,
-      protected router: Router
+      protected router: Router,
+      protected loginService: LoginService,
+      public events: Events
+
   ) { }
 
   ionViewWillEnter() {
+    this.empresaService.getEmpresaLogada().then(res => {
+      console.log(res);
+      this.updateForm(res);
+    })
+  }
+
+  updateForm(empresa: Empresa) {
+    console.log(empresa);
+    this.editForm.patchValue({
+      codigo: empresa.codigo,
+      cpf: empresa.cpf,
+      cnpj: empresa.cnpj,
+      razaoSocial: empresa.razaoSocial,
+      nome: empresa.nome,
+      sobrenome: empresa.sobrenome,
+      telefone: empresa.telefone,
+      cep: empresa.cep,
+      rua: empresa.rua,
+      bairro: empresa.bairro,
+      cidade: empresa.cidade,
+      estado: empresa.estado,
+      numero: empresa.numero,
+      pontoReferencia: empresa.pontoReferencia,
+      complemento: empresa.complemento,
+      dataNascimento: empresa.dataNascimento,
+      latitude: empresa.latitude,
+      longitude: empresa.longitude,
+      idUser: empresa.idUser
+    });
+    console.log(this.editForm);
   }
 
   ngOnInit() {
@@ -56,6 +91,7 @@ export class EmpresaPage implements OnInit {
   private criarDoForm(): IEmpresa {
     const entity = {
       ...new Empresa(),
+      codigo: this.editForm.get(['codigo']).value,
       cpf: this.editForm.get(['cpf']).value,
       cnpj: this.editForm.get(['cnpj']).value,
       razaoSocial: this.editForm.get(['razaoSocial']).value,
@@ -74,24 +110,26 @@ export class EmpresaPage implements OnInit {
       senha: this.editForm.get(['senha']).value,
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
-      dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD')
+      dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
+      idUser: this.editForm.get(['idUser']).value
     };
     return entity;
   }
 
-  cadastrar() {
+  salvar() {
     let empresaDTO = this.criarDoForm();
     console.log(empresaDTO);
-    this.empresaService.save(empresaDTO)
+    this.empresaService.update(empresaDTO)
         .subscribe(async res => {
           const alert = await this.alertController.create({
             header: 'Parabéns!',
-            message: 'Conta criada com sucesso :) !',
+            message: 'Dados atualizados :) !',
             buttons: [
               {
                 text: 'Fechar',
                 handler: () => {
-                  this.router.navigate(['/'])
+                  this.events.publish('user:logged');
+                  this.router.navigate(['/home']);
                 }
               }
             ]
@@ -109,6 +147,10 @@ export class EmpresaPage implements OnInit {
           });
           await alert.present();
         })
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
 }

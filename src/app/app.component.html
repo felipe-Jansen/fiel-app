@@ -8,10 +8,10 @@
               <img id="imgPerfil" width="75" src="https://s3.amazonaws.com/TWFiles/536882/userAvatar/tf_81f2380f-ea13-48b8-9724-8f7a635471b6.20191117_152226.jpg">
             </ion-row>
             <ion-row margin-top>
-              <ion-title no-padding class="span__razaoSocial">{{ 'empresa.razaoSocial' }}</ion-title>
+              <ion-title no-padding class="span__razaoSocial">{{ empresa.razaoSocial ? empresa.razaoSocial : empresa.nome }}</ion-title>
             </ion-row>
             <ion-row>
-              <ion-title no-padding class="span__email">{{ 'empresa.email' }}</ion-title>
+              <ion-title no-padding class="span__email">{{ empresa.email ? empresa.email : '---' }}</ion-title>
             </ion-row>
           </ion-grid>
         </ion-toolbar>
@@ -34,14 +34,7 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-menu-toggle *ngIf="isAuthenticated" (click)="logout()">
-            <ion-item>
-              <ion-icon slot="start" [name]="'list'"></ion-icon>
-              <ion-label>
-                Sair
-              </ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+
         </ion-list>
       </ion-content>
     </ion-menu>

@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Empresa} from "./shared/model/empresa.model";
 import {AccountService} from "./services/auth/account.service";
 import {LoginService} from "./services/login/login.service";
+import {EmpresaService} from "./services/empresa.service";
 
 @Component({
   selector: 'app-root',
@@ -29,10 +30,15 @@ export class AppComponent {
       url: '/grid-recompensa',
       icon: 'analytics',
       isAuthenticated: true
+    },{
+      title: 'Meu Perfil',
+      url: '/meu-perfil',
+      icon: 'person',
+      isAuthenticated: true
     }
   ];
 
-  empresa: Empresa;
+  empresa = new Empresa();
   isAuthenticated = false;
 
   constructor(
@@ -41,19 +47,21 @@ export class AppComponent {
     private statusBar: StatusBar,
     public events: Events,
     private accountService: AccountService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private empresaService: EmpresaService
   ) {
     this.initializeApp();
     events.subscribe('user:logged', () => {
       this.getPerfil();
     });
-    events.subscribe('user:logout', () => {
-      this.isAuthenticated = false;
-    });
   }
 
   getPerfil() {
+    console.log('get perfil');
     this.isAuthenticated = true;
+    this.empresaService.getEmpresaLogada().then(empresa => {
+      this.empresa = empresa;
+    });
   }
 
   getUserAuthenticated() {

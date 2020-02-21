@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'empresa',
     loadChildren: () => import('./pages/empresa/update-empresa/empresa.module').then(m => m.EmpresaPageModule)
+  },
+  {
+    path: 'meu-perfil',
+    loadChildren: () => import('./pages/meu-perfil/meu-perfil.module').then( m => m.MeuPerfilPageModule)
   }
 ];
 

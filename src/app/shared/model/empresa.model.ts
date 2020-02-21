@@ -19,7 +19,7 @@ export interface IEmpresa {
     pontoReferencia?: string;
     whatsapp?: string;
     idUser?: number;
-
+    numero?: number;
     email?: string;
     senha?: string;
 }
@@ -44,6 +44,7 @@ export class Empresa implements IEmpresa {
         public telefone?: string,
         public  complemento?: string,
         public pontoReferencia?: string,
+        public numero?: number,
         public  whatsapp?: string,
         public  idUser?: number,
         public email?: string,
