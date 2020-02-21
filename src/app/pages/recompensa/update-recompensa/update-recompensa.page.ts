@@ -7,6 +7,7 @@ import {RecompensaService} from "../../../services/recompensa.service";
 import {Router} from "@angular/router";
 import {TipoRecompensaService} from "../../../services/tipo-recompensa.service";
 import {ITipoRecompensa} from "../../../shared/model/tipo-recompensa.model";
+import {AlertController, LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-update-recompensa',
@@ -31,7 +32,9 @@ export class UpdateRecompensaPage implements OnInit {
       private fb: FormBuilder,
       private recompensaService: RecompensaService,
       private router: Router,
-      private tipoRecompensaService: TipoRecompensaService
+      private tipoRecompensaService: TipoRecompensaService,
+      public loadingController: LoadingController,
+      protected alertController: AlertController
   ) { }
 
   private createFromForm(): IRecompensa {
@@ -62,12 +65,41 @@ export class UpdateRecompensaPage implements OnInit {
   ngOnInit() {
   }
 
-  save() {
+  async save() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos criando a sua recompensa!'
+    });
+    await loading.present();
     let recompensa = this.createFromForm();
     console.log(recompensa);
     this.recompensaService.create(recompensa)
-        .subscribe(res => {
-          this.router.navigate(['grid-recompensa'])
+        .subscribe(async res => {
+          this.loadingController.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Sucesso!',
+            message: 'Recompensa criada com sucesso! :)',
+            buttons: [
+              {
+                text: 'Fechar',
+                handler: () => {
+                  this.router.navigate(['grid-recompensa']);
+                }
+              }
+            ]
+          });
+          await alert.present();
+        }, async err => {
+          this.loadingController.dismiss();
+          const alert = await this.alertController.create({
+            header: 'Que Pena!',
+            message: err.error[0].mensagemUsuario + ' :( !',
+            buttons: [
+              {
+                text: 'Fechar'
+              }
+            ]
+          });
+          await alert.present();
         })
   }
 

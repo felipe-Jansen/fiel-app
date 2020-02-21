@@ -40,4 +40,8 @@ export class ClienteRecompensaService {
                 return res;
             }));
     }
+
+    generateAll(recompensasCliente: RecompensaCliente[]): Observable<RecompensaCliente[]> {
+        return this.http.post<RecompensaCliente[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}/generateAll`,  recompensasCliente);
+    }
 }

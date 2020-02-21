@@ -3,6 +3,7 @@ import {AccountService} from "../../services/auth/account.service";
 import {EmpresaService} from "../../services/empresa.service";
 import {Cliente} from "../../shared/model/cliente.model";
 import {ClienteService} from "../../services/cliente.service";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,15 @@ export class HomePage {
   constructor(
       private accountService: AccountService,
       private clienteService: ClienteService,
-      private empresaService: EmpresaService
+      private empresaService: EmpresaService,
+      public loadingController: LoadingController
   ) {}
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos procurando seus clientes!'
+    });
+    await loading.present();
     this.getClientes();
   }
 
@@ -29,6 +35,7 @@ export class HomePage {
         'empresaId': res.codigo
       }).subscribe( (res) => {
             this.clientes = res;
+            this.loadingController.dismiss();
           });
     });
 

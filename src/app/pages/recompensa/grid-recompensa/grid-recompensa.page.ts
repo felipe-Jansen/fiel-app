@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IRecompensa} from "../../../shared/model/recompensa.model";
 import {RecompensaService} from "../../../services/recompensa.service";
 import {EmpresaService} from "../../../services/empresa.service";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-grid-recompensa',
@@ -14,10 +15,15 @@ export class GridRecompensaPage implements OnInit {
 
   constructor(
       private recompensaService: RecompensaService,
-      private empresaService: EmpresaService
+      private empresaService: EmpresaService,
+      public loadingController: LoadingController
   ) { }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    const loading = await this.loadingController.create({
+        message: 'Aguarde alguns instantes...estamos procurando suas recompensas!'
+    });
+    await loading.present();
     this.getRecompensas()
   }
 
@@ -28,6 +34,9 @@ export class GridRecompensaPage implements OnInit {
             'idEmpresa': res.codigo
           }).subscribe(recompensas => {
             this.recompensas = recompensas;
+              this.loadingController.dismiss()
+          }, err => {
+              this.loadingController.dismiss()
           });
         });
   }

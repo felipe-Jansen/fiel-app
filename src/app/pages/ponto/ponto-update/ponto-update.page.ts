@@ -2,7 +2,7 @@ import { RecompensaService } from '../../../services/recompensa.service';
 import { PontoService } from '../../../services/ponto.service';
 import { IPonto, Ponto } from '../../../shared/model/ponto.model';
 import {Component, Input, OnInit} from '@angular/core';
-import {AlertController, ModalController} from "@ionic/angular";
+import {AlertController, LoadingController, ModalController} from "@ionic/angular";
 import {FormBuilder} from "@angular/forms";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {ClienteService} from "../../../services/cliente.service";
@@ -43,7 +43,8 @@ export class PontoUpdatePage {
       private pontoService: PontoService,
       private recompensaService: RecompensaService,
       private empresaService: EmpresaService,
-      public alertController: AlertController
+      public alertController: AlertController,
+      public loadingController: LoadingController
   ) { }
 
   ionViewWillEnter(){
@@ -97,12 +98,16 @@ export class PontoUpdatePage {
     await alert.present();
   }
 
-  create() {
+  async create() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos registando o ponto! :)'
+    });
+    await loading.present();
     const ponto = this.createFromForm();
     this.pontoService.create(ponto)
       .subscribe( (res) => {
-        console.log(res);
         this.close();
+        this.loadingController.dismiss();
         this.mostraModalCriacaoPonto(res);
       });
   }

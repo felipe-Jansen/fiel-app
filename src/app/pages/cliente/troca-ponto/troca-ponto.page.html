@@ -10,6 +10,13 @@
 <ion-content>
   <app-banner-radius-total [texto]="cliente?.totalPontos + ' Pontos disponíveis'"></app-banner-radius-total>
   <ion-grid>
+    <ion-row *ngIf="recompensasCliente.length === 0">
+      <ion-card style="background-color: white" class="w-100 ion-text-center">
+        <ion-card-content>
+          Você não possui nenhuma recompensa cadastrada :(
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
     <ion-card *ngFor="let recompensaCliente of recompensasCliente">
       <ion-row>
         <ion-col align-self-center size="4">
@@ -37,6 +44,6 @@
     </ion-card>
   </ion-grid>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="recompensasCliente.length > 0">
   <ion-button (click)="realizarTroca()" size="full">Trocar</ion-button>
 </ion-footer>

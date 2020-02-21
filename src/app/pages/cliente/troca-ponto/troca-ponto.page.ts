@@ -7,66 +7,75 @@ import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
 import {ClienteRecompensaService} from "../../../services/clienteRecompensa.service";
-import {AlertController} from "@ionic/angular";
+import {AlertController, LoadingController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-troca-ponto',
-  templateUrl: './troca-ponto.page.html',
-  styleUrls: ['./troca-ponto.page.scss'],
+    selector: 'app-troca-ponto',
+    templateUrl: './troca-ponto.page.html',
+    styleUrls: ['./troca-ponto.page.scss'],
 })
 export class TrocaPontoPage implements OnInit {
 
-  idCliente = this.route.snapshot.params['idCliente'];
-  recompensas: IRecompensa[] = [];
-  cliente: Cliente;
-  recompensasCliente: RecompensaCliente[] = [];
+    idCliente = this.route.snapshot.params['idCliente'];
+    recompensas: IRecompensa[] = [];
+    cliente: Cliente;
+    recompensasCliente: RecompensaCliente[] = [];
 
-  constructor(
-      private route: ActivatedRoute,
-      private recompensaService: RecompensaService,
-      private empresaService: EmpresaService,
-      private clienteService: ClienteService,
-      private clienteRecompensaService: ClienteRecompensaService,
-      public alertController: AlertController,
-      private router: Router
-  ) { }
+    constructor(
+        private route: ActivatedRoute,
+        private recompensaService: RecompensaService,
+        private empresaService: EmpresaService,
+        private clienteService: ClienteService,
+        private clienteRecompensaService: ClienteRecompensaService,
+        public alertController: AlertController,
+        private router: Router,
+        public loadingController: LoadingController
 
-  ionViewWillEnter() {
-    this.getRecompensas();
-    this.getCliente();
-  }
+    ) { }
 
-  getCliente() {
-    this.clienteService.find(this.idCliente)
-        .subscribe(res => {
-          this.cliente = res;
+    async ionViewWillEnter() {
+        const loading = await this.loadingController.create({
+            message: 'Aguarde alguns instantes...estamos procurando suas recompensas!'
         });
-  }
+        await loading.present();
+        this.getRecompensas();
+        this.getCliente();
+    }
 
-  getRecompensas() {
-    this.empresaService.getEmpresaLogada()
-        .then(res => {
-          this.recompensaService.getAll({
-            'idEmpresa': res.codigo
-          }).subscribe(recompensas => {
-            this.recompensas = recompensas;
-            this.recompensas.forEach(recompensa => {
-                this.recompensasCliente.push(new RecompensaCliente(
-                    null,
-                    recompensa.codigo,
-                    this.idCliente,
-                    0,
-                    recompensa.totalPontos,
-                    recompensa.descricao,
-                    false
-                ))
+    getCliente() {
+        this.clienteService.find(this.idCliente)
+            .subscribe(res => {
+                this.cliente = res;
             });
-          });
-        });
-  }
+    }
 
-  ngOnInit() {
-  }
+    getRecompensas() {
+        this.empresaService.getEmpresaLogada()
+            .then(res => {
+                this.recompensaService.getAll({
+                    'idEmpresa': res.codigo
+                }).subscribe(recompensas => {
+                    this.recompensas = recompensas;
+                    this.recompensas.forEach(recompensa => {
+                        this.recompensasCliente.push(new RecompensaCliente(
+                            null,
+                            recompensa.codigo,
+                            this.idCliente,
+                            0,
+                            recompensa.totalPontos,
+                            recompensa.descricao,
+                            false
+                        ))
+                    });
+                    this.loadingController.dismiss();
+                }, err => {
+                    this.loadingController.dismiss();
+                });
+            });
+    }
+
+    ngOnInit() {
+    }
 
 
     incrementarRecompensa(recompensaCliente: RecompensaCliente) {
@@ -82,14 +91,10 @@ export class TrocaPontoPage implements OnInit {
     }
 
     realizarTroca() {
-        this.recompensasCliente.forEach(async recompensa => {
-           if (recompensa.quantidade !== 0) {
-               recompensa.idCliente = this.idCliente;
-               await this.clienteRecompensaService.create(recompensa).then(() => {
-               }).catch(() => {
-               });
-           }
-        });
+        this.clienteRecompensaService.generateAll(this.recompensasCliente)
+            .subscribe(res => {
+                console.log(res);
+            });
         this.mostraModal();
     }
 
@@ -126,6 +131,6 @@ export class TrocaPontoPage implements OnInit {
     }
 
     liberaIncrementoRecompensa(recompensaCliente: RecompensaCliente) {
-      return this.cliente.totalPontos >= recompensaCliente.recompensaPontos ? true : false;
+        return this.cliente.totalPontos >= recompensaCliente.recompensaPontos ? true : false;
     }
 }

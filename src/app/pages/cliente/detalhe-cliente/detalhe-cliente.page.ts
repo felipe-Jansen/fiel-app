@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {AlertController, ModalController} from "@ionic/angular";
+import {AlertController, LoadingController, ModalController} from "@ionic/angular";
 import {PontoUpdatePage} from "../../ponto/ponto-update/ponto-update.page";
 import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
@@ -27,10 +27,15 @@ export class DetalheClientePage {
       private pontoService: PontoService,
       private router: Router,
       private recompensaClienteService: ClienteRecompensaService,
-      private alertController: AlertController
+      private alertController: AlertController,
+      public loadingController: LoadingController
   ) { }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos pesquisandos os dados do cliente !'
+    });
+    await loading.present();
     this.getCliente();
   }
 
@@ -40,13 +45,13 @@ export class DetalheClientePage {
           this.cliente = res;
           this.getTotalPontos(res.codigo);
           this.getRecompensasDisponiveis(res.codigo);
+          this.loadingController.dismiss();
         });
   }
 
   getRecompensasDisponiveis(idCliente: number) {
     this.recompensaClienteService.getAll({'idCliente': idCliente})
         .subscribe(res => {
-          console.log(res);
           this.recompensasCliente = res;
         })
   }

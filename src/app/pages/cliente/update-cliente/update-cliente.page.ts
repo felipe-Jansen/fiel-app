@@ -4,6 +4,7 @@ import {FormBuilder} from "@angular/forms";
 import {ClienteService} from "../../../services/cliente.service";
 import moment from "moment";
 import {Router} from "@angular/router";
+import {LoadingController} from "@ionic/angular";
 
 
 @Component({
@@ -33,7 +34,8 @@ export class UpdateClientePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
-    private router: Router
+    private router: Router,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -59,12 +61,17 @@ export class UpdateClientePage implements OnInit {
     }
   }
 
-  save() {
+  async save() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos salvando seu novo cliente ! :)'
+    });
+    await loading.present();
     let cliente = this.createFromForm();
     console.log(cliente);
     this.clienteService.create(cliente)
         .subscribe(res => {
-          this.router.navigate(['detalhe-cliente', res.codigo])
+          this.router.navigate(['detalhe-cliente', res.codigo]);
+          this.loadingController.dismiss();
         })
   }
 
