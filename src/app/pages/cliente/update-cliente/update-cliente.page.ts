@@ -3,7 +3,7 @@ import { ICLiente, Cliente } from '../../../shared/model/cliente.model';
 import {FormBuilder} from "@angular/forms";
 import {ClienteService} from "../../../services/cliente.service";
 import moment from "moment";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LoadingController} from "@ionic/angular";
 
 
@@ -13,6 +13,8 @@ import {LoadingController} from "@ionic/angular";
   styleUrls: ['./update-cliente.page.scss'],
 })
 export class UpdateClientePage implements OnInit {
+
+  idCliente = this.route.snapshot.params['idCliente'];
 
   editForm = this.fb.group({
     codigo: [],
@@ -28,17 +30,47 @@ export class UpdateClientePage implements OnInit {
     dataNascimento: [],
     email: [],
     whatsapp: [],
-    telefone: []
+    telefone: [],
+    totalPontos: [],
+    empresaId: []
   });
 
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
     private router: Router,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    if(this.idCliente) {
+      this.clienteService.find(this.idCliente)
+          .subscribe(res => {
+            this.updateForm(res);
+          })
+    }
+  }
+
+  updateForm(cliente: ICLiente) {
+    this.editForm.patchValue({
+      codigo: cliente.codigo,
+      nome: cliente.nome,
+      sobrenome: cliente.sobrenome,
+      cpf: cliente.cpf,
+      cep: cliente.cep,
+      rua: cliente.rua,
+      bairro: cliente.bairro,
+      cidade: cliente.cidade,
+      estado: cliente.estado,
+      dataCadastro: cliente.dataCadastro,
+      dataNascimento: cliente.dataNascimento,
+      email: cliente.email,
+      whatsapp: cliente.whatsapp,
+      telefone: cliente.telefone,
+      totalPontos: cliente.totalPontos,
+      empresaId: cliente.empresaId
+    });
   }
 
   private createFromForm(): ICLiente {
@@ -58,6 +90,8 @@ export class UpdateClientePage implements OnInit {
       email: this.editForm.get(['email']).value,
       whatsapp: this.editForm.get(['whatsapp']).value,
       telefone: this.editForm.get(['telefone']).value,
+      totalPontos: this.editForm.get(['totalPontos']).value,
+      empresaId: this.editForm.get(['empresaId']).value
     }
   }
 
@@ -67,12 +101,20 @@ export class UpdateClientePage implements OnInit {
     });
     await loading.present();
     let cliente = this.createFromForm();
-    console.log(cliente);
-    this.clienteService.create(cliente)
-        .subscribe(res => {
-          this.router.navigate(['detalhe-cliente', res.codigo]);
-          this.loadingController.dismiss();
-        })
+    if (cliente.codigo) {
+      this.clienteService.update(cliente)
+          .subscribe(res => {
+            this.router.navigate(['detalhe-cliente', res.codigo]);
+            this.loadingController.dismiss();
+          })
+    } else {
+      this.clienteService.create(cliente)
+          .subscribe(res => {
+            this.router.navigate(['detalhe-cliente', res.codigo]);
+            this.loadingController.dismiss();
+          })
+    }
+
   }
 
 }

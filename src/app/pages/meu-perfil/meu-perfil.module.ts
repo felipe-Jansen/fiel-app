@@ -7,6 +7,7 @@ import {BrMaskerModule} from "br-mask";
 import {MeuPerfilPageRoutingModule} from "./meu-perfil-routing.module";
 import {MeuPerfilPage} from "./meu-perfil.page";
 import {SharedModule} from "../../shared/shared.module";
+import {Camera} from '@ionic-native/camera/ngx';
 
 @NgModule({
     imports: [
@@ -18,6 +19,10 @@ import {SharedModule} from "../../shared/shared.module";
         ReactiveFormsModule,
         BrMaskerModule
     ],
-  declarations: [MeuPerfilPage]
+  declarations: [MeuPerfilPage],
+    providers: [
+        Camera
+    ]
+
 })
 export class MeuPerfilPageModule {}

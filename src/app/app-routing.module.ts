@@ -32,6 +32,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cliente/update-cliente/update-cliente.module').then( m => m.UpdateClientePageModule)
   },
   {
+    path: 'update-cliente/:idCliente/edit',
+    loadChildren: () => import('./pages/cliente/update-cliente/update-cliente.module').then( m => m.UpdateClientePageModule)
+  },
+  {
     path: 'grid-recompensa',
     loadChildren: () => import('./pages/recompensa/grid-recompensa/grid-recompensa.module').then( m => m.GridRecompensaPageModule)
   },

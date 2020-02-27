@@ -14,6 +14,7 @@ export interface ICLiente {
     whatsapp?: string;
     telefone?: string;
     totalPontos?: number;
+    empresaId?: number;
 }
 
 export class Cliente implements ICLiente {
@@ -32,7 +33,8 @@ export class Cliente implements ICLiente {
         public email?: string,
         public whatsapp?: string,
         public telefone?: string,
-        public totalPontos?: number
+        public totalPontos?: number,
+        public empresaId?: number
     ) {
 
     }

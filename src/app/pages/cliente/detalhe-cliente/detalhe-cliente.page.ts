@@ -50,7 +50,11 @@ export class DetalheClientePage {
   }
 
   getRecompensasDisponiveis(idCliente: number) {
-    this.recompensaClienteService.getAll({'idCliente': idCliente})
+    this.recompensaClienteService.getAll(
+        {
+          'idCliente': idCliente,
+          'quantidade': 1
+        })
         .subscribe(res => {
           this.recompensasCliente = res;
         })
@@ -102,6 +106,7 @@ export class DetalheClientePage {
             recompensaCliente.quantidade -= data;
             this.recompensaClienteService.update(recompensaCliente)
                 .subscribe(res => {
+                  this.getRecompensasDisponiveis(this.idCliente);
                   this.mostraModalUsoRecompensa(res);
                 });
           }

@@ -10,6 +10,8 @@
 <ion-content>
   <app-banner-radius-total texto="Meus Dados"></app-banner-radius-total>
   <form (submit)="salvar()" class="form" [formGroup]="editForm">
+    <div [ngStyle]="{'background-image' : 'url('+img+')'}" id="img" (click)="openActionSheet()"></div>
+    <p id="titulo-img" text-center>Adicione uma imagem</p>
     <ion-card>
       <ion-list>
         <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">

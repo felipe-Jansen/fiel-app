@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {EmpresaService} from "../../services/empresa.service";
-import {AlertController, Events} from "@ionic/angular";
+import {ActionSheetController, AlertController, Events, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {Empresa, IEmpresa} from "../../shared/model/empresa.model";
 import * as moment from "moment";
 import {LoginService} from "../../services/login/login.service";
+import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
+
 
 @Component({
   selector: 'app-meu-perfil',
@@ -13,6 +15,8 @@ import {LoginService} from "../../services/login/login.service";
   styleUrls: ['./meu-perfil.page.scss'],
 })
 export class MeuPerfilPage implements OnInit {
+
+  img = '../assets/externas/camera.png';
 
   editForm = this.fb.group({
     codigo: [],
@@ -48,8 +52,10 @@ export class MeuPerfilPage implements OnInit {
       protected alertController: AlertController,
       protected router: Router,
       protected loginService: LoginService,
-      public events: Events
-
+      public events: Events,
+      protected camera: Camera,
+      protected actionSheetController: ActionSheetController,
+      protected toast: ToastController
   ) { }
 
   ionViewWillEnter() {
@@ -151,6 +157,75 @@ export class MeuPerfilPage implements OnInit {
 
   logout() {
     this.loginService.logout();
+  }
+
+  async openActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Escolha uma opção',
+      buttons: [{
+        text: 'Câmera',
+        role: 'destructive',
+        icon: 'camera',
+        handler: () => {
+          this.openCamera();
+        }
+      }, {
+        text: 'Galeria',
+        icon: 'image',
+        handler: () => {
+          this.openGaleria();
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.setaImagem(imageData);
+    }, (err) => {
+      this.showToast('Você deve autorizar o aplicativo a acessar a câmera !');
+    });
+  }
+
+  openGaleria() {
+    const options: CameraOptions = {
+      allowEdit: true,
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      mediaType: this.camera.MediaType.PICTURE,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 70
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.img = 'data:image/jpeg;base64,' + imageData;
+      this.setaImagem(imageData);
+    }, (err) => {
+      this.showToast('Você deve autorizar o aplicativo a acessar a sua galeria de fotos !');
+    });
+  }
+
+  setaImagem(imageData: any) {
+    this.img = 'data:image/jpeg;base64,' + imageData;
+    this.editForm.patchValue({
+      foto: imageData
+    });
+  }
+
+  async showToast(msg) {
+    const toast = await this.toast.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }
