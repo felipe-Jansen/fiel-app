@@ -62,13 +62,11 @@ export class MeuPerfilPage implements OnInit {
 
   ionViewWillEnter() {
     this.empresaService.getEmpresaLogada().then(res => {
-      console.log(res);
       this.updateForm(res);
     })
   }
 
   updateForm(empresa: Empresa) {
-    console.log(empresa);
     this.editForm.patchValue({
       codigo: empresa.codigo,
       cpf: empresa.cpf,
@@ -91,7 +89,6 @@ export class MeuPerfilPage implements OnInit {
       longitude: empresa.longitude,
       idUser: empresa.idUser
     });
-    console.log(this.editForm);
   }
 
   ngOnInit() {
@@ -127,7 +124,6 @@ export class MeuPerfilPage implements OnInit {
 
   salvar() {
     let empresaDTO = this.criarDoForm();
-    console.log(empresaDTO);
     this.empresaService.update(empresaDTO)
         .subscribe(async res => {
           const alert = await this.alertController.create({

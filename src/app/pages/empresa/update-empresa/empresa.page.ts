@@ -83,7 +83,6 @@ export class EmpresaPage implements OnInit {
 
   cadastrar() {
     let empresaDTO = this.criarDoForm();
-    console.log(empresaDTO);
     this.empresaService.save(empresaDTO)
         .subscribe(async res => {
           const alert = await this.alertController.create({

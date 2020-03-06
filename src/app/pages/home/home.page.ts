@@ -13,6 +13,7 @@ import {LoadingController} from "@ionic/angular";
 export class HomePage {
 
   clientes: Cliente[] = [];
+  searchFilter = false;
 
   constructor(
       private accountService: AccountService,
@@ -30,16 +31,31 @@ export class HomePage {
   }
 
   getClientes() {
+    this.searchFilter = true;
     this.empresaService.getEmpresaLogada().then(res => {
       this.clienteService.findAll({
         'empresaId': res.codigo
       }).subscribe( (res) => {
             this.clientes = res;
             this.loadingController.dismiss();
+            this.searchFilter = false;
           }, (err) => {
             this.loadingController.dismiss();
+            this.searchFilter = false;
       });
     });
-
   }
+
+    searchCliente(value: string) {
+      this.searchFilter = true;
+      this.empresaService.getEmpresaLogada().then(res => {
+        this.clienteService.findAll({
+          'empresaId': res.codigo,
+          'nome': value
+        }).subscribe( (res) => {
+          this.clientes = res;
+          this.searchFilter = false;
+        });
+      });
+    }
 }

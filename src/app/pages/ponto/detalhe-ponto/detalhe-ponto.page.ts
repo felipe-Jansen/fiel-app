@@ -21,7 +21,6 @@ export class DetalhePontoPage implements OnInit {
   ionViewWillEnter() {
     this.pontoService.find(this.idPonto)
         .subscribe(res => {
-          console.log(res);
           this.ponto = res;
         });
   }

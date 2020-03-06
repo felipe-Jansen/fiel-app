@@ -57,7 +57,6 @@ export class AppComponent {
   }
 
   getPerfil() {
-    console.log('get perfil');
     this.isAuthenticated = true;
     this.empresaService.getEmpresaLogada().then(empresa => {
       this.empresa = empresa;

@@ -91,7 +91,6 @@ export class DetalheClientePage {
     for(let i=1; i<=recompensaCliente.quantidade; i++) {
       opcoes.push({name: i, type: 'radio', label: i + ' Unidade(s)',value: i});
     }
-    console.log(opcoes);
     const alert = await this.alertController.create({
       header: 'Selecione a quantidade que será utilizada',
       inputs: opcoes,

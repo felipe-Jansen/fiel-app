@@ -10,6 +10,20 @@
 <ion-content>
   <app-banner-radius-total texto="Meus Clientes"></app-banner-radius-total>
   <ion-grid>
+    <ion-row>
+      <ion-col no-padding>
+        <ion-card>
+          <ion-input #inputPesquisaCLiente (ionInput)="searchCliente(inputPesquisaCLiente.value)" class="ion-input__pesquisa" placeholder="Digite o nome da oficina">
+            <ion-icon class="ion-padding" color="primary" ios="ios-search" md="md-search"></ion-icon>
+          </ion-input>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="searchFilter">
+      <ion-col text-center>
+        <ion-spinner color="primary"></ion-spinner>
+      </ion-col>
+    </ion-row>
     <ion-row *ngIf="clientes.length === 0">
       <ion-card style="background-color: white" class="w-100 ion-text-center">
         <ion-card-content>

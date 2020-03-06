@@ -83,7 +83,6 @@ export class UpdateRecompensaPage implements OnInit {
   getTiposRecompensas() {
     this.tipoRecompensaService.findAll()
         .subscribe(res => {
-          console.log(res);
           this.tipoRecompensas = res;
         });
   }
@@ -105,7 +104,6 @@ export class UpdateRecompensaPage implements OnInit {
     });
     await loading.present();
     let recompensa = this.createFromForm();
-    console.log(recompensa);
     this.recompensaService.update(recompensa)
         .subscribe(async res => {
           this.loadingController.dismiss();
@@ -123,7 +121,6 @@ export class UpdateRecompensaPage implements OnInit {
           });
           await alert.present();
         }, async err => {
-          console.log('erro = ', err);
           this.loadingController.dismiss();
           const alert = await this.alertController.create({
             header: 'Que Pena!',
@@ -144,7 +141,6 @@ export class UpdateRecompensaPage implements OnInit {
     });
     await loading.present();
     let recompensa = this.createFromForm();
-    console.log(recompensa);
     this.recompensaService.create(recompensa)
         .subscribe(async res => {
           this.loadingController.dismiss();
@@ -162,7 +158,6 @@ export class UpdateRecompensaPage implements OnInit {
           });
           await alert.present();
         }, async err => {
-          console.log('erro = ', err);
           this.loadingController.dismiss();
           const alert = await this.alertController.create({
             header: 'Que Pena!',

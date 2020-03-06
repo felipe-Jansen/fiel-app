@@ -96,7 +96,6 @@ export class TrocaPontoPage implements OnInit {
     realizarTroca() {
         this.clienteRecompensaService.generateAll(this.recompensasCliente)
             .subscribe(res => {
-                console.log(res);
             });
         this.mostraModal();
     }
@@ -125,7 +124,6 @@ export class TrocaPontoPage implements OnInit {
                 {
                     text: 'Fechar',
                     handler: () => {
-                        console.log('Fechado');
                     }
                 }
             ]
