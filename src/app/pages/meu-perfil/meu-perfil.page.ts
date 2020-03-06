@@ -7,6 +7,7 @@ import {Empresa, IEmpresa} from "../../shared/model/empresa.model";
 import * as moment from "moment";
 import {LoginService} from "../../services/login/login.service";
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
+import {UtilService} from "../../shared/util/util.service";
 
 
 @Component({
@@ -55,7 +56,8 @@ export class MeuPerfilPage implements OnInit {
       public events: Events,
       protected camera: Camera,
       protected actionSheetController: ActionSheetController,
-      protected toast: ToastController
+      protected toast: ToastController,
+      protected utilService: UtilService
   ) { }
 
   ionViewWillEnter() {
@@ -77,6 +79,7 @@ export class MeuPerfilPage implements OnInit {
       telefone: empresa.telefone,
       cep: empresa.cep,
       rua: empresa.rua,
+      email: empresa.email,
       bairro: empresa.bairro,
       cidade: empresa.cidade,
       estado: empresa.estado,
@@ -227,5 +230,20 @@ export class MeuPerfilPage implements OnInit {
     });
     toast.present();
   }
+
+  buscaCep(cep: string) {
+    if (cep.length >= 10 ) {
+      this.utilService.getEnderecoCepWidenet(cep.replace(/[^a-zA-Z0-9 ]/g,    '')).subscribe(
+          (endereco: any) => {
+            this.editForm.controls.rua.setValue(endereco.address);
+            this.editForm.controls.bairro.setValue(endereco.district);
+            this.editForm.controls.cidade.setValue(endereco.city);
+            this.editForm.controls.estado.setValue(endereco.state);
+          },
+          error => {}
+      );
+    }
+  }
+
 
 }

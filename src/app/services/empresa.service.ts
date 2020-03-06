@@ -45,6 +45,14 @@ export class EmpresaService {
             });
     }
 
+    getTotalPontos(): Promise<number> {
+        return this.http.get<number>(`${API_URL_V1}/${this.NOME_ENTIDADE}/total_pontos_empresa_logada`)
+            .toPromise()
+            .then(res => {
+                return res;
+            });
+    }
+
     update(empresa: Empresa): Observable<Empresa> {
         return this.http.put<Empresa>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${empresa.codigo}`, empresa);
     }

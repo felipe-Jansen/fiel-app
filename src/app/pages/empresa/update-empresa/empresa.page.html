@@ -57,7 +57,7 @@
           <ion-card-title margin-start margin-top>Dados do Endereço</ion-card-title>
           <ion-item class="itemForm">
             <ion-label position="floating">C.E.P.</ion-label>
-            <ion-input required type="string" [brmasker]="{form: editForm.get('cep'), mask: '99.999-999', len:10, type:'num'}" formControlName="cep" placeholder="Digite o C.E.P. do Revendedor"></ion-input>
+            <ion-input required type="string" #inputCep (ionInput)="buscaCep(inputCep.value)" [brmasker]="{form: editForm.get('cep'), mask: '99.999-999', len:10, type:'num'}" formControlName="cep" placeholder="Digite o C.E.P. do Revendedor"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['cep'].hasError('required')">*Obrigatório</small>
             <small style="color: red"  *ngIf="!editForm.controls['cep'].valid && editForm.controls['cep'].dirty">*Informe um C.E.P. válido</small>
 

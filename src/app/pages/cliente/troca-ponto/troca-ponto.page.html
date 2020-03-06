@@ -21,7 +21,8 @@
       <ion-row>
         <ion-col align-self-center size="4">
           <h1 class="h1__recompensaDescricao">{{ recompensaCliente.recompensaDescricao }}</h1>
-          <label>{{ recompensaCliente.recompensaPontos }} pontos</label>
+          <label *ngIf="recompensaCliente.totalEstoque > 0">{{ recompensaCliente.recompensaPontos }} pontos</label>
+          <label *ngIf="recompensaCliente.totalEstoque <= 0" class="label__detalhe-recompensa" style="color: red;">Fora de Estoque</label>
         </ion-col>
         <ion-col size="8">
           <ion-row justify-content-center>

@@ -22,6 +22,9 @@ const routes: Routes = [
   {
     path: 'ponto-update',
     loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
+  },{
+    path: 'ponto-update/:idRecompensa',
+    loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
   },
   {
     path: 'historico',

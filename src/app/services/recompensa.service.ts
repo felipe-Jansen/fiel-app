@@ -30,5 +30,12 @@ export class RecompensaService {
         return this.http.post<IRecompensa>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, recompensa);
     }
 
+    find(id: number): Observable<IRecompensa> {
+        return this.http.get<IRecompensa>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${id}`);
+    }
+
+    update(recompensa: IRecompensa):Observable<IRecompensa> {
+        return this.http.put<IRecompensa>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${recompensa.codigo}`, recompensa);
+    }
 
 }

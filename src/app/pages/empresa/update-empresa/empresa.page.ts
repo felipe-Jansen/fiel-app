@@ -5,6 +5,7 @@ import {Empresa, IEmpresa} from "../../../shared/model/empresa.model";
 import * as moment from 'moment';
 import {AlertController} from "@ionic/angular";
 import {Router} from "@angular/router";
+import {UtilService} from "../../../shared/util/util.service";
 
 
 @Component({
@@ -44,7 +45,8 @@ export class EmpresaPage implements OnInit {
       protected fb: FormBuilder,
       protected empresaService: EmpresaService,
       protected alertController: AlertController,
-      protected router: Router
+      protected router: Router,
+      protected utilService: UtilService
   ) { }
 
   ionViewWillEnter() {
@@ -109,6 +111,20 @@ export class EmpresaPage implements OnInit {
           });
           await alert.present();
         })
+  }
+
+  buscaCep(cep: string) {
+    if (cep.length >= 10 ) {
+      this.utilService.getEnderecoCepWidenet(cep.replace(/[^a-zA-Z0-9 ]/g,    '')).subscribe(
+          (endereco: any) => {
+            this.editForm.controls.rua.setValue(endereco.address);
+            this.editForm.controls.bairro.setValue(endereco.district);
+            this.editForm.controls.cidade.setValue(endereco.city);
+            this.editForm.controls.estado.setValue(endereco.state);
+          },
+          error => {}
+      );
+    }
   }
 
 }

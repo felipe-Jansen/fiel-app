@@ -39,4 +39,6 @@ export class ClienteService {
         return this.http.put<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${cliente.codigo}`, cliente);
     }
 
+    count
+
 }

@@ -9,4 +9,77 @@
 
 <ion-content>
   <app-banner-radius-total texto="Meus Números"></app-banner-radius-total>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-row>
+        <ion-col>
+          <ion-card-subtitle>Meu Lucro</ion-card-subtitle>
+          <ion-card-title class="ion-card-title__total-lucro">{{ receitaTotal | currency:'BRL' }}</ion-card-title>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barChart></canvas>
+    </ion-card-content>
+  </ion-card>
+  <div>
+    <div id="carrosselProdutos">
+      <ion-card class="cardProduto">
+        <div class="cardProduto slideHome">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-card-subtitle>Qtd de Clientes</ion-card-subtitle>
+                <ion-card-title class="ion-card-title__information">{{ totalClientes }}</ion-card-title>
+              </ion-col>
+              <ion-col align-self-center>
+                <ion-icon class="ion-icon__icon-card" name="people"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </div>
+      </ion-card>
+      <ion-card class="cardProduto">
+        <div class="cardProduto slideHome">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-card-subtitle>Pontos cadastrados</ion-card-subtitle>
+                <ion-card-title class="ion-card-title__information">{{ totalPontos }}</ion-card-title>
+              </ion-col>
+              <ion-col align-self-center>
+                <ion-icon class="ion-icon__icon-card" name="calculator"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </div>
+      </ion-card>
+    </div>
+  </div>
+  <div>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            Mais pontos <ion-icon  style="color: green" name="arrow-round-up"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title class="ion-card-title__information">Felipe</ion-card-title>
+            <ion-card-title class="ion-card-title__information" style="font-size: 1em">340 Pontos</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            Menos pontos <ion-icon style="color: red" name="arrow-round-down"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title class="ion-card-title__information">Felipe</ion-card-title>
+            <ion-card-title class="ion-card-title__information" style="font-size: 1em">34 Pontos</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

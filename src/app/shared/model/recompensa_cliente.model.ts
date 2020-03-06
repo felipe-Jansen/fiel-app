@@ -6,6 +6,7 @@ export interface IRecompensaCliente {
     recompensaPontos?: number;
     recompensaDescricao?: string;
     ativo?: boolean;
+    totalEstoque?: number;
 }
 
 export class RecompensaCliente implements IRecompensaCliente {
@@ -16,6 +17,7 @@ export class RecompensaCliente implements IRecompensaCliente {
         public quantidade?: number,
         public recompensaPontos?: number,
         public recompensaDescricao?: string,
-        public ativo?: boolean
+        public ativo?: boolean,
+        public totalEstoque?: number
     ) {}
 }

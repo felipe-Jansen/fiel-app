@@ -19,10 +19,15 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let recompensa of recompensas">
-        <ion-card class="welcome-card card__recompensa">
+        <ion-card [routerLink]="['/ponto-update/', recompensa.codigo]" class="ion-text-center welcome-card card__recompensa">
           <ion-card-header>
             <ion-card-title>{{ recompensa.descricao }}</ion-card-title>
           </ion-card-header>
+          <ion-row class="ion-text-center cardFooter">
+            <ion-col>
+              Editar
+            </ion-col>
+          </ion-row>
         </ion-card>
       </ion-col>
     </ion-row>

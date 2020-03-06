@@ -14,8 +14,8 @@ export class PontoService {
 
     constructor(protected http: HttpClient) {}
 
-    getDataChart(): Promise<any[]> {
-        return this.http.get<any[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}/estatisticas/lucro_por_mes/${2019}`)
+    getDataChart(ano: number): Promise<any[]> {
+        return this.http.get<any[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}/estatisticas/lucro_por_mes/${ano}`)
             .toPromise()
             .then(data => {
                 return data;
