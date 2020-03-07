@@ -59,24 +59,24 @@
   <div>
     <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card [routerLink]="['/detalhe-cliente', clienteMaisPontos?.codigo]">
           <ion-card-header>
             Mais pontos <ion-icon  style="color: green" name="arrow-round-up"></ion-icon>
           </ion-card-header>
           <ion-card-content>
-            <ion-card-title class="ion-card-title__information">Felipe</ion-card-title>
-            <ion-card-title class="ion-card-title__information" style="font-size: 1em">340 Pontos</ion-card-title>
+            <ion-card-title class="ion-card-title__information">{{ clienteMaisPontos?.nome }}</ion-card-title>
+            <ion-card-title class="ion-card-title__information" style="font-size: 1em">{{ clienteMaisPontos?.totalPontos }} Pontos</ion-card-title>
           </ion-card-content>
         </ion-card>
       </ion-col>
       <ion-col>
-        <ion-card>
+        <ion-card [routerLink]="['/detalhe-cliente', clienteMenosPontos?.codigo]">
           <ion-card-header>
             Menos pontos <ion-icon style="color: red" name="arrow-round-down"></ion-icon>
           </ion-card-header>
           <ion-card-content>
-            <ion-card-title class="ion-card-title__information">Felipe</ion-card-title>
-            <ion-card-title class="ion-card-title__information" style="font-size: 1em">34 Pontos</ion-card-title>
+            <ion-card-title class="ion-card-title__information">{{ clienteMenosPontos?.nome }}</ion-card-title>
+            <ion-card-title class="ion-card-title__information" style="font-size: 1em">{{ clienteMenosPontos?.totalPontos }} Pontos</ion-card-title>
           </ion-card-content>
         </ion-card>
       </ion-col>

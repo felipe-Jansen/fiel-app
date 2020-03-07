@@ -2,6 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
 import {PontoService} from "../../services/ponto.service";
 import {EmpresaService} from "../../services/empresa.service";
+import {Cliente} from "../../shared/model/cliente.model";
+import {ClienteService} from "../../services/cliente.service";
 
 
 const viewChild = ViewChild;
@@ -21,10 +23,13 @@ export class EstatisticaPage {
   totalClientes: number;
   receitaTotal: number;
   totalPontos: number;
+  clienteMaisPontos: Cliente = new Cliente;
+  clienteMenosPontos: Cliente = new Cliente;
 
   constructor(
       public pontoService: PontoService,
-      public empresaSerice: EmpresaService
+      public empresaSerice: EmpresaService,
+      public clienteService: ClienteService
   ) { }
 
   ionViewDidEnter() {
@@ -32,6 +37,20 @@ export class EstatisticaPage {
     this.getReceitaTotal();
     this.getTotalClientes();
     this.getTotalPontos();
+    this.getClienteMaisPontos();
+    this.getClienteMenosPontos();
+  }
+
+  getClienteMaisPontos() {
+    this.empresaSerice.getEmpresaLogada().then(empresa => {
+      this.clienteService.getClienteMaisPontos(empresa.codigo).subscribe(cliente => this.clienteMaisPontos = cliente)
+    });
+  }
+
+  getClienteMenosPontos() {
+    this.empresaSerice.getEmpresaLogada().then(empresa => {
+      this.clienteService.getClienteMenosPontos(empresa.codigo).subscribe(cliente => this.clienteMenosPontos = cliente)
+    });
   }
 
   getChartInfo() {

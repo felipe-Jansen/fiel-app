@@ -15,10 +15,6 @@ export class ClienteService {
         private http: HttpClient
     ) {}
 
-    // findAll(): Observable<Cliente[]> {
-    //     return this.http.get<Cliente[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}`);
-    // }
-
     find(id:number): Observable<Cliente> {
         return this.http.get<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${id}`);
     }
@@ -39,6 +35,12 @@ export class ClienteService {
         return this.http.put<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${cliente.codigo}`, cliente);
     }
 
-    count
+    getClienteMaisPontos(codigoEmpresa: number): Observable<Cliente> {
+        return this.http.get<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/cliente_mais_pontos/${codigoEmpresa}`);
+    }
+
+    getClienteMenosPontos(codigoEmpresa: number): Observable<Cliente> {
+        return this.http.get<Cliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/cliente_menos_pontos/${codigoEmpresa}`);
+    }
 
 }
