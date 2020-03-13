@@ -79,7 +79,7 @@
     </ion-fab-button>
       <ion-fab-list side="top">
         <ion-fab-button (click)="goto('/update-cliente/'+cliente?.codigo+'/edit')"><ion-icon name="create"></ion-icon></ion-fab-button>
-        <ion-fab-button><ion-icon name="analytics"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="goto('/historico-cliente/'+cliente?.codigo)"><ion-icon name="analytics"></ion-icon></ion-fab-button>
       </ion-fab-list>
       <ion-fab-list *ngIf="cliente?.totalPontos > 0" side="start">
         <ion-fab-button (click)="goto('/troca-ponto/'+cliente?.codigo)"><ion-icon name="git-compare"></ion-icon></ion-fab-button>
@@ -87,5 +87,6 @@
   </ion-fab>
 </ion-content>
 <ion-footer>
-      <ion-button no-margin class="footer__button" (click)="openModalPonto()" size="full">Pontuar</ion-button>
+      <ion-button no-margin class="footer__button" (click)="openModalPonto()" size="full">
+        <ion-icon name="add"></ion-icon>Pontuar</ion-button>
 </ion-footer>

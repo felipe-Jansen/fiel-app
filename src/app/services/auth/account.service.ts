@@ -27,6 +27,10 @@ export class AccountService {
     return this.http.post(API_URL_V1 + '/usuarios/user_logado', account, { observe: 'response' });
   }
 
+  update(account: any): Observable<HttpResponse<any>> {
+    return this.http.put(API_URL_V1 + `/usuarios/${account.codigo}`, account, { observe: 'response' });
+  }
+
   authenticate(identity) {
     this.userIdentity = identity;
     this.authenticated = identity !== null;

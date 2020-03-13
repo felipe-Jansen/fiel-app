@@ -65,6 +65,10 @@ const routes: Routes = [
   {
     path: 'meu-perfil',
     loadChildren: () => import('./pages/meu-perfil/meu-perfil.module').then( m => m.MeuPerfilPageModule)
+  },
+  {
+    path: 'esqueci-minha-senha',
+    loadChildren: () => import('./pages/esqueci-minha-senha/esqueci-minha-senha.module').then(m => m.EsqueciMinhaSenhaPageModule)
   }
 ];
 

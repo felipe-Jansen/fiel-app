@@ -8,6 +8,8 @@ import * as moment from "moment";
 import {LoginService} from "../../services/login/login.service";
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import {UtilService} from "../../shared/util/util.service";
+import {AccountService} from "../../services/auth/account.service";
+import {User} from "../../shared/model/user.model";
 
 
 @Component({
@@ -38,12 +40,12 @@ export class MeuPerfilPage implements OnInit {
     pontoReferencia: [],
     complemento: [],
     dataNascimento: [],
-    email: ['', [Validators.email]],
-    senha: [],
     confirmaSenha: [],
     latitude: [],
     longitude: [],
-    idUser: []
+
+    idUser: [],
+    email: ['', [Validators.email]]
   });
 
 
@@ -57,13 +59,14 @@ export class MeuPerfilPage implements OnInit {
       protected camera: Camera,
       protected actionSheetController: ActionSheetController,
       protected toast: ToastController,
-      protected utilService: UtilService
+      protected utilService: UtilService,
+      protected accountService: AccountService
   ) { }
 
   ionViewWillEnter() {
     this.empresaService.getEmpresaLogada().then(res => {
       this.updateForm(res);
-    })
+    });
   }
 
   updateForm(empresa: Empresa) {
@@ -77,7 +80,6 @@ export class MeuPerfilPage implements OnInit {
       telefone: empresa.telefone,
       cep: empresa.cep,
       rua: empresa.rua,
-      email: empresa.email,
       bairro: empresa.bairro,
       cidade: empresa.cidade,
       estado: empresa.estado,
@@ -112,8 +114,6 @@ export class MeuPerfilPage implements OnInit {
       numero: this.editForm.get(['numero']).value,
       pontoReferencia: this.editForm.get(['pontoReferencia']).value,
       complemento: this.editForm.get(['complemento']).value,
-      email: this.editForm.get(['email']).value,
-      senha: this.editForm.get(['senha']).value,
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
       dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),

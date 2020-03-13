@@ -22,7 +22,7 @@
       <ion-card-content>
         <p><strong>Data de Venda: </strong>{{ ponto?.dataCompra }}</p>
         <p><strong>Cliente: </strong>{{ ponto?.clienteNome }}</p>
-        <p><strong>Descrição: </strong>{{ ponto?.descricao }}</p>
+        <p><strong>Descrição: </strong>{{ ponto?.descricao ? ponto?.descricao : '---' }}</p>
       </ion-card-content>
     </ion-card>
   </ion-grid>

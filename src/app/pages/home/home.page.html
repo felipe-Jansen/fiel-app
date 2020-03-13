@@ -13,7 +13,7 @@
     <ion-row>
       <ion-col no-padding>
         <ion-card>
-          <ion-input #inputPesquisaCLiente (ionInput)="searchCliente(inputPesquisaCLiente.value)" class="ion-input__pesquisa" placeholder="Digite o nome da oficina">
+          <ion-input #inputPesquisaCLiente (ionInput)="searchCliente(inputPesquisaCLiente.value)" class="ion-input__pesquisa" placeholder="Digite o nome da cliente">
             <ion-icon class="ion-padding" color="primary" ios="ios-search" md="md-search"></ion-icon>
           </ion-input>
         </ion-card>
@@ -51,6 +51,7 @@
 </ion-content>
 
 <ion-footer>
-        <ion-button no-margin class="footer__button" [routerLink]="['/update-cliente/']" size="full">Adicionar um novo cliente</ion-button>
+        <ion-button no-margin class="footer__button" [routerLink]="['/update-cliente/']" size="full">
+          <ion-icon name="add"></ion-icon>Adicionar um novo cliente</ion-button>
 </ion-footer>
 

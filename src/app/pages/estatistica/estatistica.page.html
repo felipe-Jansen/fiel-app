@@ -28,7 +28,7 @@
         <div class="cardProduto slideHome">
           <ion-card-content>
             <ion-row>
-              <ion-col>
+              <ion-col align-self-center>
                 <ion-card-subtitle>Qtd de Clientes</ion-card-subtitle>
                 <ion-card-title class="ion-card-title__information">{{ totalClientes }}</ion-card-title>
               </ion-col>
@@ -43,7 +43,7 @@
         <div class="cardProduto slideHome">
           <ion-card-content>
             <ion-row>
-              <ion-col>
+              <ion-col align-self-center>
                 <ion-card-subtitle>Pontos cadastrados</ion-card-subtitle>
                 <ion-card-title class="ion-card-title__information">{{ totalPontos }}</ion-card-title>
               </ion-col>
@@ -58,7 +58,7 @@
   </div>
   <div>
     <ion-row>
-      <ion-col>
+      <ion-col align-self-center>
         <ion-card [routerLink]="['/detalhe-cliente', clienteMaisPontos?.codigo]">
           <ion-card-header>
             Mais pontos <ion-icon  style="color: green" name="arrow-round-up"></ion-icon>
@@ -69,7 +69,7 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col>
+      <ion-col align-self-center>
         <ion-card [routerLink]="['/detalhe-cliente', clienteMenosPontos?.codigo]">
           <ion-card-header>
             Menos pontos <ion-icon style="color: red" name="arrow-round-down"></ion-icon>

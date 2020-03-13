@@ -4,6 +4,9 @@ import { AuthServerProvider } from '../auth/auth-jwt.service';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Events} from "@ionic/angular";
+import {Observable} from "rxjs";
+import {Empresa} from "../../shared/model/empresa.model";
+import {API_URL_V1} from "../../app.constants";
 
 @Injectable({
   providedIn: 'root'

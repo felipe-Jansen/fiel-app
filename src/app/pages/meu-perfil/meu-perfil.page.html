@@ -143,7 +143,16 @@
       <ion-grid center text-center>
         <ion-row>
           <ion-col size="12">
-            <ion-button [disabled]="!editForm.valid" class="w-100 submit" type="submit"> <ion-icon name="clipboard"></ion-icon>&nbsp;Salvar</ion-button>
+            <ion-button [disabled]="!editForm.valid" class="w-100 submit" type="submit">   <ion-icon name="checkmark"></ion-icon>&nbsp;Salvar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card>
+      <ion-grid center text-center>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button [routerLink]="'/meu-perfil/alterar-senha'" color="warning" class="w-100 submit" type="button">   <ion-icon name="medical"></ion-icon>&nbsp;Alterar minha senha</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

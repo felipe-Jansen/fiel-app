@@ -15,9 +15,11 @@
           <ion-card-subtitle>{{ ponto?.dataCompra | date:'mediumDate' }}</ion-card-subtitle>
           <ion-card-title>{{ ponto?.valorCompra | currency:'BRL' }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-          {{ ponto?.descricao }}
-        </ion-card-content>
+        <ion-row class="ion-text-center cardFooter">
+          <ion-col>
+            <ion-label><ion-icon name="eye"></ion-icon>&nbsp;Ver os detalhes</ion-label>
+          </ion-col>
+        </ion-row>
       </ion-card>
     </ion-col>
   </ion-row>

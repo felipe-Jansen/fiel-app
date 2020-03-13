@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Meu Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-banner-radius-total texto="Alterar minha senha"></app-banner-radius-total>
+  <form (submit)="salvar()" class="form" [formGroup]="editForm">
+    <ion-card>
+      <ion-list>
+        <ion-item class="itemForm">
+          <ion-label position="floating">Nova Senha</ion-label>
+          <ion-input required type="password" formControlName="senha" placeholder="Digite a nova senha"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-grid center text-center>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button color="danger" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Atualizar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </form>
+</ion-content>

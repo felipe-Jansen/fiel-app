@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: MeuPerfilPage
+  },
+  {
+    path: 'alterar-senha',
+    loadChildren: () => import('./alterar-senha/alterar-senha.module').then( m => m.AlterarSenhaPageModule)
   }
 ];
 
