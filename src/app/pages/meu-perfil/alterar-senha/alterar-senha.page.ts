@@ -38,7 +38,7 @@ export class AlterarSenhaPage implements OnInit {
       this.showToast('Sua senha foi atualizada com sucesso!');
       this.navController.navigateRoot('/meu-perfil');
     }, error => {
-      this.showToast('Que pena! Não foi possível atualizar sua senha!');
+      this.showToast('Que pena! Não foi possível atualizar sua senha! Entre em contato com o administrador do sistema!');
     })
   }
 

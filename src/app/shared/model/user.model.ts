@@ -3,6 +3,7 @@ export interface IUser {
     email?: string;
     senha?: string;
     perfis?: any;
+    codigo_recuperacao?: string
 }
 
 export class User implements IUser {
@@ -10,6 +11,7 @@ export class User implements IUser {
         public codigo?: number,
         public email?: string,
         public senha?: string,
-        public perfis?: any
+        public perfis?: any,
+        public codigo_recuperacao?: string
     ) {}
 }

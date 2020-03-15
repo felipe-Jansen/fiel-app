@@ -3,20 +3,23 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title color="light">Seja Bem Vindo</ion-title>
+    <ion-title color="light">Recuperação de senha</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-banner-radius-total texto="Recuperar minha senha"></app-banner-radius-total>
+  <app-banner-radius-total texto="Solicite o código"></app-banner-radius-total>
   <ion-grid>
     <ion-row>
       <ion-col no-padding>
         <ion-card padding>
-          <ion-input type="email" [(ngModel)]="email" class="ion-input__pesquisa" placeholder="Digite o nome da cliente">
+          <ion-input type="email" [(ngModel)]="email" class="ion-input__pesquisa" placeholder="Digite o seu e-mail">
             <ion-icon class="ion-padding" color="primary" ios="ios-search" md="md-search"></ion-icon>
           </ion-input>
           <ion-button expand="block" color="primary" type="button" [disabled]="!email" (click)="enviarEmail(email)">Enviar e-mail de recuperação</ion-button>
+        </ion-card>
+        <ion-card padding>
+          <ion-button expand="block" color="primary" type="button" [routerLink]="'digitar-codigo-recuperacao'">Já possuo o código!</ion-button>
         </ion-card>
       </ion-col>
     </ion-row>

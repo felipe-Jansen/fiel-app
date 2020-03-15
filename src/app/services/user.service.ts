@@ -23,4 +23,8 @@ export class UsuarioService {
         return this.http.get<any>(`${API_URL_V1}/${this.NOME_ENTIDADE}/recover_password?email=${email}`);
     }
 
+    getByCodigoRecuperacao(codigoRecuperacao: string): Observable<any> {
+        return this.http.get<any>(`${API_URL_V1}/${this.NOME_ENTIDADE}/get_by_codigo-recuperacao?codigoRecuperacao=${codigoRecuperacao}`);
+    }
+
 }

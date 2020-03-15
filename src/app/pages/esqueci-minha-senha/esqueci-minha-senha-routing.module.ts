@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: EsqueciMinhaSenhaPage
+  },
+  {
+    path: 'digitar-codigo-recuperacao',
+    loadChildren: () => import('./digitar-codigo-recuperacao/digitar-codigo-recuperacao.module').then( m => m.DigitarCodigoRecuperacaoPageModule)
   }
 ];
 
