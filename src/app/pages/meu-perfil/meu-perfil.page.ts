@@ -116,6 +116,7 @@ export class MeuPerfilPage implements OnInit {
       cidade: this.editForm.get(['cidade']).value,
       estado: this.editForm.get(['estado']).value,
       numero: this.editForm.get(['numero']).value,
+      email: this.editForm.get(['email']).value,
       pontoReferencia: this.editForm.get(['pontoReferencia']).value,
       complemento: this.editForm.get(['complemento']).value,
       foto: this.editForm.get(['foto']).value,
