@@ -5,7 +5,7 @@
         <ion-toolbar>
           <ion-grid>
             <ion-row>
-              <img id="imgPerfil" width="75" src="https://s3.amazonaws.com/TWFiles/536882/userAvatar/tf_81f2380f-ea13-48b8-9724-8f7a635471b6.20191117_152226.jpg">
+              <div [ngStyle]="{'background-image' : 'url('+ ( empresa.foto_url ? empresa.foto_url : 'https://res.cloudinary.com/fielmobile/image/upload/v1584327027/utils/camera_vonhpq.png' ) +')'}" id="img"></div>
             </ion-row>
             <ion-row margin-top>
               <ion-title no-padding class="span__razaoSocial">{{ empresa.razaoSocial ? empresa.razaoSocial : empresa.nome }}</ion-title>

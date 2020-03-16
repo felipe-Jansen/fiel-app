@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsuarioService} from "../../services/user.service";
-import {LoadingController, ToastController} from "@ionic/angular";
+import {LoadingController, MenuController, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 
 @Component({
@@ -16,8 +16,11 @@ export class EsqueciMinhaSenhaPage implements OnInit {
       private usuarioService: UsuarioService,
       public toastController: ToastController,
       public loadingController: LoadingController,
-      public router: Router
-  ) { }
+      public router: Router,
+      public menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit() {
   }

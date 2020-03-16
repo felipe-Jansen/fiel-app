@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsuarioService} from "../../../services/user.service";
-import {LoadingController, ToastController} from "@ionic/angular";
+import {LoadingController, MenuController, ToastController} from "@ionic/angular";
 import {IUser, User} from "../../../shared/model/user.model";
 import {FormBuilder} from "@angular/forms";
 import {AccountService} from "../../../services/auth/account.service";
@@ -35,8 +35,11 @@ export class DigitarCodigoRecuperacaoPage implements OnInit {
       protected fb: FormBuilder,
       protected accountService: AccountService,
       protected router: Router,
-      public loadingController: LoadingController
-  ) { }
+      public loadingController: LoadingController,
+      public menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit() {
   }

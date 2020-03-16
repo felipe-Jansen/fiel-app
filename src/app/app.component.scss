@@ -32,4 +32,12 @@ ion-content {
   --background: white;
 }
 
-
+#img {
+  width: 30%;
+  height: 5.5em;
+  display: block;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  padding: 0;
+}

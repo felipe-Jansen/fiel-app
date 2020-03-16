@@ -32,9 +32,10 @@ export class LoginPage implements OnInit {
       public menuCtrl: MenuController,
       public accountService: AccountService,
       public router: Router,
-      public events: Events
+      public events: Events,
+
   ) {
-    this.menuCtrl.enable(false, 'myMenu');
+    this.menuCtrl.enable(false);
   }
 
   ionViewWillEnter() {

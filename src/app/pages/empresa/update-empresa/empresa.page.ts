@@ -3,10 +3,16 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {EmpresaService} from "../../../services/empresa.service";
 import {Empresa, IEmpresa} from "../../../shared/model/empresa.model";
 import * as moment from 'moment';
-import {AlertController} from "@ionic/angular";
+import {
+  ActionSheetController,
+  AlertController,
+  LoadingController,
+  MenuController,
+  ToastController
+} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {UtilService} from "../../../shared/util/util.service";
-
+import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-empresa',
@@ -15,9 +21,11 @@ import {UtilService} from "../../../shared/util/util.service";
 })
 export class EmpresaPage implements OnInit {
 
+  img = './assets/externas/camera.png';
   editForm = this.fb.group({
     isPessoa: [],
     foto: [],
+    foto_url: [],
     cpf: [],
     cnpj: [],
     razaoSocial: [],
@@ -46,8 +54,15 @@ export class EmpresaPage implements OnInit {
       protected empresaService: EmpresaService,
       protected alertController: AlertController,
       protected router: Router,
-      protected utilService: UtilService
-  ) { }
+      protected utilService: UtilService,
+      public menuCtrl: MenuController,
+      protected toast: ToastController,
+      protected actionSheetController: ActionSheetController,
+      protected camera: Camera,
+      public loadingController: LoadingController
+  ) {
+    this.menuCtrl.enable(false);
+  }
 
   ionViewWillEnter() {
   }
@@ -76,15 +91,21 @@ export class EmpresaPage implements OnInit {
       senha: this.editForm.get(['senha']).value,
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
-      dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD')
+      dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
+      foto_url: this.editForm.get(['foto_url']).value
     };
     return entity;
   }
 
-  cadastrar() {
+  async cadastrar() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos validando seus dados!'
+    });
+    await loading.present();
     let empresaDTO = this.criarDoForm();
     this.empresaService.save(empresaDTO)
         .subscribe(async res => {
+          this.loadingController.dismiss();
           const alert = await this.alertController.create({
             header: 'Parabéns!',
             message: 'Conta criada com sucesso :) !',
@@ -99,6 +120,7 @@ export class EmpresaPage implements OnInit {
           });
           await alert.present();
         }, async err => {
+          this.loadingController.dismiss();
           const alert = await this.alertController.create({
             header: 'Que Pena!',
             message: err.error[0].mensagemUsuario + ' :( !',
@@ -124,6 +146,77 @@ export class EmpresaPage implements OnInit {
           error => {}
       );
     }
+  }
+
+  async showToast(msg) {
+    const toast = await this.toast.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+
+  async openActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Escolha uma opção',
+      buttons: [{
+        text: 'Câmera',
+        role: 'destructive',
+        icon: 'camera',
+        handler: () => {
+          this.openCamera();
+        }
+      }, {
+        text: 'Galeria',
+        icon: 'image',
+        handler: () => {
+          this.openGaleria();
+        }
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.setaImagem(imageData);
+    }, (err) => {
+      this.showToast('Você deve autorizar o aplicativo a acessar a câmera !');
+    });
+  }
+
+  openGaleria() {
+    const options: CameraOptions = {
+      allowEdit: true,
+      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      mediaType: this.camera.MediaType.PICTURE,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 100
+    };
+
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.img = 'data:image/jpeg;base64,' + imageData;
+      this.setaImagem(imageData);
+    }, (err) => {
+      this.showToast('Você deve autorizar o aplicativo a acessar a sua galeria de fotos !');
+    });
+  }
+
+  setaImagem(imageData: any) {
+    this.img = 'data:image/jpeg;base64,' + imageData;
+    this.editForm.patchValue({
+      foto: imageData
+    });
   }
 
 }

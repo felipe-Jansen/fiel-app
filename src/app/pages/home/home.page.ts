@@ -3,7 +3,7 @@ import {AccountService} from "../../services/auth/account.service";
 import {EmpresaService} from "../../services/empresa.service";
 import {Cliente} from "../../shared/model/cliente.model";
 import {ClienteService} from "../../services/cliente.service";
-import {LoadingController} from "@ionic/angular";
+import {LoadingController, MenuController} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -19,8 +19,11 @@ export class HomePage {
       private accountService: AccountService,
       private clienteService: ClienteService,
       private empresaService: EmpresaService,
-      public loadingController: LoadingController
-  ) {}
+      public loadingController: LoadingController,
+      public menuCtrl: MenuController
+  ) {
+    this.menuCtrl.enable(true);
+  }
 
   async ionViewWillEnter(){
     const loading = await this.loadingController.create({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {EmpresaService} from "../../services/empresa.service";
-import {ActionSheetController, AlertController, Events, ToastController} from "@ionic/angular";
+import {ActionSheetController, AlertController, Events, LoadingController, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {Empresa, IEmpresa} from "../../shared/model/empresa.model";
 import * as moment from "moment";
@@ -25,6 +25,7 @@ export class MeuPerfilPage implements OnInit {
     codigo: [],
     isPessoa: [],
     foto: [],
+    foto_url: [],
     cpf: [],
     cnpj: [],
     razaoSocial: [],
@@ -43,7 +44,6 @@ export class MeuPerfilPage implements OnInit {
     confirmaSenha: [],
     latitude: [],
     longitude: [],
-
     idUser: [],
     email: ['', [Validators.email]]
   });
@@ -60,18 +60,21 @@ export class MeuPerfilPage implements OnInit {
       protected actionSheetController: ActionSheetController,
       protected toast: ToastController,
       protected utilService: UtilService,
-      protected accountService: AccountService
+      protected accountService: AccountService,
+      public loadingController: LoadingController
   ) { }
 
   ionViewWillEnter() {
     this.empresaService.getEmpresaLogada().then(res => {
       this.updateForm(res);
+      res.foto_url ? this.img = res.foto_url : '../assets/externas/camera.png';
     });
   }
 
   updateForm(empresa: Empresa) {
     this.editForm.patchValue({
       codigo: empresa.codigo,
+      email: empresa.email,
       cpf: empresa.cpf,
       cnpj: empresa.cnpj,
       razaoSocial: empresa.razaoSocial,
@@ -89,7 +92,8 @@ export class MeuPerfilPage implements OnInit {
       dataNascimento: empresa.dataNascimento,
       latitude: empresa.latitude,
       longitude: empresa.longitude,
-      idUser: empresa.idUser
+      idUser: empresa.idUser,
+      foto_url: empresa.foto_url
     });
   }
 
@@ -117,15 +121,22 @@ export class MeuPerfilPage implements OnInit {
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
       dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
-      idUser: this.editForm.get(['idUser']).value
+      idUser: this.editForm.get(['idUser']).value,
+      foto_url: this.editForm.get(['foto_url']).value,
     };
     return entity;
   }
 
-  salvar() {
+  async salvar() {
+    const loading = await this.loadingController.create({
+      message: 'Aguarde alguns instantes...estamos atualizando seus dados!'
+    });
+    await loading.present();
     let empresaDTO = this.criarDoForm();
     this.empresaService.update(empresaDTO)
         .subscribe(async res => {
+          this.loadingController.dismiss();
+          this.events.publish('user:logged');
           const alert = await this.alertController.create({
             header: 'Parabéns!',
             message: 'Dados atualizados :) !',
@@ -141,6 +152,7 @@ export class MeuPerfilPage implements OnInit {
           });
           await alert.present();
         }, async err => {
+          this.loadingController.dismiss();
           const alert = await this.alertController.create({
             header: 'Que Pena!',
             message: err.error[0].mensagemUsuario + ' :( !',

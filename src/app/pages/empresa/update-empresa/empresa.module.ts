@@ -9,6 +9,7 @@ import { EmpresaPageRoutingModule } from './empresa-routing.module';
 import { EmpresaPage } from './empresa.page';
 import {SharedModule} from "../../../shared/shared.module";
 import {BrMaskerModule} from "br-mask";
+import {Camera} from "@ionic-native/camera/ngx";
 
 @NgModule({
     imports: [
@@ -20,6 +21,9 @@ import {BrMaskerModule} from "br-mask";
         ReactiveFormsModule,
         BrMaskerModule
     ],
-  declarations: [EmpresaPage]
+  declarations: [EmpresaPage],
+    providers: [
+        Camera
+    ]
 })
 export class EmpresaPageModule {}

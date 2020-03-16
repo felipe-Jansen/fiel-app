@@ -22,6 +22,8 @@ export interface IEmpresa {
     numero?: number;
     email?: string;
     senha?: string;
+    foto?: any;
+    foto_url?: string;
 }
 
 export class Empresa implements IEmpresa {
@@ -48,7 +50,9 @@ export class Empresa implements IEmpresa {
         public  whatsapp?: string,
         public  idUser?: number,
         public email?: string,
-        public senha?: string) {
+        public senha?: string,
+        public foto?: any,
+        public foto_url?: string) {
 
     }
 }
