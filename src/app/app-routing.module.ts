@@ -69,6 +69,14 @@ const routes: Routes = [
   {
     path: 'esqueci-minha-senha',
     loadChildren: () => import('./pages/esqueci-minha-senha/esqueci-minha-senha.module').then(m => m.EsqueciMinhaSenhaPageModule)
+  },
+  {
+    path: 'politicas-de-privacidade',
+    loadChildren: () => import('./pages/politicas-de-privacidade/politicas-de-privacidade.module').then( m => m.PoliticasDePrivacidadePageModule)
+  },
+  {
+    path: 'suporte-tecnico',
+    loadChildren: () => import('./pages/suporte-tecnico/suporte-tecnico.module').then( m => m.SuporteTecnicoPageModule)
   }
 ];
 

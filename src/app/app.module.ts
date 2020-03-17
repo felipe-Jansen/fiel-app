@@ -24,7 +24,7 @@ registerLocaleData(localePtBr);
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'fiel', separator: '-'}),
+    NgxWebstorageModule.forRoot({prefix: 'fiel', separator: '-'})
 
   ],
   providers: [

@@ -34,7 +34,25 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-
+        </ion-list>
+        <ion-list>
+          <p no-margin padding-start class="p__sobre">Sobre</p>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" [routerLink]="'/politicas-de-privacidade'">
+              <ion-icon slot="start" name="paper"></ion-icon>
+              <ion-label>
+                Políticas de Privacidade
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" [routerLink]="'/suporte-tecnico'">
+              <ion-icon slot="start" name="help-circle"></ion-icon>
+              <ion-label>
+                Suporte Técnico
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
       </ion-content>
     </ion-menu>
