@@ -16,6 +16,7 @@ export class AlterarSenhaPage implements OnInit {
   editForm = this.fb.group({
     codigo: [],
     email: [],
+    confirmacaoSenha: [],
     senha: [],
   });
 

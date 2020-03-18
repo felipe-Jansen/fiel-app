@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UsuarioService} from "../../../services/user.service";
 import {LoadingController, MenuController, ToastController} from "@ionic/angular";
 import {IUser, User} from "../../../shared/model/user.model";
@@ -17,6 +17,7 @@ export class DigitarCodigoRecuperacaoPage implements OnInit {
     codigo: [],
     email: [],
     senha: [],
+    confirmacaoSenha: [],
     codigo_recuperacao: []
   });
 
@@ -40,6 +41,11 @@ export class DigitarCodigoRecuperacaoPage implements OnInit {
   ) {
     this.menuCtrl.enable(false);
   }
+
+  gotoToNextField(nextElement) {
+      nextElement.setFocus();
+  }
+
 
   ngOnInit() {
   }

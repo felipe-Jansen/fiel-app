@@ -18,10 +18,19 @@
       </ion-list>
     </ion-card>
     <ion-card>
+      <ion-list>
+        <ion-item class="itemForm">
+          <ion-label position="floating">Confirme sua senha</ion-label>
+          <ion-input required type="password" formControlName="confirmacaoSenha" placeholder="Digite a senha novamente"></ion-input>
+          <small style="color: red" *ngIf="editForm.controls['senha'].value !== editForm.controls['confirmacaoSenha'].value">*As senhas são diferentes</small>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-card>
       <ion-grid center text-center>
         <ion-row>
           <ion-col size="12">
-            <ion-button color="danger" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Atualizar</ion-button>
+            <ion-button [disabled]="editForm.controls['senha'].value !== editForm.controls['confirmacaoSenha'].value || !editForm.controls['senha'].value" color="success" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Atualizar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

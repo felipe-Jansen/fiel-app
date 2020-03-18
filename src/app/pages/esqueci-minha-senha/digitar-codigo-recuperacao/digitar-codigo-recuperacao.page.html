@@ -13,22 +13,22 @@
     <ion-card padding>
       <ion-row>
         <ion-col no-padding>
-            <ion-input [(ngModel)]="parte1" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+            <ion-input [(ngModel)]="parte1" #parte1Codigo id="parte1Codigo" (ionChange)="gotoToNextField(parte2Codigo)" no-padding maxlength="1" class="ion-input__codigo"></ion-input>
         </ion-col>
         <ion-col no-padding>
-          <ion-input [(ngModel)]="parte2" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+          <ion-input [(ngModel)]="parte2" #parte2Codigo id="parte2Codigo" (ionChange)="gotoToNextField(parte3Codigo)" no-padding maxlength="1" class="ion-input__codigo"></ion-input>
         </ion-col>
         <ion-col no-padding>
-          <ion-input [(ngModel)]="parte3" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+          <ion-input [(ngModel)]="parte3" #parte3Codigo id="parte3Codigo" (ionChange)="gotoToNextField(parte4Codigo)" no-padding maxlength="1" class="ion-input__codigo"></ion-input>
         </ion-col>
         <ion-col no-padding>
-          <ion-input [(ngModel)]="parte4" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+          <ion-input [(ngModel)]="parte4" #parte4Codigo id="parte4Codigo" (ionChange)="gotoToNextField(parte5Codigo)" no-padding maxlength="1" class="ion-input__codigo"></ion-input>
         </ion-col>
         <ion-col no-padding>
-          <ion-input [(ngModel)]="parte5" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+          <ion-input [(ngModel)]="parte5" #parte5Codigo id="parte5Codigo" (ionChange)="gotoToNextField(parte6Codigo)" no-padding maxlength="1" class="ion-input__codigo"></ion-input>
         </ion-col>
         <ion-col no-padding>
-          <ion-input [(ngModel)]="parte6" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
+          <ion-input [(ngModel)]="parte6" #parte6Codigo id="parte6Codigo" no-padding maxlength="1" type="email" class="ion-input__codigo"></ion-input>
         </ion-col>
       </ion-row>
       <ion-row margin-top>
@@ -47,10 +47,19 @@
         </ion-list>
       </ion-card>
       <ion-card>
+        <ion-list>
+          <ion-item class="itemForm">
+            <ion-label position="floating">Confirme sua senha</ion-label>
+            <ion-input required type="password" formControlName="confirmacaoSenha" placeholder="Digite a senha novamente"></ion-input>
+            <small style="color: red" *ngIf="editForm.controls['senha'].value !== editForm.controls['confirmacaoSenha'].value">*As senhas são diferentes</small>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+      <ion-card>
         <ion-grid center text-center>
           <ion-row>
             <ion-col size="12">
-              <ion-button color="danger" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Atualizar</ion-button>
+              <ion-button [disabled]="editForm.controls['senha'].value !== editForm.controls['confirmacaoSenha'].value || !editForm.controls['senha'].value" color="success" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Atualizar</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

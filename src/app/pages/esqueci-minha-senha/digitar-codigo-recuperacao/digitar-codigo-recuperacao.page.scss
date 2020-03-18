@@ -9,3 +9,8 @@
 ion-card {
   background-color: white;
 }
+
+ion-list, ion-item {
+  background: inherit!important;
+  --background: white;
+}
