@@ -14,6 +14,7 @@ import {AuthInterceptor} from "./services/interceptor/auth.interceptor";
 import {AuthExpiredInterceptor} from "./services/interceptor/auth-expired.interceptor";
 import localePtBr from '@angular/common/locales/pt';
 import {NgxWebstorageModule} from "ngx-webstorage";
+import { FirebaseCrashlytics } from '@ionic-native/firebase-crashlytics/ngx';
 registerLocaleData(localePtBr);
 
 @NgModule({
@@ -30,6 +31,7 @@ registerLocaleData(localePtBr);
   providers: [
     StatusBar,
     SplashScreen,
+      FirebaseCrashlytics,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

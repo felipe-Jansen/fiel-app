@@ -10,6 +10,7 @@ import {
 } from "@ionic/angular";
 import {Router} from "@angular/router";
 import {AccountService} from "../../services/auth/account.service";
+import {FirebaseCrashlytics} from "@ionic-native/firebase-crashlytics/ngx";
 
 @Component({
   selector: 'app-login',
@@ -33,9 +34,11 @@ export class LoginPage implements OnInit {
       public accountService: AccountService,
       public router: Router,
       public events: Events,
-
+      private firebaseCrashlytics: FirebaseCrashlytics
   ) {
     this.menuCtrl.enable(false);
+
+
   }
 
   ionViewWillEnter() {
@@ -45,6 +48,10 @@ export class LoginPage implements OnInit {
             this.navController.navigateRoot('/home');
             this.events.publish('user:logged');
           }
+        }, error => {
+          console.log(error);
+          const crashlytics = this.firebaseCrashlytics.initialise();
+          crashlytics.logException('my caught exception');
         })
   }
 

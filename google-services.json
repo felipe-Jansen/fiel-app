@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "95858551598",
+    "firebase_url": "https://fiel-d59e7.firebaseio.com",
+    "project_id": "fiel-d59e7",
+    "storage_bucket": "fiel-d59e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95858551598:android:b3255cc7175751ca30a8bf",
+        "android_client_info": {
+          "package_name": "br.com.fielmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95858551598-6iddu4k787dong47m44792bgjdaubola.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDANGy3bMg4abJ_wPR_d20nZgQsYilxX0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "95858551598-6iddu4k787dong47m44792bgjdaubola.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
