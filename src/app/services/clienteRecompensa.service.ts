@@ -34,6 +34,8 @@ export class ClienteRecompensaService {
             }));
     }
 
+
+
     update(recompensaCliente: RecompensaCliente) {
         return this.http.put<RecompensaCliente>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${recompensaCliente.codigo}`,  recompensaCliente)
             .pipe(map(res => {

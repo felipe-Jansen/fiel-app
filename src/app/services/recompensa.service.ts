@@ -7,6 +7,7 @@ import {API_URL_V1} from '../app.constants';
 import {map} from "rxjs/operators";
 import {createRequestOption} from "../shared/util/request-util";
 import {EmpresaService} from "./empresa.service";
+import {RecompensaCliente} from "../shared/model/recompensa_cliente.model";
 
 @Injectable({ providedIn: 'root' })
 export class RecompensaService {
@@ -36,6 +37,10 @@ export class RecompensaService {
 
     update(recompensa: IRecompensa):Observable<IRecompensa> {
         return this.http.put<IRecompensa>(`${API_URL_V1}/${this.NOME_ENTIDADE}/${recompensa.codigo}`, recompensa);
+    }
+
+    getAllByCliente(idCliente: number): Observable<RecompensaCliente[]> {
+        return this.http.get<RecompensaCliente[]>(`${API_URL_V1}/${this.NOME_ENTIDADE}/getRecompensasDoCliente?idCliente=${idCliente}`);
     }
 
 }

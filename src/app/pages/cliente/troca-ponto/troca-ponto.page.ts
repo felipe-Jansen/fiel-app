@@ -82,14 +82,14 @@ export class TrocaPontoPage implements OnInit {
     incrementarRecompensa(recompensaCliente: RecompensaCliente) {
         if (this.cliente.totalPontos > 0) {
             this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade += 1;
-            this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoque -= 1;
+            this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoqueCliente -= 1;
             this.cliente.totalPontos -= recompensaCliente.recompensaPontos;
         }
     }
 
     decrementarRecompensa(recompensaCliente: RecompensaCliente) {
         this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade -= 1;
-        this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoque += 1;
+        this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoqueCliente += 1;
         this.cliente.totalPontos += recompensaCliente.recompensaPontos;
     }
 
@@ -132,6 +132,6 @@ export class TrocaPontoPage implements OnInit {
     }
 
     liberaIncrementoRecompensa(recompensaCliente: RecompensaCliente) {
-        return this.cliente.totalPontos >= recompensaCliente.recompensaPontos && recompensaCliente.totalEstoque > 0 ? true : false;
+        return this.cliente.totalPontos >= recompensaCliente.recompensaPontos && recompensaCliente.totalEstoqueCliente > 0 ? true : false;
     }
 }

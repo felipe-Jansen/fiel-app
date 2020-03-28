@@ -37,8 +37,6 @@ export class LoginPage implements OnInit {
       private firebaseCrashlytics: FirebaseCrashlytics
   ) {
     this.menuCtrl.enable(false);
-
-
   }
 
   ionViewWillEnter() {
@@ -48,10 +46,6 @@ export class LoginPage implements OnInit {
             this.navController.navigateRoot('/home');
             this.events.publish('user:logged');
           }
-        }, error => {
-          console.log(error);
-          const crashlytics = this.firebaseCrashlytics.initialise();
-          crashlytics.logException('my caught exception');
         })
   }
 

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertController, LoadingController, ModalController} from "@ionic/angular";
 import {PontoUpdatePage} from "../../ponto/ponto-update/ponto-update.page";
 import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {PontoService} from "../../../services/ponto.service";
-import {ClienteRecompensaService} from "../../../services/clienteRecompensa.service";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
+import {RecompensaService} from "../../../services/recompensa.service";
+import {MovimentacaoEstoqueClienteService} from "../../../services/movimentacao-estoque-cliente.service";
+import {MovimentacaoEstoqueCliente} from "../../../shared/model/MovimentacaoEstoque.model";
 
 @Component({
   selector: 'app-detalhe-cliente',
@@ -26,9 +28,10 @@ export class DetalheClientePage {
       private clienteService: ClienteService,
       private pontoService: PontoService,
       private router: Router,
-      private recompensaClienteService: ClienteRecompensaService,
       private alertController: AlertController,
-      public loadingController: LoadingController
+      public loadingController: LoadingController,
+      public recompensaService: RecompensaService,
+      public movimentacaoEstoqueClienteService: MovimentacaoEstoqueClienteService
   ) { }
 
   async ionViewWillEnter() {
@@ -50,14 +53,9 @@ export class DetalheClientePage {
   }
 
   getRecompensasDisponiveis(idCliente: number) {
-    this.recompensaClienteService.getAll(
-        {
-          'idCliente': idCliente,
-          'quantidade': 1
-        })
-        .subscribe(res => {
-          this.recompensasCliente = res;
-        })
+    this.recompensaService.getAllByCliente(idCliente).subscribe(res => {
+      this.recompensasCliente = res;
+    })
   }
 
   getTotalPontos(idCliente: number) {
@@ -88,7 +86,7 @@ export class DetalheClientePage {
 
   async alertTroca(recompensaCliente: RecompensaCliente) {
     let opcoes: any[] = [];
-    for(let i=1; i<=recompensaCliente.quantidade; i++) {
+    for(let i=1; i<=recompensaCliente.totalEstoqueCliente; i++) {
       opcoes.push({name: i, type: 'radio', label: i + ' Unidade(s)',value: i});
     }
     const alert = await this.alertController.create({
@@ -102,12 +100,14 @@ export class DetalheClientePage {
         {
           text: 'Confirmar',
           handler: data => {
-            recompensaCliente.quantidade -= data;
-            this.recompensaClienteService.update(recompensaCliente)
-                .subscribe(res => {
-                  this.getRecompensasDisponiveis(this.idCliente);
-                  this.mostraModalUsoRecompensa(res);
-                });
+            const movimentacaoEstoque = new MovimentacaoEstoqueCliente();
+            movimentacaoEstoque.idCliente = this.idCliente;
+            movimentacaoEstoque.quantidade = data;
+            movimentacaoEstoque.tipoMovimentacao = 'SAIDA';
+            movimentacaoEstoque.idRecompensa = recompensaCliente.codigo;
+            this.movimentacaoEstoqueClienteService.create(movimentacaoEstoque).subscribe(res => {
+              this.getRecompensasDisponiveis(this.idCliente);
+            })
           }
         }
       ]
