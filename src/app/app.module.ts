@@ -27,7 +27,11 @@ registerLocaleData(localePtBr);
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'fiel', separator: '-'})
+    NgxWebstorageModule.forRoot({prefix: 'fiel', separator: '-'}),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   providers: [
     StatusBar,

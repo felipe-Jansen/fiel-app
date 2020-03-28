@@ -56,7 +56,7 @@
               <ion-title text-left no-padding class="ion-title___grid_recompensas"></ion-title>
             </ion-col>
           </ion-row>
-          <ion-row margin-top *ngFor="let recompensaCliente of recompensasCliente">
+          <ion-row (click)="alertTroca(recompensaCliente)" margin-top *ngFor="let recompensaCliente of recompensasCliente">
             <ion-col no-padding align-self-center size="4">
               <ion-text class="ion-text___grid_recompensas">{{ recompensaCliente.descricao }}</ion-text>
             </ion-col>

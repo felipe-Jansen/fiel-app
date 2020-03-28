@@ -77,6 +77,10 @@ const routes: Routes = [
   {
     path: 'suporte-tecnico',
     loadChildren: () => import('./pages/suporte-tecnico/suporte-tecnico.module').then( m => m.SuporteTecnicoPageModule)
+  },
+  {
+    path: 'introduced-slides',
+    loadChildren: () => import('./pages/introduced-slides/introduced-slides.module').then( m => m.IntroducedSlidesPageModule)
   }
 ];
 

@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import {IntroductionSlideComponent} from "./introduction-slide/introduction-slide.component";
+import {IntroductionSlideComponent} from "../../shared/layouts/introduction-slide/introduction-slide.component";
 import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
@@ -15,8 +15,7 @@ import {IonicStorageModule} from "@ionic/storage";
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
-    IonicStorageModule.forRoot()
+    LoginPageRoutingModule
   ],
   declarations: [LoginPage,
     IntroductionSlideComponent]

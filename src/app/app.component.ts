@@ -7,6 +7,8 @@ import {Empresa} from "./shared/model/empresa.model";
 import {AccountService} from "./services/auth/account.service";
 import {LoginService} from "./services/login/login.service";
 import {EmpresaService} from "./services/empresa.service";
+import {Storage} from "@ionic/storage";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -40,6 +42,7 @@ export class AppComponent {
 
   empresa = new Empresa();
   isAuthenticated = false;
+  introducedApp: boolean;
 
   constructor(
     private platform: Platform,
@@ -48,38 +51,46 @@ export class AppComponent {
     public events: Events,
     private accountService: AccountService,
     private loginService: LoginService,
-    private empresaService: EmpresaService
+    private empresaService: EmpresaService,
+    private storage: Storage,
+    private router: Router
   ) {
     this.initializeApp();
-    events.subscribe('user:logged', () => {
-      this.getPerfil();
-    });
   }
 
-  getPerfil() {
-    this.isAuthenticated = true;
-    this.empresaService.getEmpresaLogada().then(empresa => {
-      console.log(empresa);
+  async isLogged(){
+    await this.empresaService.getEmpresaLogada().then(empresa => {
       this.empresa = empresa;
     });
   }
 
-  getUserAuthenticated() {
-    this.accountService.loggedUser()
-        .subscribe( user => {
-          this.isAuthenticated = true;
-        });
+  async getPerfil() {
+    this.events.subscribe('user:logged', async () => {
+      this.isAuthenticated = true;
+      await this.empresaService.getEmpresaLogada().then(empresa => {
+        this.empresa = empresa;
+      });
+      this.splashScreen.hide();
+    });
+  }
+
+  introducingApp() {
+    this.storage.get('app-was-introduced').then(appWasIntroduced => {
+      console.log(appWasIntroduced);
+      if (appWasIntroduced) {
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['introduced-slides']);
+      }
+    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.backgroundColorByHexString('#067302');
-      this.splashScreen.hide();
+      this.introducingApp();
+      this.getPerfil();
     });
-  }
-
-  logout() {
-    this.loginService.logout();
   }
 
 }

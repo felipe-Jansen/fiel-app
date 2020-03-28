@@ -107,6 +107,7 @@ export class DetalheClientePage {
             movimentacaoEstoque.idRecompensa = recompensaCliente.codigo;
             this.movimentacaoEstoqueClienteService.create(movimentacaoEstoque).subscribe(res => {
               this.getRecompensasDisponiveis(this.idCliente);
+              this.mostraModalUsoRecompensa()
             })
           }
         }
@@ -115,10 +116,10 @@ export class DetalheClientePage {
     await alert.present();
   }
 
-  async mostraModalUsoRecompensa(res: RecompensaCliente) {
+  async mostraModalUsoRecompensa() {
     const alert = await this.alertController.create({
       header: 'Parabéns !!!',
-      subHeader: 'Recompensa utilizada',
+      subHeader: 'Recompensa(s) utilizada(s)',
       buttons: [
         {
           text: 'Fechar'

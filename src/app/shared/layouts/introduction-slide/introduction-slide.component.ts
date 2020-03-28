@@ -14,8 +14,6 @@ export class IntroductionSlideComponent implements OnInit {
 
   ngOnInit() {}
 
-  goToLogin() {
-    this.events.publish('goToLogin');
-  }
+
 
 }
