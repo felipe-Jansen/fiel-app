@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../services/login/login.service";
-import {
-  AlertController, Events,
-  LoadingController,
-  MenuController,
-  NavController,
-  Platform,
-  ToastController
-} from "@ionic/angular";
+import {Events, MenuController, NavController, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {AccountService} from "../../services/auth/account.service";
-import {FirebaseCrashlytics} from "@ionic-native/firebase-crashlytics/ngx";
+import { Storage } from '@ionic/storage';
+import {isBoolean} from "util";
 
 @Component({
   selector: 'app-login',
@@ -26,6 +20,8 @@ export class LoginPage implements OnInit {
     rememberMe: true
   };
 
+  introducedApp: boolean;
+
   constructor(
       public loginService: LoginService,
       public toastController: ToastController,
@@ -34,9 +30,13 @@ export class LoginPage implements OnInit {
       public accountService: AccountService,
       public router: Router,
       public events: Events,
-      private firebaseCrashlytics: FirebaseCrashlytics
+      private storage: Storage
   ) {
     this.menuCtrl.enable(false);
+    this.wasIntroduced();
+    events.subscribe('goToLogin', () => {
+      this.wasIntroduced();
+    });
   }
 
   ionViewWillEnter() {
@@ -47,6 +47,17 @@ export class LoginPage implements OnInit {
             this.events.publish('user:logged');
           }
         })
+  }
+
+  wasIntroduced() {
+    this.storage.get('app-was-introduced').then(appWasIntroduced => {
+      if (appWasIntroduced) {
+        this.introducedApp = true;
+      } else {
+        this.introducedApp = false;
+        this.storage.set('app-was-introduced', true);
+      }
+    });
   }
 
   ngOnInit() {}

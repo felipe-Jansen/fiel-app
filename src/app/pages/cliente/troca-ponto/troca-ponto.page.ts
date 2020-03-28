@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {RecompensaService} from "../../../services/recompensa.service";
-import {IRecompensa} from "../../../shared/model/recompensa.model";
+import {IRecompensa, Recompensa} from "../../../shared/model/recompensa.model";
 import {EmpresaService} from "../../../services/empresa.service";
 import {ClienteService} from "../../../services/cliente.service";
 import {Cliente} from "../../../shared/model/cliente.model";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
 import {ClienteRecompensaService} from "../../../services/clienteRecompensa.service";
 import {AlertController, LoadingController} from "@ionic/angular";
+import {IMovimentacaoEstoqueCliente, MovimentacaoEstoqueCliente} from "../../../shared/model/MovimentacaoEstoque.model";
+import {MovimentacaoEstoqueClienteService} from "../../../services/movimentacao-estoque-cliente.service";
 
 @Component({
     selector: 'app-troca-ponto',
@@ -20,6 +22,7 @@ export class TrocaPontoPage implements OnInit {
     recompensas: IRecompensa[] = [];
     cliente: Cliente;
     recompensasCliente: RecompensaCliente[] = [];
+    movimentacoesCliente: IMovimentacaoEstoqueCliente[] = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -29,9 +32,13 @@ export class TrocaPontoPage implements OnInit {
         private clienteRecompensaService: ClienteRecompensaService,
         public alertController: AlertController,
         private router: Router,
-        public loadingController: LoadingController
+        public loadingController: LoadingController,
+        public movimentacaoEstoqueClienteService: MovimentacaoEstoqueClienteService
 
     ) { }
+
+    ngOnInit(): void {
+    }
 
     async ionViewWillEnter() {
         const loading = await this.loadingController.create({
@@ -50,24 +57,14 @@ export class TrocaPontoPage implements OnInit {
     }
 
     getRecompensas() {
+        this.recompensas = [];
         this.empresaService.getEmpresaLogada()
             .then(res => {
                 this.recompensaService.getAll({
                     'idEmpresa': res.codigo
                 }).subscribe(recompensas => {
                     this.recompensas = recompensas;
-                    this.recompensas.forEach(recompensa => {
-                        this.recompensasCliente.push(new RecompensaCliente(
-                            null,
-                            recompensa.codigo,
-                            this.idCliente,
-                            0,
-                            recompensa.totalPontos,
-                            recompensa.descricao,
-                            false,
-                            recompensa.qtdEstoque
-                        ))
-                    });
+                    this.geraMovimentacoes(recompensas);
                     this.loadingController.dismiss();
                 }, err => {
                     this.loadingController.dismiss();
@@ -75,29 +72,44 @@ export class TrocaPontoPage implements OnInit {
             });
     }
 
-    ngOnInit() {
+    private geraMovimentacoes(recompensas: Recompensa[]) {
+        this.movimentacoesCliente = [];
+        recompensas.forEach(recompensa => {
+            const movimentacaoEstoqueCliente = new MovimentacaoEstoqueCliente();
+            movimentacaoEstoqueCliente.quantidade = 0;
+            movimentacaoEstoqueCliente.idRecompensa = recompensa.codigo;
+            movimentacaoEstoqueCliente.tipoMovimentacao = 'ENTRADA';
+            movimentacaoEstoqueCliente.idCliente = this.idCliente;
+            movimentacaoEstoqueCliente.nomeRecompensa = recompensa.descricao;
+            movimentacaoEstoqueCliente.estoqueRecompensa = recompensa.qtdEstoque;
+            movimentacaoEstoqueCliente.pontosRecompensa = recompensa.totalPontos
+            this.movimentacoesCliente.push(movimentacaoEstoqueCliente);
+        });
     }
 
-
-    incrementarRecompensa(recompensaCliente: RecompensaCliente) {
-        if (this.cliente.totalPontos > 0) {
-            this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade += 1;
-            this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoqueCliente -= 1;
-            this.cliente.totalPontos -= recompensaCliente.recompensaPontos;
-        }
+    movimentaEstoqueRecompensa(movimentacaoEstoqueCliente: IMovimentacaoEstoqueCliente) {
+        movimentacaoEstoqueCliente.quantidade++;
+        this.cliente.totalPontos -= movimentacaoEstoqueCliente.pontosRecompensa;
     }
 
-    decrementarRecompensa(recompensaCliente: RecompensaCliente) {
-        this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].quantidade -= 1;
-        this.recompensasCliente[this.recompensasCliente.indexOf(recompensaCliente)].totalEstoqueCliente += 1;
-        this.cliente.totalPontos += recompensaCliente.recompensaPontos;
+    decrementarRecompensa(movimentacaoEstoqueCliente: IMovimentacaoEstoqueCliente) {
+        movimentacaoEstoqueCliente.quantidade--;
+        this.cliente.totalPontos += movimentacaoEstoqueCliente.pontosRecompensa;
     }
 
     realizarTroca() {
-        this.clienteRecompensaService.generateAll(this.recompensasCliente)
-            .subscribe(res => {
-            });
+        this.movimentacoesCliente.forEach(movimentacao => {
+            movimentacao.quantidade > 0 ? this.geraMovimentacao(movimentacao) : null;
+        });
         this.mostraModal();
+    }
+
+    geraMovimentacao(movimentacao: IMovimentacaoEstoqueCliente) {
+        this.movimentacaoEstoqueClienteService.create(movimentacao).subscribe(res => {
+            console.log('Movimentacao criada', res);
+        }, error => {
+            this.mostraModalErro();
+        });
     }
 
     async mostraModal() {
@@ -131,7 +143,4 @@ export class TrocaPontoPage implements OnInit {
         await alert.present();
     }
 
-    liberaIncrementoRecompensa(recompensaCliente: RecompensaCliente) {
-        return this.cliente.totalPontos >= recompensaCliente.recompensaPontos && recompensaCliente.totalEstoqueCliente > 0 ? true : false;
-    }
 }

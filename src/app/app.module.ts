@@ -15,6 +15,8 @@ import {AuthExpiredInterceptor} from "./services/interceptor/auth-expired.interc
 import localePtBr from '@angular/common/locales/pt';
 import {NgxWebstorageModule} from "ngx-webstorage";
 import { FirebaseCrashlytics } from '@ionic-native/firebase-crashlytics/ngx';
+import {LoginPageRoutingModule} from "./pages/login/login-routing.module";
+import {IonicStorageModule} from "@ionic/storage";
 registerLocaleData(localePtBr);
 
 @NgModule({
@@ -26,12 +28,11 @@ registerLocaleData(localePtBr);
     AppRoutingModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot({prefix: 'fiel', separator: '-'})
-
   ],
   providers: [
     StatusBar,
     SplashScreen,
-      FirebaseCrashlytics,
+    FirebaseCrashlytics,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,

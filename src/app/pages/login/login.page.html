@@ -1,4 +1,7 @@
-<ion-content>
+<ion-content *ngIf="!introducedApp">
+  <app-introduction-slide></app-introduction-slide>
+</ion-content>
+<ion-content *ngIf="introducedApp">
   <ion-row justify-content-center class="ion-row__top">
     <img src="https://res.cloudinary.com/dca4v2he5/image/upload/v1579654705/fiel-app/0c12d9f4-9967-4c6f-a294-ca6d7248b73c_200x200_m3kmho.png" alt="LOGO">
   </ion-row>
@@ -26,6 +29,6 @@
     </ion-card>
   </ion-row>
 </ion-content>
-<ion-footer class="ion-text-center">
-  © 2019~2020 · Fiel · v0.0.3
+<ion-footer class="ion-text-center" *ngIf="introducedApp">
+   Fiel © · v0.0.5 · 2019~2020
 </ion-footer>

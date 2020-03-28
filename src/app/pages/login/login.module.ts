@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import {IntroductionSlideComponent} from "./introduction-slide/introduction-slide.component";
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    IonicStorageModule.forRoot()
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage,
+    IntroductionSlideComponent]
 })
 export class LoginPageModule {}
