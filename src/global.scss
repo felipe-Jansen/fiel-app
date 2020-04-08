@@ -47,7 +47,11 @@ ion-item {
     width: 100%!important;
 }
 
-
+.center-elements{
+    display: flex!important;
+    align-content: center!important;
+    align-items: center!important;
+}
 
 .borda-arrendodada-55 {
     border-bottom-right-radius: 55%;

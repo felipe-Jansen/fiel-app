@@ -19,8 +19,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let recompensa of recompensas">
-        <ion-card [routerLink]="['/ponto-update/', recompensa.codigo]" class="ion-text-center welcome-card card__recompensa">
-          <ion-card-header class="card-header__descricao-recompensa ion-justify-content-center">
+        <ion-card [routerLink]="['/recompensa-update/', recompensa.codigo]" class="ion-text-center welcome-card card__recompensa">
+          <ion-card-header class="card-header__descricao-recompensa ion-justify-content-center center-elements">
             <ion-card-title>{{ recompensa.descricao }}</ion-card-title>
           </ion-card-header>
           <ion-row class="ion-text-center cardFooter">
@@ -34,5 +34,5 @@
   </ion-grid>
 </ion-content>
 <ion-footer>
-  <ion-button no-margin class="footer__button" [routerLink]="['/ponto-update/']" size="full">Adicionar um nova recompensa</ion-button>
+  <ion-button no-margin class="footer__button" [routerLink]="['/recompensa-update/']" size="full">Adicionar um nova recompensa</ion-button>
 </ion-footer>

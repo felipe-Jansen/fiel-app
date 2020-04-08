@@ -28,15 +28,16 @@
           <ion-col size="12">
             <ion-item>
               <ion-label position="floating">Tipo da Recompensa</ion-label>
-              <ion-select required formControlName="idTipoRecompensa">
-                <ion-select-option *ngFor="let tipoRecompensa of tipoRecompensas" [value]="tipoRecompensa.codigo">{{ tipoRecompensa.descricao }}</ion-select-option>
+              <ion-select required formControlName="tipoRecompensa">
+                <ion-select-option value="SERVICO">Serviço</ion-select-option>
+                <ion-select-option value="PRODUTO">Produto</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" *ngIf="editForm.get(['tipoRecompensa']).value === 'PRODUTO'">
             <ion-item>
               <ion-label position="floating">Quantidade em estoque</ion-label>
-              <ion-input placeholder="Informe a quantidade no estoque" required type="number"  formControlName="qtdEstoque"></ion-input>
+              <ion-input [required]="editForm.get(['tipoRecompensa']).value === 'PRODUTO'" placeholder="Informe a quantidade no estoque" type="number"  formControlName="qtdEstoque"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

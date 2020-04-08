@@ -23,14 +23,24 @@ export class AppComponent {
       icon: 'home',
       isAuthenticated: false
     },{
-      title: 'Estatística',
+      title: 'Estatísticas',
       url: '/estatistica',
-      icon: 'clock',
+      icon: 'analytics',
       isAuthenticated: true
     },{
       title: 'Recompensas',
       url: '/grid-recompensa',
-      icon: 'analytics',
+      icon: 'basket',
+      isAuthenticated: true
+    },{
+      title: 'Minhas Anotações',
+      url: '/grid-recompensa',
+      icon: 'alert',
+      isAuthenticated: true
+    },{
+      title: 'Registros Financeiros',
+      url: '/financeiro',
+      icon: 'logo-usd',
       isAuthenticated: true
     },{
       title: 'Meu Perfil',
@@ -76,7 +86,6 @@ export class AppComponent {
 
   introducingApp() {
     this.storage.get('app-was-introduced').then(appWasIntroduced => {
-      console.log(appWasIntroduced);
       if (appWasIntroduced) {
         this.router.navigate(['']);
       } else {

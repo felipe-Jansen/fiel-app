@@ -82,7 +82,8 @@ export class TrocaPontoPage implements OnInit {
             movimentacaoEstoqueCliente.idCliente = this.idCliente;
             movimentacaoEstoqueCliente.nomeRecompensa = recompensa.descricao;
             movimentacaoEstoqueCliente.estoqueRecompensa = recompensa.qtdEstoque;
-            movimentacaoEstoqueCliente.pontosRecompensa = recompensa.totalPontos
+            movimentacaoEstoqueCliente.pontosRecompensa = recompensa.totalPontos;
+            movimentacaoEstoqueCliente.tipoRecompensa = recompensa.tipoRecompensa;
             this.movimentacoesCliente.push(movimentacaoEstoqueCliente);
         });
     }
@@ -93,6 +94,7 @@ export class TrocaPontoPage implements OnInit {
     }
 
     decrementarRecompensa(movimentacaoEstoqueCliente: IMovimentacaoEstoqueCliente) {
+
         movimentacaoEstoqueCliente.quantidade--;
         this.cliente.totalPontos += movimentacaoEstoqueCliente.pontosRecompensa;
     }

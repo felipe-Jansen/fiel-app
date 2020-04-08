@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">Financeiro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-banner-radius-total texto="Meus Registros"></app-banner-radius-total>
+  <ion-row *ngIf="fincanceiros.length === 0">
+    <ion-card style="background-color: white" class="w-100 ion-text-center">
+      <ion-card-content>
+        Você não possui recompensas cadastradas :(
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+  <ion-grid>
+    <ion-row *ngFor="let financeiro of fincanceiros" [routerLink]="['/financeiro/form-financeiro/', financeiro.codigo]" >
+      <ion-card class="w-100 ion-text-center welcome-card card__recompensa">
+        <ion-row>
+          <ion-col size="2" class="ion-col__icon_financeiro center-elements ion-text-center">
+            <ion-icon [ngStyle]="{'color' : financeiro.tipo === 'DESPESA' ? 'red' : '#308c39'}" [name]="financeiro.tipo === 'DESPESA' ? 'arrow-round-back' : 'arrow-round-forward'"></ion-icon>
+          </ion-col>
+          <ion-col size="10" class="ion-text-start ion-padding-start">
+              <h1 class="h1__descricao-financeiro">{{ financeiro.descricao.substring(0,75) + '...' }}</h1>
+              <p [ngStyle]="{'color' : financeiro.status === 'NAO_PAGO' ? 'red' : '#308c39' }" class="p__status_financeiro ion-no-margin">{{ financeiro.status === 'NAO_PAGO' ? 'Não Pago' : 'Pago' }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-button no-margin class="footer__button" [routerLink]="['/financeiro/form-financeiro/']" size="full">Adicionar um nova recompensa</ion-button>
+</ion-footer>

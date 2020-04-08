@@ -17,6 +17,7 @@ import {AlertController, LoadingController} from "@ionic/angular";
 export class UpdateRecompensaPage implements OnInit {
 
   idRecompensa: number;
+  isProduto;
 
   editForm = this.fb.group({
     codigo: [],
@@ -24,7 +25,7 @@ export class UpdateRecompensaPage implements OnInit {
     dataCadastro: [],
     idEmpresa: [],
     qtdEstoque: [],
-    idTipoRecompensa: [],
+    tipoRecompensa: [],
     descricao: []
   });
 
@@ -47,7 +48,7 @@ export class UpdateRecompensaPage implements OnInit {
       totalPontos: this.editForm.get(['totalPontos']).value,
       dataCadastro: this.editForm.get(['dataCadastro']).value,
       idEmpresa: this.editForm.get(['idEmpresa']).value,
-      idTipoRecompensa: this.editForm.get(['idTipoRecompensa']).value,
+      tipoRecompensa: this.editForm.get(['tipoRecompensa']).value,
       descricao: this.editForm.get(['descricao']).value,
       qtdEstoque: this.editForm.get(['qtdEstoque']).value,
     }
@@ -56,7 +57,7 @@ export class UpdateRecompensaPage implements OnInit {
 
   ionViewWillEnter() {
     this.idRecompensa = this.activeRoute.snapshot.params.idRecompensa;
-    this.getTiposRecompensas();
+    // this.getTiposRecompensas();
     this.edicaoRecompensa();
   }
 
@@ -66,7 +67,7 @@ export class UpdateRecompensaPage implements OnInit {
       totalPontos: recompensa.totalPontos,
       dataCadastro: recompensa.dataCadastro,
       idEmpresa: recompensa.idEmpresa,
-      idTipoRecompensa: recompensa.idTipoRecompensa,
+      tipoRecompensa: recompensa.tipoRecompensa,
       descricao: recompensa.descricao,
       qtdEstoque: recompensa.qtdEstoque
     });
@@ -170,6 +171,14 @@ export class UpdateRecompensaPage implements OnInit {
           });
           await alert.present();
         })
+  }
+
+  ocultaEstoqueRecompensa(idRecompensa) {
+    this.tipoRecompensas.forEach(tipoRecompensa => {
+      if (tipoRecompensa.codigo === idRecompensa && tipoRecompensa.descricao === "SERVICO") {
+        this.isProduto = false;
+      }
+    });
   }
 
 }

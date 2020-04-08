@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Meu Financeiro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-banner-radius-total texto="Novo Registro"></app-banner-radius-total>
+  <form (submit)="salvar()" class="form" [formGroup]="editForm">
+    <ion-card>
+    <ion-list>
+      <ion-card-title margin-start margin-top>Dados do Registro</ion-card-title>
+      <ion-item class="itemForm">
+        <ion-label position="floating">Tipo</ion-label>
+        <ion-select formControlName="tipo" cancelText="Fechar" okText="Selecionar">
+          <ion-select-option value="RECEITA">Receita</ion-select-option>
+          <ion-select-option value="DESPESA">Despesa</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="itemForm">
+        <ion-label position="floating">Status</ion-label>
+        <ion-select formControlName="status" cancelText="Fechar" okText="Selecionar">
+          <ion-select-option value="PAGO">Pago</ion-select-option>
+          <ion-select-option value="NAO_PAGO">Não Pago</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="itemForm">
+        <ion-label position="floating">Valor</ion-label>
+        <ion-input required type="string" formControlName="valor" placeholder="Digite o valor"></ion-input>
+        <small style="color: red" *ngIf="editForm.controls['valor'].hasError('required')">*Obrigatório</small>
+      </ion-item>
+      <ion-item class="itemForm">
+        <ion-label position="floating">Informe a data do pagamento</ion-label>
+        <ion-datetime placeholder="Selecione a Data de pagamento" type="string" displayFormat="DD/MM/YYYY" cancelText="Sair" doneText="Adicionar" pickerFormat="DD/MMM/YYYY" monthShortNames='jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez' formControlName="dataPagamento"></ion-datetime>
+        <small style="color: red" *ngIf="editForm.controls['dataPagamento'].hasError('required')">*Obrigatório</small>
+      </ion-item>
+      <ion-item class="itemForm">
+        <ion-label position="floating">Informe a descrição</ion-label>
+        <ion-textarea placeholder="Selecione a Data de Pagamento" type="string" formControlName="descricao"></ion-textarea>
+        <small style="color: red" *ngIf="editForm.controls['descricao'].hasError('required')">*Obrigatório</small>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+    <ion-card>
+      <ion-grid center text-center>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button color="success" class="w-100" type="submit"><ion-icon name="log-out"></ion-icon>&nbsp;Confirmar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </form>
+</ion-content>

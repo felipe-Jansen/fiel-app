@@ -1,3 +1,5 @@
+import {TipoRecompensa} from "./recompensa.model";
+
 export interface IMovimentacaoEstoqueCliente {
     codigo?: number;
     dataMovimentacao?: any;
@@ -8,11 +10,12 @@ export interface IMovimentacaoEstoqueCliente {
     nomeRecompensa?: string;
     estoqueRecompensa?: number;
     pontosRecompensa?: number;
+    tipoRecompensa?: TipoRecompensa
 }
 
 export class MovimentacaoEstoqueCliente implements IMovimentacaoEstoqueCliente {
     constructor(
-        public codigo?: number,
+    public codigo?: number,
     public  dataMovimentacao?: any,
     public   quantidade?: number,
     public  idCliente?: number,
@@ -21,5 +24,6 @@ export class MovimentacaoEstoqueCliente implements IMovimentacaoEstoqueCliente {
     public  nomeRecompensa?: string,
     public estoqueRecompensa?: number,
     public pontosRecompensa?: number,
+    public tipoRecompensa?: TipoRecompensa
     ) {}
 }

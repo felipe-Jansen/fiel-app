@@ -3,9 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title color="light">Sobre a Fiel</ion-title>
+    <ion-title color="light">Precisa de Ajuda?</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <app-banner-radius-total texto="Fale com a gente"></app-banner-radius-total>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="cardForm">
+          <ion-list>
+            <ion-item class="itemForm">
+              <ion-label class="montserrat" position="floating">Razão social</ion-label>
+              <ion-input margin-top class="montserrat bold black" type="input"></ion-input>
+            </ion-item>
+            <ion-item class="itemForm">
+              <ion-label class="montserrat" position="floating">Descrição</ion-label>
+              <ion-input margin-top class="montserrat bold black" type="input"></ion-input>
+            </ion-item>
+            <ion-item class="itemForm">
+              <ion-label class="montserrat" position="floating">Descrição</ion-label>
+              <ion-textarea margin-top class="montserrat bold black" type="input"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

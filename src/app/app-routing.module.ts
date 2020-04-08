@@ -20,10 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/cliente/detalhe-cliente/detalhe-cliente.module').then( m => m.DetalheClientePageModule)
   },
   {
-    path: 'ponto-update',
+    path: 'recompensa-update',
     loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
   },{
-    path: 'ponto-update/:idRecompensa',
+    path: 'recompensa-update/:idRecompensa',
     loadChildren: () => import('./pages/recompensa/update-recompensa/update-recompensa.module').then(m => m.UpdateRecompensaPageModule)
   },
   {
@@ -81,6 +81,10 @@ const routes: Routes = [
   {
     path: 'introduced-slides',
     loadChildren: () => import('./pages/introduced-slides/introduced-slides.module').then( m => m.IntroducedSlidesPageModule)
+  },
+  {
+    path: 'financeiro',
+    loadChildren: () => import('./pages/financeiro/financeiro.module').then(m => m.FinanceiroPageModule)
   }
 ];
 

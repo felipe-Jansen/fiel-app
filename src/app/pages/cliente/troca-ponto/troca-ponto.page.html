@@ -1,4 +1,4 @@
-<ion-header>
+  <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -22,14 +22,14 @@
         <ion-col align-self-center size="4">
           <h1 class="h1__recompensaDescricao">{{ movimentacaoEstoqueCliente.nomeRecompensa }}</h1>
           <label *ngIf="movimentacaoEstoqueCliente.estoqueRecompensa > 0">{{ movimentacaoEstoqueCliente.pontosRecompensa }} pontos</label>
-          <label *ngIf="movimentacaoEstoqueCliente.estoqueRecompensa <= 0" class="label__detalhe-recompensa" style="color: red;">Fora de Estoque</label>
+          <label *ngIf="movimentacaoEstoqueCliente.tipoRecompensa === 'PRODUTO' && movimentacaoEstoqueCliente.estoqueRecompensa <= 0" class="label__detalhe-recompensa" style="color: red;">Fora de Estoque</label>
         </ion-col>
         <ion-col size="8">
           <ion-row justify-content-center>
             <ion-col size="3">
               <ion-button
                       (click)="movimentaEstoqueRecompensa(movimentacaoEstoqueCliente)"
-                      [disabled]="movimentacaoEstoqueCliente.quantidade >= movimentacaoEstoqueCliente.estoqueRecompensa || cliente.totalPontos < movimentacaoEstoqueCliente.pontosRecompensa">
+                      [disabled]="(movimentacaoEstoqueCliente.tipoRecompensa === 'PRODUTO' && movimentacaoEstoqueCliente.quantidade >= movimentacaoEstoqueCliente.estoqueRecompensa) || cliente.totalPontos < movimentacaoEstoqueCliente.pontosRecompensa">
                 <ion-icon name="add"></ion-icon>
               </ion-button>
             </ion-col>

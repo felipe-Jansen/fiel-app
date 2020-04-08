@@ -48,7 +48,6 @@ export class MeuPerfilPage implements OnInit {
     email: ['', [Validators.email]]
   });
 
-
   constructor(
       protected fb: FormBuilder,
       protected empresaService: EmpresaService,

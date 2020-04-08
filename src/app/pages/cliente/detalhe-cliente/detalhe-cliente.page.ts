@@ -95,7 +95,9 @@ export class DetalheClientePage {
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel',
+          handler: data => {
+              alert.dismiss();
+          }
         },
         {
           text: 'Confirmar',
@@ -107,7 +109,8 @@ export class DetalheClientePage {
             movimentacaoEstoque.idRecompensa = recompensaCliente.codigo;
             this.movimentacaoEstoqueClienteService.create(movimentacaoEstoque).subscribe(res => {
               this.getRecompensasDisponiveis(this.idCliente);
-              this.mostraModalUsoRecompensa()
+              this.mostraModalUsoRecompensa();
+              alert.dismiss();
             })
           }
         }
