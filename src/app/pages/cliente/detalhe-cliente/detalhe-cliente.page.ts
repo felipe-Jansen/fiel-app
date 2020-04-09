@@ -94,10 +94,7 @@ export class DetalheClientePage {
       inputs: opcoes,
       buttons: [
         {
-          text: 'Cancelar',
-          handler: data => {
-              alert.dismiss();
-          }
+          text: 'Cancelar'
         },
         {
           text: 'Confirmar',
@@ -110,7 +107,6 @@ export class DetalheClientePage {
             this.movimentacaoEstoqueClienteService.create(movimentacaoEstoque).subscribe(res => {
               this.getRecompensasDisponiveis(this.idCliente);
               this.mostraModalUsoRecompensa();
-              alert.dismiss();
             })
           }
         }

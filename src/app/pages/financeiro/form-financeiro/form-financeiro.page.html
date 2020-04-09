@@ -39,7 +39,7 @@
       </ion-item>
       <ion-item class="itemForm">
         <ion-label position="floating">Informe a descrição</ion-label>
-        <ion-textarea placeholder="Selecione a Data de Pagamento" type="string" formControlName="descricao"></ion-textarea>
+        <ion-textarea maxlength="170" placeholder="Selecione a Data de Pagamento" type="string" formControlName="descricao"></ion-textarea>
         <small style="color: red" *ngIf="editForm.controls['descricao'].hasError('required')">*Obrigatório</small>
       </ion-item>
     </ion-list>

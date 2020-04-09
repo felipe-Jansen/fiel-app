@@ -24,7 +24,7 @@
             <ion-icon [ngStyle]="{'color' : financeiro.tipo === 'DESPESA' ? 'red' : '#308c39'}" [name]="financeiro.tipo === 'DESPESA' ? 'arrow-round-back' : 'arrow-round-forward'"></ion-icon>
           </ion-col>
           <ion-col size="10" class="ion-text-start ion-padding-start">
-              <h1 class="h1__descricao-financeiro">{{ financeiro.descricao.substring(0,75) + '...' }}</h1>
+              <h1 class="h1__descricao-financeiro">{{ financeiro.descricao.substring(0,20) + '...' }}</h1>
               <p [ngStyle]="{'color' : financeiro.status === 'NAO_PAGO' ? 'red' : '#308c39' }" class="p__status_financeiro ion-no-margin">{{ financeiro.status === 'NAO_PAGO' ? 'Não Pago' : 'Pago' }}</p>
           </ion-col>
         </ion-row>
