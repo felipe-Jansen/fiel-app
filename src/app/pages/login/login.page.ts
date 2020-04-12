@@ -3,8 +3,6 @@ import {LoginService} from "../../services/login/login.service";
 import {Events, LoadingController, MenuController, NavController, ToastController} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {AccountService} from "../../services/auth/account.service";
-import { Storage } from '@ionic/storage';
-import {isBoolean} from "util";
 
 @Component({
   selector: 'app-login',
@@ -57,7 +55,7 @@ export class LoginPage implements OnInit {
         async (err) => {
           if (err.status === 401 ) {
             this.account.password = '';
-            this.showToast(err.error.detail);
+            this.showToast(err.error.message);
           } else if (err.status === 403) {
             this.account.password = '';
             this.showToast('Ops! Ocorreu um erro. Verifique suas credenciais e tente novamente');

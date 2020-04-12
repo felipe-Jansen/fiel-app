@@ -5,6 +5,7 @@ import {ClienteService} from "../../../services/cliente.service";
 import moment from "moment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoadingController} from "@ionic/angular";
+import {UtilService} from "../../../shared/util/util.service";
 
 
 @Component({
@@ -40,7 +41,8 @@ export class UpdateClientePage implements OnInit {
     private clienteService: ClienteService,
     private router: Router,
     public loadingController: LoadingController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+  protected utilService: UtilService,
   ) { }
 
   ngOnInit() {
@@ -104,17 +106,30 @@ export class UpdateClientePage implements OnInit {
     if (cliente.codigo) {
       this.clienteService.update(cliente)
           .subscribe(res => {
-            this.router.navigate(['detalhe-cliente', res.codigo]);
+            this.router.navigateByUrl('/detalhe-cliente/'+ res.codigo);
             this.loadingController.dismiss();
           })
     } else {
       this.clienteService.create(cliente)
           .subscribe(res => {
-            this.router.navigate(['detalhe-cliente', res.codigo]);
+            this.router.navigateByUrl('/detalhe-cliente/'+ res.codigo); 
             this.loadingController.dismiss();
           })
     }
+  }
 
+  buscaCep(cep: string) {
+    if (cep.length >= 10 ) {
+      this.utilService.getEnderecoCepWidenet(cep.replace(/[^a-zA-Z0-9 ]/g,    '')).subscribe(
+          (endereco: any) => {
+            this.editForm.controls.rua.setValue(endereco.address);
+            this.editForm.controls.bairro.setValue(endereco.district);
+            this.editForm.controls.cidade.setValue(endereco.city);
+            this.editForm.controls.estado.setValue(endereco.state);
+          },
+          error => {}
+      );
+    }
   }
 
 }

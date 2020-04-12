@@ -8,7 +8,7 @@ import {PontoService} from "../../../services/ponto.service";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
 import {RecompensaService} from "../../../services/recompensa.service";
 import {MovimentacaoEstoqueClienteService} from "../../../services/movimentacao-estoque-cliente.service";
-import {MovimentacaoEstoqueCliente} from "../../../shared/model/MovimentacaoEstoque.model";
+import {MovimentacaoEstoqueCliente} from "../../../shared/model/movimentacaoEstoque.modelCliente";
 
 @Component({
   selector: 'app-detalhe-cliente',
@@ -27,7 +27,7 @@ export class DetalheClientePage {
       private modalController: ModalController,
       private clienteService: ClienteService,
       private pontoService: PontoService,
-      private router: Router,
+      public router: Router,
       private alertController: AlertController,
       public loadingController: LoadingController,
       public recompensaService: RecompensaService,

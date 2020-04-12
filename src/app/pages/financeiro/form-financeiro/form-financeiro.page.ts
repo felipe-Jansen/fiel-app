@@ -43,6 +43,7 @@ export class FormFinanceiroPage implements OnInit {
   async ionViewWillEnter() {
     if (this.idFinanceiro) {
       this.financeiroService.find(this.idFinanceiro).subscribe(res => {
+        console.log(res);
         this.updateForm(res);
       });
     }
@@ -62,7 +63,7 @@ export class FormFinanceiroPage implements OnInit {
       codigo: financeiro.codigo,
       valor: financeiro.valor,
       dataCadastro: financeiro.dataCadastro,
-      dataPagamento: moment(financeiro.dataPagamento).format(DATE_FORMAT),
+      dataPagamento: financeiro.dataPagamento,
       descricao: financeiro.descricao,
       tipo: financeiro.tipo,
       idEmpresa: financeiro.idEmpresa,
@@ -72,6 +73,7 @@ export class FormFinanceiroPage implements OnInit {
   }
 
   private criarDoForm(): IFinanceiro {
+    console.log(this.editForm.get(['dataPagamento']).value);
     const entity = {
       ...new Financeiro(),
       codigo: this.editForm.get(['codigo']).value,
@@ -88,7 +90,6 @@ export class FormFinanceiroPage implements OnInit {
 
   salvar() {
     let financeiro = this.criarDoForm();
-    console.log(financeiro);
     if (!financeiro.codigo){
       this.financeiroService.save(financeiro).subscribe(res => {
         this.showAlertCriado();

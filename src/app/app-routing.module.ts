@@ -85,6 +85,14 @@ const routes: Routes = [
   {
     path: 'financeiro',
     loadChildren: () => import('./pages/financeiro/financeiro.module').then(m => m.FinanceiroPageModule)
+  },
+  {
+    path: 'minhas-vendas',
+    loadChildren: () => import('./pages/minhas-vendas/minhas-vendas.module').then( m => m.MinhasVendasPageModule)
+  },
+  {
+    path: 'movimentacoes-cliente/:idCliente',
+    loadChildren: () => import('./pages/cliente/movimentacoes-cliente/movimentacoes-cliente.module').then( m => m.MovimentacoesClientePageModule)
   }
 ];
 

@@ -35,11 +35,10 @@
       <ion-item class="itemForm">
         <ion-label position="floating">Informe a data do pagamento</ion-label>
         <ion-datetime placeholder="Selecione a Data de pagamento" type="string" displayFormat="DD/MM/YYYY" cancelText="Sair" doneText="Adicionar" pickerFormat="DD/MMM/YYYY" monthShortNames='jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez' formControlName="dataPagamento"></ion-datetime>
-        <small style="color: red" *ngIf="editForm.controls['dataPagamento'].hasError('required')">*Obrigatório</small>
       </ion-item>
       <ion-item class="itemForm">
         <ion-label position="floating">Informe a descrição</ion-label>
-        <ion-textarea maxlength="170" placeholder="Selecione a Data de Pagamento" type="string" formControlName="descricao"></ion-textarea>
+        <ion-textarea required maxlength="170" placeholder="Selecione a Data de Pagamento" type="string" formControlName="descricao"></ion-textarea>
         <small style="color: red" *ngIf="editForm.controls['descricao'].hasError('required')">*Obrigatório</small>
       </ion-item>
     </ion-list>

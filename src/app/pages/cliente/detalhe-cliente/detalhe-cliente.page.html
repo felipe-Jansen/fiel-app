@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button (click)="router.navigateByUrl('/home')"></ion-back-button>
     </ion-buttons>
     <ion-title color="light">Detalhe do Cliente</ion-title>
   </ion-toolbar>
@@ -80,6 +80,7 @@
       <ion-fab-list side="top">
         <ion-fab-button (click)="goto('/update-cliente/'+cliente?.codigo+'/edit')"><ion-icon name="create"></ion-icon></ion-fab-button>
         <ion-fab-button (click)="goto('/historico-cliente/'+cliente?.codigo)"><ion-icon name="analytics"></ion-icon></ion-fab-button>
+        <ion-fab-button (click)="goto('/movimentacoes-cliente/'+cliente?.codigo)"><ion-icon name="clock"></ion-icon></ion-fab-button>
       </ion-fab-list>
       <ion-fab-list *ngIf="cliente?.totalPontos > 0" side="start">
         <ion-fab-button (click)="goto('/troca-ponto/'+cliente?.codigo)"><ion-icon name="git-compare"></ion-icon></ion-fab-button>

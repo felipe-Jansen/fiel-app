@@ -33,18 +33,13 @@
           </ion-item>
           <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">
             <ion-label position="floating">Nome</ion-label>
-            <ion-input [required]="!editForm.controls['cnpj'].value" type="string" formControlName="nome" placeholder="Digite o Nome do Correspondente"></ion-input>
+            <ion-input [required]="!editForm.controls['cnpj'].value" type="string" formControlName="nome" placeholder="Digite o Nome do Responsável"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['nome'].hasError('required')">*Obrigatório</small>
           </ion-item>
           <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">
             <ion-label position="floating">Sobrenome</ion-label>
-            <ion-input [required]="!editForm.controls['cnpj'].value" type="string" formControlName="sobrenome" placeholder="Digite o Sobrenome do Correspondente"></ion-input>
+            <ion-input [required]="!editForm.controls['cnpj'].value" type="string" formControlName="sobrenome" placeholder="Digite o Sobrenome do Responsável"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['sobrenome'].hasError('required')">*Obrigatório</small>
-          </ion-item>
-          <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">
-            <ion-label position="floating">Data de Nascimento</ion-label>
-            <ion-datetime [required]="!editForm.controls['cnpj'].value" placeholder="Selecione a Data de Nascimento" type="string" displayFormat="DD/MM/YYYY" cancelText="Sair" doneText="Adicionar" pickerFormat="DD/MMM/YYYY" monthShortNames='jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez' formControlName="dataNascimento"></ion-datetime>
-            <small style="color: red" *ngIf="editForm.controls['dataNascimento'].hasError('required')">*Obrigatório</small>
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Telefone</ion-label>
@@ -59,32 +54,32 @@
           <ion-card-title margin-start margin-top>Dados do Endereço</ion-card-title>
           <ion-item class="itemForm">
             <ion-label position="floating">C.E.P.</ion-label>
-            <ion-input required type="string" #inputCep (ionInput)="buscaCep(inputCep.value)" [brmasker]="{form: editForm.get('cep'), mask: '99.999-999', len:10, type:'num'}" formControlName="cep" placeholder="Digite o C.E.P. do Revendedor"></ion-input>
+            <ion-input type="string" #inputCep (ionInput)="buscaCep(inputCep.value)" [brmasker]="{form: editForm.get('cep'), mask: '99.999-999', len:10, type:'num'}" formControlName="cep" placeholder="Digite o C.E.P."></ion-input>
             <small style="color: red" *ngIf="editForm.controls['cep'].hasError('required')">*Obrigatório</small>
             <small style="color: red"  *ngIf="!editForm.controls['cep'].valid && editForm.controls['cep'].dirty">*Informe um C.E.P. válido</small>
 
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Rua</ion-label>
-            <ion-input required type="string" formControlName="rua" placeholder="Digite a Rua do Revendedor"></ion-input>
+            <ion-input type="string" formControlName="rua" placeholder="Digite a Rua"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['rua'].hasError('required')">*Obrigatório</small>
 
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Bairro</ion-label>
-            <ion-input required type="string" formControlName="bairro" placeholder="Digite o Bairro do Revendedor"></ion-input>
+            <ion-input type="string" formControlName="bairro" placeholder="Digite o Bairro"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['bairro'].hasError('required')">*Obrigatório</small>
 
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Cidade</ion-label>
-            <ion-input required type="string" formControlName="cidade" placeholder="Digite a Cidade do Revendedor"></ion-input>
+            <ion-input type="string" formControlName="cidade" placeholder="Digite a Cidade"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['cidade'].hasError('required')">*Obrigatório</small>
 
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Estado</ion-label>
-            <ion-select required cancelText="Fechar" okText="Selecionar" formControlName="estado">
+            <ion-select cancelText="Fechar" okText="Selecionar" formControlName="estado">
               <ion-select-option value="AC">AC</ion-select-option>
               <ion-select-option value="AL">AL</ion-select-option>
               <ion-select-option value="AP">AP</ion-select-option>
@@ -118,7 +113,7 @@
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Número</ion-label>
-            <ion-input required type="string" formControlName="numero" placeholder="Digite o Número da Residência"></ion-input>
+            <ion-input type="string" formControlName="numero" placeholder="Digite o Número da Residência"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['numero'].hasError('required')">*Obrigatório</small>
           </ion-item>
           <ion-item class="itemForm">

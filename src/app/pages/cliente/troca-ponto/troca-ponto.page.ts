@@ -8,7 +8,7 @@ import {Cliente} from "../../../shared/model/cliente.model";
 import {RecompensaCliente} from "../../../shared/model/recompensa_cliente.model";
 import {ClienteRecompensaService} from "../../../services/clienteRecompensa.service";
 import {AlertController, LoadingController} from "@ionic/angular";
-import {IMovimentacaoEstoqueCliente, MovimentacaoEstoqueCliente} from "../../../shared/model/MovimentacaoEstoque.model";
+import {IMovimentacaoEstoqueCliente, MovimentacaoEstoqueCliente} from "../../../shared/model/movimentacaoEstoque.modelCliente";
 import {MovimentacaoEstoqueClienteService} from "../../../services/movimentacao-estoque-cliente.service";
 
 @Component({

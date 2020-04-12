@@ -8,27 +8,41 @@
 </ion-header>
 <ion-content>
   <app-banner-radius-total texto="Fale com a gente"></app-banner-radius-total>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card class="cardForm">
-          <ion-list>
-            <ion-item class="itemForm">
-              <ion-label class="montserrat" position="floating">Razão social</ion-label>
-              <ion-input margin-top class="montserrat bold black" type="input"></ion-input>
-            </ion-item>
-            <ion-item class="itemForm">
-              <ion-label class="montserrat" position="floating">Descrição</ion-label>
-              <ion-input margin-top class="montserrat bold black" type="input"></ion-input>
-            </ion-item>
-            <ion-item class="itemForm">
-              <ion-label class="montserrat" position="floating">Descrição</ion-label>
-              <ion-textarea margin-top class="montserrat bold black" type="input"></ion-textarea>
-            </ion-item>
-          </ion-list>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+  <ion-card padding margin>
+    <p><strong>Para reclamações, comentários e sugestões, Fale com a gente.
+      Envie sua manifestação por escrito e acompanhe suas solicitações.</strong></p>
+  </ion-card>
+  <form [formGroup]="editForm" (ngSubmit)="salvar()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-card class="cardForm">
+            <ion-list>
+              <ion-item class="itemForm">
+                <ion-label class="montserrat" position="floating">E-mail</ion-label>
+                <ion-input placeholder="Digite seu e-mail" required formControlName="email" margin-top class="montserrat bold black" type="input"></ion-input>
+              </ion-item>
+              <ion-item class="itemForm">
+                <ion-label class="montserrat" position="floating">Telefone / Whatsapp</ion-label>
+                <ion-input placeholder="Digite seu telefone/whatsapp" [brmasker]="{form: editForm.get('contato'), mask: '(99) 9 9999-9999', len:16, type:'num'}" formControlName="contato" margin-top class="montserrat bold black" type="string"></ion-input>
+              </ion-item>
+              <ion-item class="itemForm">
+                <ion-label class="montserrat" position="floating">Descrição</ion-label>
+                <ion-textarea placeholder="Digite sua mensagem" required formControlName="descricao" margin-top class="montserrat bold black" type="input"></ion-textarea>
+              </ion-item>
+            </ion-list>
+          </ion-card>
+          <ion-card>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-button [disabled]="editForm.invalid" expand="block" type="submit">  <ion-icon name="checkmark"></ion-icon>&nbsp;Enviar Feedback</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

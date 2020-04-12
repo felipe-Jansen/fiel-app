@@ -23,20 +23,25 @@ export class AppComponent {
       icon: 'home',
       isAuthenticated: false
     },{
+      title: 'Minhas Vendas',
+      url: '/minhas-vendas',
+      icon: 'analytics',
+      isAuthenticated: false
+    },{
       title: 'Estatísticas',
       url: '/estatistica',
-      icon: 'analytics',
+      icon: 'calculator',
       isAuthenticated: true
     },{
       title: 'Recompensas',
       url: '/grid-recompensa',
       icon: 'basket',
       isAuthenticated: true
-    },{
-      title: 'Minhas Anotações',
-      url: '/grid-recompensa',
-      icon: 'alert',
-      isAuthenticated: true
+    // },{
+    //   title: 'Minhas Anotações',
+    //   url: '/grid-recompensa',
+    //   icon: 'alert',
+    //   isAuthenticated: true
     },{
       title: 'Registros Financeiros',
       url: '/financeiro',

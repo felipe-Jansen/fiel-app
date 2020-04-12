@@ -35,7 +35,7 @@ export class FinanceiroService {
     }
 
     save(financeiro: Financeiro): Observable<Financeiro> {
-        financeiro.dataPagamento = moment(financeiro.dataPagamento).format('YYYY-MM-DD');
+        financeiro.dataPagamento = financeiro.dataPagamento ? moment(financeiro.dataPagamento).format('YYYY-MM-DD') : null;
         return this.http.post<Financeiro>(`${API_URL_V1}/${this.NOME_ENTIDADE}`, financeiro);
     }
 

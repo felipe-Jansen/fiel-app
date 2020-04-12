@@ -91,7 +91,7 @@ export class EmpresaPage implements OnInit {
       senha: this.editForm.get(['senha']).value,
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
-      dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
+      // dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
       foto_url: this.editForm.get(['foto_url']).value
     };
     return entity;
