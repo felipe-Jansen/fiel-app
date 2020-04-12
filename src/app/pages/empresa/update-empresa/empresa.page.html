@@ -47,6 +47,11 @@
             <small style="color: red" *ngIf="editForm.controls['telefone'].hasError('required')">*Obrigatório</small>
             <small style="color: red"  *ngIf="!editForm.controls['telefone'].valid && editForm.controls['telefone'].dirty">*Informe um telefone válido</small>
           </ion-item>
+          <ion-item class="itemForm">
+            <ion-label position="floating">Parâmetro para pontuação</ion-label>
+            <ion-input (click)="mostraExplicacao()" required type="number" formControlName="parametroPonto" placeholder="Informe o paramêtro o cálculo de pontos"></ion-input>
+            <small style="color: red" *ngIf="editForm.controls['parametroPonto'].hasError('required')">*Obrigatório</small>
+          </ion-item>
         </ion-list>
       </ion-card>
       <ion-card>
@@ -75,7 +80,6 @@
             <ion-label position="floating">Cidade</ion-label>
             <ion-input type="string" formControlName="cidade" placeholder="Digite a Cidade"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['cidade'].hasError('required')">*Obrigatório</small>
-
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Estado</ion-label>

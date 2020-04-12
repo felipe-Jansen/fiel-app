@@ -29,7 +29,7 @@
       </ion-item>
       <ion-item class="itemForm">
         <ion-label position="floating">Valor</ion-label>
-        <ion-input required type="string" formControlName="valor" placeholder="Digite o valor"></ion-input>
+        <ion-input type="number" class="ion-text-end" required type="string" formControlName="valor" placeholder="Digite o valor"></ion-input>
         <small style="color: red" *ngIf="editForm.controls['valor'].hasError('required')">*Obrigatório</small>
       </ion-item>
       <ion-item class="itemForm">

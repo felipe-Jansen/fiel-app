@@ -24,6 +24,7 @@ export interface IEmpresa {
     senha?: string;
     foto?: any;
     foto_url?: string;
+    parametroPonto?: number
 }
 
 export class Empresa implements IEmpresa {
@@ -52,7 +53,8 @@ export class Empresa implements IEmpresa {
         public email?: string,
         public senha?: string,
         public foto?: any,
-        public foto_url?: string) {
+        public foto_url?: string,
+        public parametroPonto?: number) {
 
     }
 }

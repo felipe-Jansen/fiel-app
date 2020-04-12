@@ -21,7 +21,7 @@
         <ion-item>
           <ion-icon name="logo-usd" slot="start" color="primary"></ion-icon>
           <ion-label position="floating">Valor da Compra</ion-label>
-          <ion-input required placeholder="Digite o valor da compra" type="number" formControlName="valorCompra"></ion-input>
+          <ion-input class="ion-text-end" required placeholder="Digite o valor da compra" type="number" formControlName="valorCompra"></ion-input>
           <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
         </ion-item>
         <ion-item>

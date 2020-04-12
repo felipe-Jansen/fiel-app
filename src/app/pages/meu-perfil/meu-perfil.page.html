@@ -53,6 +53,10 @@
           <small style="color: red" *ngIf="editForm.controls['email'].hasError('required')">*Obrigatório</small>
           <small style="color: red" *ngIf="!editForm.controls['email'].valid && editForm.controls['email'].dirty">*Informe um e-mail válido</small>
         </ion-item>
+        <ion-item class="itemForm">
+          <ion-label position="floating">Parâmetro para pontos</ion-label>
+          <ion-input disabled  formControlName="parametro_ponto"></ion-input>
+        </ion-item>
       </ion-list>
     </ion-card>
     <ion-card>

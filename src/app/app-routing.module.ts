@@ -93,6 +93,10 @@ const routes: Routes = [
   {
     path: 'movimentacoes-cliente/:idCliente',
     loadChildren: () => import('./pages/cliente/movimentacoes-cliente/movimentacoes-cliente.module').then( m => m.MovimentacoesClientePageModule)
+  },
+  {
+    path: 'funcionamento',
+    loadChildren: () => import('./pages/funcionamento/funcionamento.module').then( m => m.FuncionamentoPageModule)
   }
 ];
 

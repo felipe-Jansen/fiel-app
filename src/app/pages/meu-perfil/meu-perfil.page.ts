@@ -45,7 +45,8 @@ export class MeuPerfilPage implements OnInit {
     latitude: [],
     longitude: [],
     idUser: [],
-    email: ['', [Validators.email]]
+    email: ['', [Validators.email]],
+    parametro_ponto: []
   });
 
   constructor(
@@ -92,7 +93,8 @@ export class MeuPerfilPage implements OnInit {
       latitude: empresa.latitude,
       longitude: empresa.longitude,
       idUser: empresa.idUser,
-      foto_url: empresa.foto_url
+      foto_url: empresa.foto_url,
+      parametro_ponto: empresa.parametroPonto + '% sobre o valor total da venda'
     });
   }
 
@@ -123,6 +125,7 @@ export class MeuPerfilPage implements OnInit {
       dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
       idUser: this.editForm.get(['idUser']).value,
       foto_url: this.editForm.get(['foto_url']).value,
+      parametro_ponto: this.editForm.get(['parametro_ponto']).value
     };
     return entity;
   }

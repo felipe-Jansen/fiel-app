@@ -52,6 +52,11 @@ export class AppComponent {
       url: '/meu-perfil',
       icon: 'person',
       isAuthenticated: true
+    },{
+      title: 'Como Funciona ?',
+      url: '/funcionamento',
+      icon: 'help',
+      isAuthenticated: true
     }
   ];
 

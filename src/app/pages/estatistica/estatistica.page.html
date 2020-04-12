@@ -14,7 +14,7 @@
       <ion-row>
         <ion-col>
           <ion-card-subtitle>Meu Lucro</ion-card-subtitle>
-          <ion-card-title class="ion-card-title__total-lucro">{{ receitaTotal | currency:'BRL' }}</ion-card-title>
+          <ion-card-title class="ion-card-title__total-lucro">{{ receitaTotal ? (receitaTotal | currency:'BRL') : ('R$ 0,00') }}</ion-card-title>
         </ion-col>
       </ion-row>
     </ion-card-header>

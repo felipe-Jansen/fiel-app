@@ -45,9 +45,10 @@ export class EmpresaPage implements OnInit {
     senha: [],
     confirmaSenha: [],
     latitude: [],
-    longitude: []
+    longitude: [],
+    parametroPonto: [],
   });
-
+  mostraAlert = true;
 
   constructor(
       protected fb: FormBuilder,
@@ -92,7 +93,8 @@ export class EmpresaPage implements OnInit {
       foto: this.editForm.get(['foto']).value,
       dataCadastro: moment(new Date()).format('YYYY-MM-DD'),
       // dataNascimento: moment(new Date (this.editForm.get(['dataNascimento']).value)).format('YYYY-MM-DD'),
-      foto_url: this.editForm.get(['foto_url']).value
+      foto_url: this.editForm.get(['foto_url']).value,
+      parametroPonto: this.editForm.get(['parametroPonto']).value
     };
     return entity;
   }
@@ -217,6 +219,27 @@ export class EmpresaPage implements OnInit {
     this.editForm.patchValue({
       foto: imageData
     });
+  }
+
+  async mostraExplicacao() {
+    if (this.mostraAlert) {
+      this.loadingController.dismiss();
+      const alert = await this.alertController.create({
+        header: 'Informação Importante!',
+        message: 'Esse é o parâmetro para a realização dos cálculos para obter os pontos através das vendas. <br><br>' +
+            ' <strong>Cálculo:</strong> A porcentagem do valor informado sobre a venda realizada é o total de pontos que será obtido <br><br>' +
+            '<strong>Ex.:</strong> Em uma venda de R$ 100,00 com parâmetro de 28% irá resultar em um total de 28 pontos',
+        buttons: [
+          {
+            text: 'Fechar',
+            handler: () => {
+              this.mostraAlert = false;
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 
 }

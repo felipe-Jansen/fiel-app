@@ -35,6 +35,7 @@
     "cordova-res": "^0.9.0",
     "cordova-sqlite-storage": "^5.0.0",
     "core-js": "^2.5.4",
+    "ionicng2-currency-mask": "^2.0.7",
     "moment": "^2.24.0",
     "ngx-mask-ionic": "^1.1.2",
     "ngx-webstorage": "^3.0.2",
