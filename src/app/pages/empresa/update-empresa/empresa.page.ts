@@ -242,4 +242,11 @@ export class EmpresaPage implements OnInit {
     }
   }
 
+  verificaValor() {
+    console.log(this.editForm.get(['parametroPonto']).value);
+    if (this.editForm.get(['parametroPonto']).value <= 0 || this.editForm.get(['parametroPonto']).value > 100){
+      this.editForm.get(['parametroPonto']).setErrors({"errorValor": true})
+    }
+  }
+
 }

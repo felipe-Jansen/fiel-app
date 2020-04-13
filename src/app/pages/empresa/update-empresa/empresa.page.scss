@@ -18,3 +18,7 @@ ion-list, ion-item {
   background-size: cover;
   margin-bottom: 10px;
 }
+
+.input__parametro[type=number]:after {
+  content: " %";
+}

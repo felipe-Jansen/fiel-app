@@ -49,8 +49,9 @@
           </ion-item>
           <ion-item class="itemForm">
             <ion-label position="floating">Parâmetro para pontuação</ion-label>
-            <ion-input (click)="mostraExplicacao()" required type="number" formControlName="parametroPonto" placeholder="Informe o paramêtro o cálculo de pontos"></ion-input>
+            <ion-input (ionChange)="verificaValor()" #valorParametro class="input__parametro" (click)="mostraExplicacao()" required type="number" formControlName="parametroPonto" placeholder="Informe o paramêtro o cálculo de pontos"></ion-input>
             <small style="color: red" *ngIf="editForm.controls['parametroPonto'].hasError('required')">*Obrigatório</small>
+            <small style="color: red" *ngIf="editForm.controls['parametroPonto'].hasError('errorValor')">*Informe um valor maior que 0 e menor que 100</small>
           </ion-item>
         </ion-list>
       </ion-card>
