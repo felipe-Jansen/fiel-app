@@ -28,7 +28,7 @@ export class PontoUpdatePage {
   editForm = this.fb.group({
     codigo: [],
     pontoAtivo: [],
-    valorCompra: [],
+    valorCompra: [0],
     dataCompra: [],
     idCliente: [],
     idEmpresa: [],

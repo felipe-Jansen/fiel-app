@@ -21,7 +21,7 @@ export class FormFinanceiroPage implements OnInit {
 
   editForm = this.fb.group({
     codigo: [],
-    valor: [],
+    valor: [0],
     dataCadastro: [],
     dataPagamento: [],
     descricao: [],
@@ -30,7 +30,6 @@ export class FormFinanceiroPage implements OnInit {
     status: []
   });
 
-  valor;
 
   constructor(
       private route: ActivatedRoute,
@@ -43,27 +42,26 @@ export class FormFinanceiroPage implements OnInit {
   ) { }
 
   async ionViewWillEnter() {
+    await this.empresaService.getEmpresaLogada().then(res => {
+      this.editForm.patchValue({
+        idEmpresa: res.codigo
+      })
+    });
     if (this.idFinanceiro) {
       this.financeiroService.find(this.idFinanceiro).subscribe(res => {
         console.log(res);
         this.updateForm(res);
       });
     }
-    await this.empresaService.getEmpresaLogada().then(res => {
-      this.editForm.patchValue({
-        idEmpresa: res.codigo
-      })
-    });
   }
 
   ngOnInit() {
   }
 
   updateForm(financeiro: Financeiro) {
-    this.valor = financeiro.valor;
     this.editForm.patchValue({
       codigo: financeiro.codigo,
-      valor: financeiro.valor,
+      valor: financeiro.valor ? financeiro.valor : 0.00,
       dataCadastro: financeiro.dataCadastro,
       dataPagamento: financeiro.dataPagamento,
       descricao: financeiro.descricao,

@@ -78,7 +78,6 @@ export class DetalheClientePage {
     return await modal.present();
   }
 
-  trocarPontos() {}
 
   goto(link: string) {
     this.router.navigate([link]);
