@@ -249,4 +249,11 @@ export class EmpresaPage implements OnInit {
     }
   }
 
+  isValidoCpf(cpf: string) {
+    console.log(cpf.replace(/[^a-zA-Z0-9 ]/g,    ''));
+    if (!UtilService.isValidoCpf(cpf.replace(/[^a-zA-Z0-9 ]/g,    ''))) {
+      this.editForm.get(['cpf']).setErrors({ cpfInvalido: true });
+    }
+  }
+
 }

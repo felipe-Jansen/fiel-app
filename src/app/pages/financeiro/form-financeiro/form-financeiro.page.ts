@@ -30,6 +30,8 @@ export class FormFinanceiroPage implements OnInit {
     status: []
   });
 
+  valor;
+
   constructor(
       private route: ActivatedRoute,
       protected fb: FormBuilder,
@@ -58,7 +60,7 @@ export class FormFinanceiroPage implements OnInit {
   }
 
   updateForm(financeiro: Financeiro) {
-    console.log(financeiro);
+    this.valor = financeiro.valor;
     this.editForm.patchValue({
       codigo: financeiro.codigo,
       valor: financeiro.valor,
@@ -73,7 +75,6 @@ export class FormFinanceiroPage implements OnInit {
   }
 
   private criarDoForm(): IFinanceiro {
-    console.log(this.editForm.get(['dataPagamento']).value);
     const entity = {
       ...new Financeiro(),
       codigo: this.editForm.get(['codigo']).value,
@@ -90,6 +91,7 @@ export class FormFinanceiroPage implements OnInit {
 
   salvar() {
     let financeiro = this.criarDoForm();
+    console.log(financeiro);
     if (!financeiro.codigo){
       this.financeiroService.save(financeiro).subscribe(res => {
         this.showAlertCriado();

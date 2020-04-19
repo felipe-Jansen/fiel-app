@@ -11,8 +11,9 @@
   <app-banner-radius-total texto="Novo Registro"></app-banner-radius-total>
   <form (submit)="salvar()" class="form" [formGroup]="editForm">
     <ion-card>
-    <ion-list>
+      <ion-list>
       <ion-card-title margin-start margin-top>Dados do Registro</ion-card-title>
+      <input formControlName="valor" placeholder="Digite o Valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" class="input__valor" name="preco" id="field_preco"/>
       <ion-item class="itemForm">
         <ion-label position="floating">Tipo</ion-label>
         <ion-select formControlName="tipo" cancelText="Fechar" okText="Selecionar">
@@ -28,11 +29,6 @@
         </ion-select>
       </ion-item>
       <ion-item class="itemForm">
-        <ion-label position="floating">Valor</ion-label>
-        <ion-input type="number" class="ion-text-end" required type="string" formControlName="valor" placeholder="Digite o valor"></ion-input>
-        <small style="color: red" *ngIf="editForm.controls['valor'].hasError('required')">*Obrigatório</small>
-      </ion-item>
-      <ion-item class="itemForm">
         <ion-label position="floating">Informe a data do pagamento</ion-label>
         <ion-datetime placeholder="Selecione a Data de pagamento" type="string" displayFormat="DD/MM/YYYY" cancelText="Sair" doneText="Adicionar" pickerFormat="DD/MMM/YYYY" monthShortNames='jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez' formControlName="dataPagamento"></ion-datetime>
       </ion-item>
@@ -42,7 +38,7 @@
         <small style="color: red" *ngIf="editForm.controls['descricao'].hasError('required')">*Obrigatório</small>
       </ion-item>
     </ion-list>
-  </ion-card>
+    </ion-card>
     <ion-card>
       <ion-grid center text-center>
         <ion-row>

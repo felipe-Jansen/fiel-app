@@ -16,9 +16,9 @@
         <ion-list>
           <ion-item [hidden]="editForm.controls['cnpj'].value" class="itemForm">
             <ion-label position="floating">C.P.F.</ion-label>
-            <ion-input [required]="!editForm.controls['cnpj'].value" type="string" minlength="14" [brmasker]="{form: editForm.get('cpf'), mask: '000.000.000-00', len:14, type:'num'}" formControlName="cpf" placeholder="Digite o C.P.F."></ion-input>
+            <ion-input (keyup)="isValidoCpf($event.target.value)" [required]="!editForm.controls['cnpj'].value" type="string" minlength="14" [brmasker]="{form: editForm.get('cpf'), mask: '000.000.000-00', len:14, type:'num'}" formControlName="cpf" placeholder="Digite o C.P.F."></ion-input>
             <small style="color: red" *ngIf="editForm.controls['cpf'].hasError('required')">*Obrigatório</small>
-            <small style="color: red"  *ngIf="!editForm.controls['cpf'].valid && editForm.controls['cpf'].dirty">*Informe um C.P.F. válido</small>
+            <small style="color: red"  *ngIf="editForm.controls['cpf'].hasError('cpfInvalido')">*Informe um C.P.F. válido</small>
           </ion-item>
           <ion-item [hidden]="editForm.controls['cpf'].value" class="itemForm">
             <ion-label position="floating">C.N.P.J.</ion-label>

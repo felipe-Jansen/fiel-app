@@ -11,18 +11,13 @@
   <app-banner-radius-total [texto]="'Novo Ponto'"></app-banner-radius-total>
   <form (submit)="create()" [formGroup]="editForm">
     <ion-card>
+      <input formControlName="valorCompra" placeholder="Digite o Valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" class="input__valor" name="preco" id="field_preco"/>
       <ion-list>
         <ion-item>
           <ion-icon name="mail" slot="start" color="primary"></ion-icon>
           <ion-label position="floating">Data do serviço</ion-label>
           <ion-input placeholder="Data da compra" disabled type="text" [value]=" momento | date: 'dd/MM/yyyy HH:mm'"></ion-input>
           <small style="color: red" *ngIf="editForm.controls['idRecompensa'].hasError('required')">*Obrigatório</small>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="logo-usd" slot="start" color="primary"></ion-icon>
-          <ion-label position="floating">Valor da Compra</ion-label>
-          <ion-input class="ion-text-end" required placeholder="Digite o valor da compra" type="number" formControlName="valorCompra"></ion-input>
-          <small style="color: red" *ngIf="editForm.controls['valorCompra'].hasError('required')">*Obrigatório</small>
         </ion-item>
         <ion-item>
           <ion-icon name="text" slot="start" color="primary"></ion-icon>

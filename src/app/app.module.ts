@@ -1,23 +1,23 @@
 import {LOCALE_ID, NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouteReuseStrategy} from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import {registerLocaleData} from "@angular/common";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./services/interceptor/auth.interceptor";
-import {AuthExpiredInterceptor} from "./services/interceptor/auth-expired.interceptor";
-import localePtBr from '@angular/common/locales/pt';
-import {NgxWebstorageModule} from "ngx-webstorage";
-import { FirebaseCrashlytics } from '@ionic-native/firebase-crashlytics/ngx';
-import {LoginPageRoutingModule} from "./pages/login/login-routing.module";
-import {IonicStorageModule} from "@ionic/storage";
-registerLocaleData(localePtBr);
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './services/interceptor/auth.interceptor';
+import {AuthExpiredInterceptor} from './services/interceptor/auth-expired.interceptor';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {FirebaseCrashlytics} from '@ionic-native/firebase-crashlytics/ngx';
+import {IonicStorageModule} from '@ionic/storage';
+import {registerLocaleData} from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [AppComponent],

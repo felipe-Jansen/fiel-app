@@ -5,3 +5,14 @@ ion-list, ion-item {
 ion-card {
   background-color: white;
 }
+
+.input__valor {
+  text-align: center !important;
+  height: 2em;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  margin: 0.5em 0em 0em 0em;
+  color: grey;
+  font-size: 2em !important;
+}

@@ -8,6 +8,7 @@ import {RecompensaUpdatePageRoutingModule} from './ponto-update-routing.module';
 
 import {PontoUpdatePage} from './ponto-update.page';
 import {SharedModule} from "../../../shared/shared.module";
+import {CurrencyMaskModule} from 'ngx-currency-mask';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {SharedModule} from "../../../shared/shared.module";
         IonicModule,
         RecompensaUpdatePageRoutingModule,
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
+        CurrencyMaskModule
     ],
     exports: [
         PontoUpdatePage
